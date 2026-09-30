@@ -1,9 +1,13 @@
 # Déjà Vous — Android downloads
 
-Public APK releases for Déjà Vous. The application source code stays in a separate private repository.
+Public releases of Déjà Vous, a card game for couples. This repository contains no source tree: it only hosts the
+[releases](https://github.com/tybiboune/DejaVous-apk/releases), each providing
 
-[Download the latest APK](https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk) or [read the release notes](https://github.com/tybiboune/DejaVous-apk/releases/latest). Updater-enabled Android builds check for new releases and download verified APKs. Android asks you to approve installation.
+- `deja-vous.apk` — the signed Android app ([download the latest](https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk))
+- `update.json` — used by the in-app updater
 
-Each release contains `deja-vous.apk` and `update.json`. Update checks send no game answers or vault content. Only APKs signed with the app's persistent signing key can update an installed release build.
+Releases from 1.2.1 onwards also provide `deja-vous-source-vX.Y.Z.zip` (the compressed sources of that exact version) and `SHA256SUMS` (checksums of the files above).
 
-Version 1.2.0 adds Same Brain, a six-round cooperative mode with private choices and a shared reveal. It also includes 2,000 bilingual Classic questions and 24 wildcards. Install it over an earlier signed release without uninstalling to preserve saved data. An earlier debug APK may have a different signing key; preserve that installation if it holds answers you need.
+Install a new APK over the previous signed release, without uninstalling, to keep your games and vault. Android asks you to confirm the installation. The app checks for updates on its own; only signed APKs with the same key can update an installed copy. Update checks send no answers, names or vault content.
+
+The maintained source repository is private; each source zip is a snapshot of the exact version released.
