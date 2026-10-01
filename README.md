@@ -5,9 +5,10 @@ Public releases of Déjà Vous, a card game for couples. This repository contain
 
 - `deja-vous.apk` — the signed Android app ([download the latest](https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk))
 - `update.json` — used by the in-app updater
+- `SHA256SUMS` — checksums of the files above
 
-Releases from 1.2.1 onwards also provide `deja-vous-source-vX.Y.Z.zip` (the compressed sources of that exact version) and `SHA256SUMS` (checksums of the files above).
+Releases from 1.2.1 to 1.7.0 also provide `deja-vous-source-vX.Y.Z.zip` (the compressed sources of that exact version). Releases from 1.8.0 onwards do not include a source archive.
 
 Install a new APK over the previous signed release, without uninstalling, to keep your games and vault. Android asks you to confirm the installation. The app checks for updates on its own; only signed APKs with the same key can update an installed copy. Update checks send no answers, names or vault content.
 
-The maintained source repository is private; each source zip is a snapshot of the exact version released.
+The maintained source repository is private.
