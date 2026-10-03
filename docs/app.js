@@ -235,10 +235,10 @@ function seedDoorAtmospheres() {
       fx.append(doorFxEl(`door-ember${i % 4 === 0 ? ' tiny' : ''}`, {
         left: `${15 + Math.random() * 70}%`,
         top: `${57 + Math.random() * 28}%`,
-        '--dx': `${(Math.random() - .5) * 64}px`,
-        '--rise': `${105 + Math.random() * 135}px`,
-        '--dur': `${1.3 + Math.random() * 1.1}s`,
-        '--delay': `${-Math.random() * 2.6}s`
+        '--sway-right': `${12 + Math.random() * 28}px`,
+        '--sway-left': `${-(12 + Math.random() * 28)}px`,
+        '--dur': `${1.55 + Math.random() * 1.15}s`,
+        '--delay': `${-Math.random() * 2.8}s`
       }));
     }
 
