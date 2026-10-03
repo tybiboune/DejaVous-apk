@@ -104,6 +104,8 @@ body.heat-on .hero h1 em{color:#ffabae}
 .duel-table th:first-child{width:25%}.duel-table td{width:37.5%;font-size:13px;color:#e5cfdb}
 .duel-table tbody th{font-size:12px;color:#eebed2;font-weight:850}
 .duel-table tbody td:nth-child(2){background:#5f2f5099;color:#fff1e9;font-weight:850}
+.duel-table .price-row th,.duel-table .price-row td{background:#3a253d;color:#fff0e6;font-weight:850}
+.duel-table .price-row td:nth-child(2){background:#784058;color:#fff8e9}
 .duel-table td.our-check{color:#fff7df!important}.duel-table td.unknown{color:#cab5c4}
 .duel-table tbody tr:hover{background:#ffffff0a}
 .table-note{font-size:12px;line-height:1.6}
