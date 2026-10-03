@@ -919,3 +919,92 @@ html[data-theme=light] .duel-table thead th{
   background:#47263f;
   color:#fff4ef;
 }
+
+
+/* V2.4 — realistic burning embers */
+.door-ember{
+  width:10px;
+  height:10px;
+  border-radius:46% 54% 52% 48% / 62% 62% 38% 38%;
+  background:
+    radial-gradient(circle at 50% 28%,
+      #fffde8 0 16%,
+      #ffe17a 30%,
+      #ffb145 50%,
+      #ff6f2e 70%,
+      rgba(255,111,46,0) 82%);
+  filter:
+    drop-shadow(0 0 6px #ffd06a)
+    drop-shadow(0 0 12px #ff8a36)
+    drop-shadow(0 0 18px #ff5d29);
+  transform-origin:50% 85%;
+  animation:dvEmberFire var(--dur) linear var(--delay) infinite;
+}
+.door-ember::before{
+  content:"";
+  position:absolute;
+  inset:16% 18% 28% 18%;
+  border-radius:50%;
+  background:radial-gradient(circle,#fffef2 0%,#ffe7a3 48%,rgba(255,231,163,0) 78%);
+  opacity:.95;
+  filter:blur(.5px);
+}
+.door-ember.tiny{
+  width:6px;
+  height:6px;
+  filter:
+    drop-shadow(0 0 4px #ffd06a)
+    drop-shadow(0 0 8px #ff8a36)
+    drop-shadow(0 0 12px #ff5d29);
+}
+html[data-theme=light] .door-ember{
+  background:
+    radial-gradient(circle at 50% 28%,
+      #fffef0 0 16%,
+      #ffe37d 30%,
+      #ffaf40 50%,
+      #f95f28 70%,
+      rgba(249,95,40,0) 82%);
+  filter:
+    drop-shadow(0 0 7px #ffd06a)
+    drop-shadow(0 0 13px #ff8a36)
+    drop-shadow(0 0 20px #ff5b29);
+}
+.door-burst-hot{
+  color:#ffd07a;
+  filter:
+    drop-shadow(0 0 8px #ffb04a)
+    drop-shadow(0 0 14px #ff7a34)
+    drop-shadow(0 0 20px #ff4e26);
+}
+@keyframes dvEmberFire{
+  0%{
+    opacity:0;
+    transform:translate3d(0,10px,0) rotate(-8deg) scale(.36);
+  }
+  8%{opacity:1}
+  20%{
+    opacity:1;
+    transform:translate3d(var(--wobble-a),2px,0) rotate(8deg) scale(.82);
+  }
+  36%{
+    opacity:.98;
+    transform:translate3d(var(--wobble-b),-6px,0) rotate(-10deg) scale(1.02);
+  }
+  52%{
+    opacity:.92;
+    transform:translate3d(var(--wobble-a),-12px,0) rotate(7deg) scale(.9);
+  }
+  68%{
+    opacity:.84;
+    transform:translate3d(var(--wobble-b),-18px,0) rotate(-7deg) scale(.72);
+  }
+  84%{
+    opacity:.62;
+    transform:translate3d(var(--wobble-a),-24px,0) rotate(5deg) scale(.54);
+  }
+  100%{
+    opacity:0;
+    transform:translate3d(var(--drift-x),-32px,0) rotate(var(--rot)) scale(.28);
+  }
+}
