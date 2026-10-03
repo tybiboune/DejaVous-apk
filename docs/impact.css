@@ -106,3 +106,527 @@ html[data-theme=light] .choice-door{background:linear-gradient(180deg,#f4dee5,#e
 @media(max-width:700px){
   .story-image .app-shot{min-height:100%}
 }
+
+
+/* V2.1 LIGHT CONTRAST + HERO EN FRAMING + DOOR ATMOSPHERES */
+
+/* ---------------------------------------------------------
+   Light themes: preserve the airy palette, but restore strong
+   contrast for body copy, controls, cards and comparison data.
+   Dark modes are intentionally untouched.
+   --------------------------------------------------------- */
+html[data-theme=light]{
+  --ink:#281a29;
+  --muted:#594454;
+  --rose:#6e2c45;
+  --peach:#7d3a51;
+  --wine:#712d46;
+  --line:#85586b66;
+  --glass:#fffaf6f2;
+}
+
+html[data-theme=light] body{color:#281a29}
+html[data-theme=light] .topbar{background:#fffaf6f2;border-color:#875d6f42}
+html[data-theme=light] .topbar-inner nav a,
+html[data-theme=light] .footer>a:not(.brand),
+html[data-theme=light] .hero-lede,
+html[data-theme=light] .hero-proof,
+html[data-theme=light] .section-heading>p,
+html[data-theme=light] .story-card p,
+html[data-theme=light] .benefit-grid p,
+html[data-theme=light] .demo-copy>p:not(.eyebrow),
+html[data-theme=light] .demo-honesty,
+html[data-theme=light] .demo-panel p,
+html[data-theme=light] .demo-inputs label,
+html[data-theme=light] .table-note,
+html[data-theme=light] .closing-inner>p:not(.eyebrow),
+html[data-theme=light] .closing-inner small,
+html[data-theme=light] .footer p{
+  color:#594454;
+}
+
+html[data-theme=light] .hero-proof b,
+html[data-theme=light] .story-card h3,
+html[data-theme=light] .benefit-grid h3,
+html[data-theme=light] .demo-panel h3,
+html[data-theme=light] .price-lockup,
+html[data-theme=light] .closing h2,
+html[data-theme=light] .door-copy h2,
+html[data-theme=light] .draw-copy h2{
+  color:#281a29;
+}
+
+html[data-theme=light] .language-switch{
+  background:#ffffffb8;
+  border-color:#81566a52;
+}
+html[data-theme=light] .language-switch a{color:#5a4051}
+html[data-theme=light] .language-switch a[aria-current=page]{
+  background:#7d405a;
+  color:#fff9fb;
+}
+html[data-theme=light] .topbar .top-cta{
+  background:#7d405a;
+  border-color:#7d405a;
+  color:#fff9fb;
+}
+html[data-theme=light] .topbar .top-cta span{color:#fff9fb}
+
+html[data-theme=light] .button-ghost,
+html[data-theme=light] .mystery-trigger,
+html[data-theme=light] .demo-options button,
+html[data-theme=light] .demo-tabs button,
+html[data-theme=light] .table-controls button,
+html[data-theme=light] .heat-controls button{
+  background:#fffdfb;
+  color:#352334;
+  border-color:#83586b66;
+}
+html[data-theme=light] .button-ghost:hover,
+html[data-theme=light] .mystery-trigger:hover,
+html[data-theme=light] .demo-options button:hover,
+html[data-theme=light] .demo-tabs button:hover,
+html[data-theme=light] .table-controls button:hover,
+html[data-theme=light] .heat-controls button:hover{
+  background:#fff5f3;
+  border-color:#75485e82;
+}
+html[data-theme=light] .heat-controls button[aria-pressed=true],
+html[data-theme=light] .demo-tabs button[aria-selected=true],
+html[data-theme=light] .table-controls button[aria-selected=true]{
+  background:#764058;
+  border-color:#764058;
+  color:#fff9fb;
+  box-shadow:0 4px 0 #5b2f4524;
+}
+
+html[data-theme=light] .theme-control-row>span{color:#63364d}
+html[data-theme=light] .heat-copy p:not(.eyebrow){color:#574052}
+html[data-theme=light] .heat-copy .heat-caption,
+html[data-theme=light] .draw-counter,
+html[data-theme=light] .door-result{
+  color:#642f49!important;
+}
+html[data-spicy=on][data-theme=light] .heat-copy .heat-caption,
+html[data-spicy=on][data-theme=light] .draw-counter,
+html[data-spicy=on][data-theme=light] .door-result{
+  color:#572038!important;
+}
+
+/* Light cards/panels: opaque enough to read on the pale aurora backgrounds. */
+html[data-theme=light] .benefit-grid article{
+  background:linear-gradient(160deg,#fffdfbf5,#f6e9eef2);
+  border-color:#8a5c7050;
+}
+html[data-theme=light] .demo-phone{
+  background:linear-gradient(145deg,#fffdfa,#f4e8ed);
+  border-color:#895c7063;
+  box-shadow:0 28px 60px #6b455728,inset 0 1px #ffffff;
+}
+html[data-theme=light] .demo-phone-top{color:#61485a}
+html[data-theme=light] .demo-options button,
+html[data-theme=light] .demo-inputs input{
+  background:#fffdfb;
+  color:#2f2030;
+  border-color:#8c607365;
+}
+html[data-theme=light] .demo-inputs input::placeholder{color:#765e70}
+html[data-theme=light] .demo-result{
+  background:#ead0dc;
+  border-color:#8e587465;
+  color:#432738;
+}
+html[data-theme=light] .demo-progress i{background:#6d43572c}
+html[data-theme=light] .demo-progress i.done{background:#7c4058}
+
+html[data-theme=light] .advantage-board{
+  background:linear-gradient(105deg,#ead0db,#efcfd5 55%,#e4d3e9);
+  border-color:#8553695c;
+  box-shadow:0 23px 50px #72506324;
+}
+html[data-theme=light] .advantage-stamp{
+  color:#4b2b3c;
+  border-color:#704158;
+}
+html[data-theme=light] .advantage-stamp span{color:#7a3b54}
+html[data-theme=light] .advantage-list span{
+  background:#fff9f7c9;
+  border-color:#8d607340;
+  color:#46293a;
+}
+html[data-theme=light] .compare-toolbar p{color:#6a344d}
+html[data-theme=light] .rival-card{
+  background:#fffaf7;
+  border-color:#8b60724f;
+  color:#442b3b;
+}
+html[data-theme=light] .rival-card:hover{border-color:#74465e}
+html[data-theme=light] .rival-card[aria-pressed=true]{
+  background:#704058;
+  color:#fff9fb;
+  border-color:#704058;
+  box-shadow:0 7px 0 #4f2d4030;
+}
+html[data-theme=light] .duel-panel{
+  background:#fffaf7;
+  border-color:#8e60745a;
+}
+html[data-theme=light] .duel-heading{
+  background:linear-gradient(100deg,#e5ccd6,#edd8dd);
+}
+html[data-theme=light] .duel-versus{color:#3f2939}
+html[data-theme=light] .duel-heading a{color:#63324b}
+html[data-theme=light] .duel-table thead th{
+  background:#e5d0d8;
+  color:#5e3049;
+}
+html[data-theme=light] .duel-table tbody th{color:#65344e}
+html[data-theme=light] .duel-table td{color:#4f394a}
+html[data-theme=light] .duel-table tbody td:nth-child(2){
+  background:#ead1dc;
+  color:#352132;
+}
+html[data-theme=light] .duel-table .price-row th,
+html[data-theme=light] .duel-table .price-row td{
+  background:#eadde3;
+  color:#472b3b;
+}
+html[data-theme=light] .duel-table .price-row td:nth-child(2){
+  background:#dcb8c8;
+  color:#321e2d;
+}
+html[data-theme=light] .duel-table td.unknown{color:#6c5666}
+html[data-theme=light] .table-note{color:#594454}
+html[data-theme=light] .table-note a{color:#6c304b}
+
+html[data-theme=light] .price-band{
+  background:linear-gradient(100deg,#e8ccd7,#f0d1d1 58%,#ddd0e7);
+  border-color:#80516655;
+}
+html[data-theme=light] .price-band .eyebrow{color:#65334c}
+html[data-theme=light] .price-lockup{color:#321f2e}
+html[data-theme=light] .price-lockup small{color:#5d4455}
+html[data-theme=light] .price-proof span{
+  color:#422739;
+  background:#fff9f7d9;
+  border-color:#865a6d3d;
+}
+html[data-theme=light] .price-proof b{color:#71374f}
+
+html[data-theme=light] .floating-cta{
+  background:#fffaf7f4;
+  border-color:#84596b50;
+  color:#342333;
+  box-shadow:0 18px 55px #6a465828;
+}
+html[data-theme=light] .floating-cta b{
+  background:#754058;
+  color:#fff9fb;
+}
+html[data-theme=light] .closing-price{
+  background:#fffaf7;
+  border-color:#865b6d55;
+}
+html[data-theme=light] .closing-price strong{color:#6f344d}
+html[data-theme=light] .closing-price span{color:#594454}
+
+/* Spicy-light keeps its wine personality while remaining readable. */
+html[data-spicy=on][data-theme=light]{
+  --ink:#241624;
+  --muted:#574151;
+  --rose:#67223d;
+  --peach:#762940;
+  --line:#78495f66;
+}
+html[data-spicy=on][data-theme=light] .topbar .top-cta,
+html[data-spicy=on][data-theme=light] .heat-controls button[aria-pressed=true],
+html[data-spicy=on][data-theme=light] .demo-tabs button[aria-selected=true],
+html[data-spicy=on][data-theme=light] .table-controls button[aria-selected=true]{
+  background:#672a45;
+  border-color:#672a45;
+}
+html[data-spicy=on][data-theme=light] .advantage-board{
+  background:linear-gradient(105deg,#e4c3d0,#e8bdc8 55%,#dacbe4);
+}
+
+/* ---------------------------------------------------------
+   English hero phone screens: tighten only the hero framing.
+   Story cards remain roomy and readable.
+   --------------------------------------------------------- */
+.hero-art .shot-secret{
+  padding:13cqw 4.2cqw 3.2cqw;
+}
+.hero-art .shot-secret-icon{
+  width:18cqw;height:18cqw;border-radius:5.8cqw;
+  font-size:8.1cqw;
+  box-shadow:0 0 0 1.3cqw #f3c2bf0a,0 0 0 2.5cqw #f3c2bf09;
+}
+.hero-art .shot-secret h4{
+  margin:3.8cqw 0 2.8cqw;
+  font-size:7.6cqw;
+}
+.hero-art .shot-secret p{
+  width:70%;
+  font-size:2.85cqw;
+  line-height:1.42;
+}
+.hero-art .shot-action{
+  width:91%;
+  padding:3cqw 2.5cqw;
+  border-radius:3.7cqw;
+  font-size:3.15cqw;
+}
+
+.hero-art .shot-door{
+  padding:3cqw 3.5cqw 2.7cqw;
+}
+.hero-art .shot-stage{font-size:1.72cqw}
+.hero-art .shot-progress{
+  gap:1.15cqw;
+  margin:3.5cqw 2.8cqw 3.6cqw;
+}
+.hero-art .shot-next{
+  gap:.65cqw;
+  padding:2.65cqw 2.7cqw;
+  border-radius:3.4cqw;
+}
+.hero-art .shot-next small{font-size:1.48cqw}
+.hero-art .shot-next b{font-size:3.55cqw}
+.hero-art .shot-next span{font-size:2.05cqw;line-height:1.32}
+.hero-art .shot-door h4{
+  margin:3.2cqw 0 2.25cqw;
+  font-size:5.95cqw;
+}
+.hero-art .shot-info{
+  padding:2.4cqw;
+  border-radius:3.25cqw;
+  font-size:2.15cqw;
+  line-height:1.34;
+}
+.hero-art .shot-info b{margin-bottom:.8cqw}
+.hero-art .shot-door-btn{
+  margin-top:3.55cqw;
+  padding:2.4cqw 1.8cqw;
+  border-radius:3.2cqw;
+  font-size:2.65cqw;
+}
+.hero-art .shot-door-btn.hot{margin-top:2cqw}
+.hero-art .shot-door-note{
+  margin-top:.65cqw;
+  font-size:1.68cqw;
+}
+
+/* ---------------------------------------------------------
+   Door atmospheres
+   Soft: warm pearl light + very slow floating motes.
+   Burning: breathing fire bed + embers + translucent smoke.
+   --------------------------------------------------------- */
+.choice-door{isolation:isolate}
+.choice-door .door-glow{
+  inset:0;
+  z-index:0;
+  border-radius:inherit;
+  pointer-events:none;
+  overflow:hidden;
+}
+.choice-door b,.choice-door small{z-index:4}
+.choice-door-soft{
+  background:
+    radial-gradient(ellipse at 50% 88%,#ffe8d91a 0%,transparent 46%),
+    linear-gradient(180deg,#34233d,#1c1425 72%);
+}
+.choice-door-soft .door-glow{
+  background:
+    radial-gradient(circle at 50% 79%,#fff7df2b 0 7%,transparent 37%),
+    radial-gradient(circle at 24% 36%,#ffdbea18 0,transparent 31%),
+    radial-gradient(circle at 78% 29%,#fff0c918 0,transparent 31%);
+  animation:dvSoftGlow 5.8s ease-in-out infinite;
+}
+.choice-door-soft::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:20%;right:20%;bottom:10%;
+  height:23%;
+  border-radius:50%;
+  background:radial-gradient(ellipse,#fff5ce30 0%,#ffe5e01b 43%,transparent 73%);
+  filter:blur(15px);
+  animation:dvSoftAura 5.2s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.choice-door-hot{
+  background:
+    radial-gradient(ellipse at 50% 92%,#a9432c35 0%,transparent 45%),
+    linear-gradient(180deg,#61283e,#2a1426 72%);
+}
+.choice-door-hot .door-glow{
+  background:
+    radial-gradient(ellipse at 50% 92%,#ffce7a38 0 7%,#ff7b3b27 29%,transparent 56%),
+    radial-gradient(circle at 21% 34%,#ff814018 0,transparent 28%),
+    radial-gradient(circle at 80% 29%,#ffbd6c18 0,transparent 29%);
+  animation:dvFireGlow 2.15s ease-in-out infinite;
+}
+.choice-door-hot::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:13%;right:13%;bottom:7%;
+  height:34%;
+  border-radius:50% 50% 38% 38%;
+  background:
+    radial-gradient(ellipse at 50% 100%,#fff0a56b 0 5%,#ffbc5f69 15%,#ff6e2e55 34%,#bd2e3032 54%,transparent 72%);
+  filter:blur(13px);
+  transform-origin:50% 100%;
+  animation:dvFireBed 1.75s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+.door-fx{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  overflow:hidden;
+  border-radius:inherit;
+  pointer-events:none;
+}
+.door-soft-mote,
+.door-ember,
+.door-smoke{
+  position:absolute;
+  display:block;
+  pointer-events:none;
+  will-change:transform,opacity;
+}
+.door-soft-mote{
+  width:7px;height:7px;border-radius:50%;
+  background:radial-gradient(circle,#fffef2 0%,#ffe5bd 39%,#ffd8df6b 58%,transparent 73%);
+  filter:drop-shadow(0 0 5px #ffe6c78c);
+  animation:dvSoftMote var(--dur) linear var(--delay) infinite;
+}
+.door-soft-mote.alt{
+  width:5px;height:5px;
+  background:radial-gradient(circle,#fffaff 0%,#f8d8ec 45%,transparent 72%);
+  filter:drop-shadow(0 0 4px #f5d8e491);
+}
+.door-ember{
+  width:8px;height:8px;border-radius:50%;
+  background:radial-gradient(circle,#fff5bd 0 15%,#ffc45e 36%,#ff7a35 62%,transparent 75%);
+  filter:drop-shadow(0 0 5px #ff8e3ca8);
+  animation:dvEmberRise var(--dur) ease-out var(--delay) infinite;
+}
+.door-ember.tiny{width:5px;height:5px}
+.door-smoke{
+  width:40px;height:40px;border-radius:50%;
+  background:radial-gradient(circle,#d9c9d220 0%,#8c76831a 39%,transparent 72%);
+  filter:blur(8px);
+  animation:dvSmokeRise var(--dur) ease-out var(--delay) infinite;
+}
+.door-burst-soft,.door-burst-hot{
+  position:absolute;
+  left:50%;top:57%;
+  z-index:5;
+  pointer-events:none;
+  font-style:normal;
+}
+.door-burst-soft{
+  color:#fff0c9;
+  filter:drop-shadow(0 0 6px #ffe3b9);
+  animation:dvSoftBurst .95s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.door-burst-hot{
+  color:#ffbf69;
+  filter:drop-shadow(0 0 8px #ff783d);
+  animation:dvHotBurst 1.05s cubic-bezier(.15,.72,.2,1) forwards;
+}
+
+/* Light mode preserves the meaning of the atmospheres without losing contrast. */
+html[data-theme=light] .choice-door-soft{
+  background:
+    radial-gradient(ellipse at 50% 90%,#fff4d26b 0%,transparent 48%),
+    linear-gradient(180deg,#f5e6eb,#e6cdd7 72%);
+  color:#45283a;
+}
+html[data-theme=light] .choice-door-soft .door-glow{
+  background:
+    radial-gradient(circle at 50% 78%,#fffdf0b0 0 7%,transparent 39%),
+    radial-gradient(circle at 24% 35%,#fff3d982 0,transparent 31%),
+    radial-gradient(circle at 78% 30%,#f9dceb73 0,transparent 31%);
+}
+html[data-theme=light] .choice-door-hot{
+  background:
+    radial-gradient(ellipse at 50% 92%,#d66f425c 0%,transparent 44%),
+    linear-gradient(180deg,#e8bdc8,#c9879d 72%);
+  color:#442235;
+}
+html[data-theme=light] .choice-door-hot .door-glow{
+  background:
+    radial-gradient(ellipse at 50% 92%,#ffd9958f 0 7%,#ff9a5963 28%,transparent 56%),
+    radial-gradient(circle at 18% 31%,#f47b5140 0,transparent 29%),
+    radial-gradient(circle at 81% 28%,#f6b56640 0,transparent 29%);
+}
+
+@keyframes dvSoftGlow{
+  0%,100%{opacity:.62;transform:scale(.98)}
+  50%{opacity:1;transform:scale(1.055)}
+}
+@keyframes dvSoftAura{
+  0%,100%{opacity:.48;transform:translateY(3px) scale(.95)}
+  50%{opacity:.86;transform:translateY(-3px) scale(1.08)}
+}
+@keyframes dvFireGlow{
+  0%,100%{opacity:.72;transform:scale(.98)}
+  45%{opacity:1;transform:scale(1.055)}
+  70%{opacity:.82;transform:scale(1.02)}
+}
+@keyframes dvFireBed{
+  from{opacity:.66;transform:scaleX(.94) scaleY(.92)}
+  to{opacity:1;transform:scaleX(1.08) scaleY(1.13)}
+}
+@keyframes dvSoftMote{
+  0%{opacity:0;transform:translate3d(0,12px,0) scale(.6)}
+  14%{opacity:.78}
+  72%{opacity:.55}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.22)}
+}
+@keyframes dvEmberRise{
+  0%{opacity:0;transform:translate3d(0,15px,0) scale(.55)}
+  10%{opacity:.98}
+  72%{opacity:.72}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.08)}
+}
+@keyframes dvSmokeRise{
+  0%{opacity:0;transform:translate3d(0,14px,0) scale(.62)}
+  18%{opacity:.28}
+  64%{opacity:.2}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.55)}
+}
+@keyframes dvSoftBurst{
+  from{opacity:1;transform:translate(-50%,-50%) scale(.45)}
+  to{opacity:0;transform:translate(calc(-50% + var(--bx)),calc(-50% + var(--by))) scale(1.18)}
+}
+@keyframes dvHotBurst{
+  from{opacity:1;transform:translate(-50%,-50%) scale(.45) rotate(0)}
+  to{opacity:0;transform:translate(calc(-50% + var(--bx)),calc(-50% + var(--by))) scale(1.35) rotate(170deg)}
+}
+
+@media(max-width:700px){
+  .door-soft-mote:nth-child(n+7),
+  .door-ember:nth-child(n+10),
+  .door-smoke:nth-child(n+4){display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .choice-door-soft .door-glow,
+  .choice-door-hot .door-glow,
+  .choice-door-soft::after,
+  .choice-door-hot::after,
+  .door-soft-mote,
+  .door-ember,
+  .door-smoke,
+  .door-burst-soft,
+  .door-burst-hot{
+    animation:none!important;
+  }
+  .door-fx{display:none}
+}
