@@ -771,3 +771,151 @@ html[data-theme=light] .door-burst-soft{
 html[data-theme=light] .door-soft-mote{
   animation-name:dvSoftMoteLight;
 }
+
+
+/* V2.3 — annotation fixes: light contrast, hero crop, price proof, horizontal embers */
+
+/* 1 — Hero copy: highlighted/bold words must remain strong on pale auroras. */
+html[data-theme=light] .hero-lede strong{
+  color:#321e2f;
+  font-weight:900;
+}
+html[data-spicy=on][data-theme=light] .hero-lede strong{
+  color:#2c1728;
+}
+
+/* 2 — English reconstructed screenshots: crop closer, like the FR captures.
+   Only .app-shot exists on EN, so French screenshots are untouched. */
+.hero-art .phone-back .app-shot{
+  transform:scale(1.20);
+  transform-origin:50% 51%;
+}
+.hero-art .phone-front .app-shot{
+  transform:scale(1.22);
+  transform-origin:50% 50%;
+}
+@media(max-width:700px){
+  .hero-art .phone-back .app-shot{transform:scale(1.28)}
+  .hero-art .phone-front .app-shot{transform:scale(1.30)}
+}
+
+/* 3 — Burning particles: sway sideways around the flame instead of flying upward. */
+.door-ember{
+  animation-name:dvEmberSway;
+  animation-timing-function:ease-in-out;
+}
+@keyframes dvEmberSway{
+  0%{opacity:0;transform:translate3d(0,3px,0) scale(.58)}
+  8%{opacity:1}
+  22%{opacity:.98;transform:translate3d(var(--sway-right),1px,0) scale(.85)}
+  39%{opacity:1;transform:translate3d(var(--sway-left),-1px,0) scale(.98)}
+  56%{opacity:.94;transform:translate3d(var(--sway-right),1px,0) scale(1.06)}
+  73%{opacity:.9;transform:translate3d(var(--sway-left),-2px,0) scale(1.10)}
+  89%{opacity:.72;transform:translate3d(var(--sway-right),0,0) scale(1.13)}
+  100%{opacity:0;transform:translate3d(var(--sway-left),-3px,0) scale(1.16)}
+}
+
+/* 4 — Price proof: make 6 / 6,065 / 0 the visual anchors. */
+.price-proof span{
+  display:flex;
+  min-height:86px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.25;
+}
+.price-proof b{
+  display:block;
+  margin:0 0 7px;
+  font:700 31px/.95 Georgia,'Times New Roman',serif;
+  letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+}
+html[data-theme=light] .price-proof span{
+  background:#fffaf8f2;
+  border-color:#7e4e6552;
+  color:#3d2636;
+  box-shadow:0 7px 20px #70475a13;
+}
+html[data-theme=light] .price-proof b{
+  color:#6d2e4a;
+}
+html[data-spicy=on][data-theme=light] .price-proof b{
+  color:#5f1f3a;
+}
+@media(max-width:700px){
+  .price-proof span{min-height:92px;padding:10px 6px;font-size:9.5px}
+  .price-proof b{font-size:30px;margin-bottom:7px}
+}
+
+/* 5–8 — Comparison table: explicit light-mode contrast for labels,
+   prices, checks and competitor values, especially in the mobile layout. */
+html[data-theme=light] .duel-table tbody th{
+  background:#47263f;
+  color:#fff4ef;
+  font-weight:900;
+  border-top-color:#6c455c;
+}
+html[data-spicy=on][data-theme=light] .duel-table tbody th{
+  background:#40213a;
+  color:#fff4f7;
+}
+
+html[data-theme=light] .duel-table tbody td{
+  color:#3c2937;
+}
+html[data-theme=light] .duel-table tbody td:nth-child(2){
+  background:#e4c3d1;
+  color:#321f2e;
+}
+html[data-theme=light] .duel-table td.our-check{
+  color:#352131!important;
+  font-weight:900;
+}
+html[data-theme=light] .duel-table td.rival-check{
+  color:#352131!important;
+  font-weight:850;
+}
+html[data-theme=light] .duel-table td.unknown{
+  color:#493541;
+  font-weight:700;
+}
+
+html[data-theme=light] .duel-table .price-row td{
+  color:#2f1d2b!important;
+  font-weight:900;
+}
+html[data-theme=light] .duel-table .price-row td:nth-child(2){
+  background:#d7aabd;
+  color:#2b1928!important;
+}
+html[data-theme=light] .duel-table .price-row td:nth-child(3){
+  background:#f4e8e5;
+  color:#44303d!important;
+}
+html[data-theme=light] .duel-table .price-row td.unknown{
+  color:#44303d!important;
+  font-weight:800;
+}
+
+/* Mobile-generated column labels (DÉJÀ VOUS / PAIRED etc.). */
+html[data-theme=light] .duel-table tbody td::before{
+  color:#6a2d49;
+  font-weight:950;
+}
+html[data-theme=light] .duel-table tbody td:nth-child(2)::before{
+  color:#5d2441;
+}
+html[data-theme=light] .duel-table tbody td:nth-child(3)::before{
+  color:#70364f;
+}
+html[data-spicy=on][data-theme=light] .duel-table tbody td::before{
+  color:#5b1e39;
+}
+
+/* Keep section labels legible even when the desktop table is visible. */
+html[data-theme=light] .duel-table thead th{
+  background:#47263f;
+  color:#fff4ef;
+}
