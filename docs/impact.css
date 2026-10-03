@@ -30,3 +30,79 @@ html[data-theme=light] .choice-door{background:linear-gradient(180deg,#f4dee5,#e
 @media(max-width:900px){.draw-layout,.door-layout{grid-template-columns:1fr;gap:25px}.draw-copy,.door-copy{text-align:center}.door-stage{max-width:620px;width:100%;margin:auto}.price-band-inner{grid-template-columns:1fr 1fr}.price-band-inner>.button{grid-column:1/-1;justify-self:center}}
 @media(max-width:700px){.theme-control-row{grid-template-columns:1fr}.live-phone{width:190px;min-height:420px;padding:20px 14px 16px}.card-stage{min-height:390px}.draw-card,.card-shadow{width:min(285px,78vw);height:350px}.draw-card strong{font-size:27px}.door-section{padding:82px 0 92px}.door-stage{min-height:380px;gap:10px}.choice-door b{font-size:20px;bottom:62px}.choice-door small{bottom:40px}.price-band-inner{grid-template-columns:1fr;text-align:center;gap:18px}.price-lockup{justify-content:center}.price-proof{grid-template-columns:repeat(3,1fr)}.price-band-inner>.button{grid-column:auto;width:100%}.floating-cta{bottom:10px;min-width:calc(100vw - 20px);padding:9px 9px 9px 13px}.floating-cta span{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.live-phone,.hero-art .phone,.choice-door,.floating-cta{transition:none!important}.draw-card.is-dealing,.door-spark{animation:none!important}.door-spark{display:none}.hero-art .phone{translate:0 0!important}}
+
+
+/* English portrait UI captures — rebuilt at the real phone ratio so the
+   marketing page never crops 16:9 desktop captures inside portrait phones. */
+.app-shot{
+  position:relative;width:100%;aspect-ratio:390/844;overflow:hidden;
+  container-type:inline-size;background:#17121e;color:#fff3ea;
+  font-family:Manrope,Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.35;user-select:none
+}
+.phone .app-shot{height:100%;aspect-ratio:auto}
+.story-image .app-shot{height:auto;min-height:100%;transition:transform .55s ease;transform-origin:center 18%}
+.story-card:hover .app-shot{transform:scale(1.04)}
+.shot-secret{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:22cqw 6cqw 6cqw;
+  background:radial-gradient(circle at 79% 5%,#62344945,transparent 33%),
+             linear-gradient(180deg,#18121d,#17101c 70%,#1a111d)
+}
+.shot-secret-icon{
+  display:grid;place-items:center;width:25cqw;height:25cqw;border-radius:8cqw;
+  background:linear-gradient(145deg,#ffd2ae,#f2a2aa);color:#362434;
+  font:400 11cqw/1 Georgia,'Times New Roman',serif;
+  box-shadow:0 0 0 2cqw #f3c2bf0a,0 0 0 4cqw #f3c2bf09
+}
+.shot-secret h4{
+  margin:5.5cqw 0 4.5cqw;font:400 10.5cqw/.98 Georgia,'Times New Roman',serif;
+  letter-spacing:-.045em;color:#fff4e9
+}
+.shot-secret p{
+  width:72%;margin:0;color:#e0ced5;font-size:3.65cqw;line-height:1.55
+}
+.shot-action{
+  margin-top:auto;width:94%;padding:4.2cqw 3cqw;border-radius:4.6cqw;
+  background:linear-gradient(105deg,#ffd0ad,#f09aa4);color:#38232f;
+  font-size:4.1cqw;font-weight:850;box-shadow:0 4cqw 10cqw #d56f8031
+}
+
+.shot-door{
+  padding:5.2cqw 5.5cqw 4.5cqw;background:
+  radial-gradient(circle at 83% 0,#60364645,transparent 30%),
+  linear-gradient(180deg,#17121e,#17101c);color:#f9edf0
+}
+.shot-stage{font-size:2.4cqw;font-weight:900;letter-spacing:.13em;color:#d6c2cd;text-transform:uppercase}
+.shot-progress{display:grid;grid-template-columns:repeat(5,1fr);gap:2cqw;margin:6cqw 4cqw 6cqw}
+.shot-progress i{height:1.2cqw;border-radius:20px;background:#ffffff21}.shot-progress i:first-child{background:#ffc6a7;box-shadow:0 0 2cqw #f2a99155}
+.shot-next{display:grid;gap:1.1cqw;padding:5cqw 4.2cqw;border:1px solid #e4bed341;border-radius:5cqw;background:#39283eaa;text-align:center;box-shadow:0 3cqw 8cqw #07040b33}
+.shot-next small{font-size:2.2cqw;letter-spacing:.17em;font-weight:900;color:#d5bdc9}.shot-next b{font-size:5.2cqw}.shot-next span{font-size:3.1cqw;color:#d8c2ce;line-height:1.45}
+.shot-door h4{margin:5.5cqw 0 4cqw;font:400 9cqw/1 Georgia,'Times New Roman',serif;letter-spacing:-.04em}
+.shot-info{padding:4.2cqw;border:1px solid #e8bfc78f;border-radius:4.8cqw;background:#4a3546c2;color:#f2e3e8;font-size:3cqw;line-height:1.48}
+.shot-info b{display:block;margin-bottom:1.5cqw}.shot-info span{display:block}
+.shot-door-btn{margin-top:6.5cqw;padding:4.1cqw 3cqw;text-align:center;border:1px solid #d9b7cb45;border-radius:4.5cqw;background:#34263c;color:#fff4f4;font-size:3.8cqw;font-weight:900}
+.shot-door-btn.hot{margin-top:3.6cqw;border:0;background:linear-gradient(105deg,#ffd0ad,#f09aa4);color:#39212f}
+.shot-door-note{display:block;margin-top:1.4cqw;text-align:center;color:#bfaab9;font-size:2.6cqw}
+
+.shot-classic{
+  padding:2.7cqw 5.4cqw 5cqw;background:
+  radial-gradient(circle at 85% 0,#7138474b,transparent 27%),
+  linear-gradient(180deg,#201524,#17111d);color:#fff4ec
+}
+.shot-score{display:grid;grid-template-columns:1fr auto;gap:2cqw}.shot-score span{padding:2.9cqw 3cqw;border:1px solid #f0b4b990;border-radius:5cqw;background:#3c2b3e;color:#e8d6df;font-size:3cqw}.shot-score b{color:#fff}
+.shot-turn{text-align:right;margin:3cqw 2cqw 5cqw;color:#d9c3cf;font-size:2.7cqw;font-weight:800}
+.shot-classic h4{margin:0 0 4.2cqw;font-size:5.8cqw;line-height:1.1;letter-spacing:-.045em}
+.shot-classic>.shot-info{margin-bottom:4.5cqw;font-size:3.05cqw;text-align:left}
+.mini-game-card{display:flex;min-height:30cqw;flex-direction:column;margin-bottom:3cqw;padding:4cqw 4.6cqw;border:1px solid #d3a9d36b;border-radius:6cqw;background:linear-gradient(145deg,#463350,#493446);box-shadow:0 3cqw 8cqw #08040c40}
+.mini-game-card.alt{background:linear-gradient(145deg,#4d354d,#5a3d40)}.mini-game-card.hot{background:linear-gradient(145deg,#513042,#683342);border-color:#f0b8c0a8}
+.mini-game-card small{font-size:2.15cqw;font-weight:900;letter-spacing:.09em;color:#e8d8e1}.mini-game-card b{margin:auto 0;font:400 5.25cqw/1.05 Georgia,'Times New Roman',serif;letter-spacing:-.03em}.mini-game-card em{font-style:normal;font-size:1.65cqw;letter-spacing:.18em;color:#cab2c0}
+
+@supports not (font-size:1cqw){
+  .shot-secret h4,.shot-door h4{font-size:28px}.shot-secret p,.shot-next span,.shot-info{font-size:11px}
+  .shot-classic h4{font-size:18px}.mini-game-card b{font-size:16px}
+}
+
+@media(max-width:700px){
+  .story-image .app-shot{min-height:100%}
+}
