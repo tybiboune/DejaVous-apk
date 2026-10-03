@@ -214,7 +214,7 @@ function seedDoorAtmospheres() {
     if (door.querySelector('.door-fx')) return;
     const fx = doorFxEl('door-fx');
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 16; i++) {
       fx.append(doorFxEl(`door-soft-mote${i % 3 === 1 ? ' alt' : ''}`, {
         left: `${15 + Math.random() * 70}%`,
         top: `${48 + Math.random() * 35}%`,
