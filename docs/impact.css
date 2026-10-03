@@ -482,6 +482,39 @@ html[data-spicy=on][data-theme=light] .advantage-board{
   pointer-events:none;
 }
 
+.choice-door-hot .door-glow::before,
+.choice-door-hot .door-glow::after{
+  content:"";
+  position:absolute;
+  bottom:5%;
+  pointer-events:none;
+  transform-origin:50% 100%;
+  mix-blend-mode:screen;
+}
+.choice-door-hot .door-glow::before{
+  left:27%;width:31%;height:31%;
+  border-radius:55% 45% 42% 58% / 68% 60% 40% 32%;
+  background:radial-gradient(ellipse at 50% 100%,#fff7cdd6 0 9%,#ffd266cf 23%,#ff8c3db8 45%,#ef49276e 65%,transparent 78%);
+  filter:blur(5px);
+  animation:dvFlameTongueA 1.05s ease-in-out infinite alternate;
+}
+.choice-door-hot .door-glow::after{
+  right:24%;width:25%;height:38%;
+  border-radius:45% 55% 58% 42% / 72% 62% 38% 28%;
+  background:radial-gradient(ellipse at 50% 100%,#fffbe0db 0 8%,#ffdc78d1 22%,#ff9b43bc 43%,#f3532b75 64%,transparent 79%);
+  filter:blur(6px);
+  animation:dvFlameTongueB 1.28s ease-in-out infinite alternate-reverse;
+}
+@keyframes dvFlameTongueA{
+  from{opacity:.7;transform:translateY(4px) scaleX(.86) scaleY(.82) rotate(-4deg)}
+  to{opacity:1;transform:translateY(-5px) scaleX(1.08) scaleY(1.18) rotate(4deg)}
+}
+@keyframes dvFlameTongueB{
+  from{opacity:.62;transform:translateY(3px) scaleX(.9) scaleY(.78) rotate(5deg)}
+  to{opacity:.96;transform:translateY(-7px) scaleX(1.04) scaleY(1.22) rotate(-3deg)}
+}
+
+
 .door-fx{
   position:absolute;
   inset:0;
@@ -499,27 +532,27 @@ html[data-spicy=on][data-theme=light] .advantage-board{
   will-change:transform,opacity;
 }
 .door-soft-mote{
-  width:7px;height:7px;border-radius:50%;
-  background:radial-gradient(circle,#fffef2 0%,#ffe5bd 39%,#ffd8df6b 58%,transparent 73%);
-  filter:drop-shadow(0 0 5px #ffe6c78c);
-  animation:dvSoftMote var(--dur) linear var(--delay) infinite;
+  width:8px;height:8px;border-radius:50%;
+  background:radial-gradient(circle,#fffef8 0%,#fff0c9 35%,#ffd8df80 58%,transparent 74%);
+  filter:drop-shadow(0 0 7px #ffe6c7b0) drop-shadow(0 0 12px #f8dbe48a);
+  animation:dvSoftMote var(--dur) cubic-bezier(.37,.08,.3,.98) var(--delay) infinite;
 }
 .door-soft-mote.alt{
-  width:5px;height:5px;
-  background:radial-gradient(circle,#fffaff 0%,#f8d8ec 45%,transparent 72%);
-  filter:drop-shadow(0 0 4px #f5d8e491);
+  width:6px;height:6px;
+  background:radial-gradient(circle,#ffffff 0%,#fbe3f2 42%,#f7cfe283 61%,transparent 74%);
+  filter:drop-shadow(0 0 6px #f9deeca8) drop-shadow(0 0 10px #fff0d177);
 }
 .door-ember{
-  width:8px;height:8px;border-radius:50%;
-  background:radial-gradient(circle,#fff5bd 0 15%,#ffc45e 36%,#ff7a35 62%,transparent 75%);
-  filter:drop-shadow(0 0 5px #ff8e3ca8);
+  width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle,#fffde0 0 14%,#ffe27a 29%,#ffb14b 48%,#ff7332 66%,transparent 78%);
+  filter:drop-shadow(0 0 7px #ffbe5bc7) drop-shadow(0 0 13px #ff642fa8);
   animation:dvEmberRise var(--dur) ease-out var(--delay) infinite;
 }
-.door-ember.tiny{width:5px;height:5px}
+.door-ember.tiny{width:6px;height:6px}
 .door-smoke{
-  width:40px;height:40px;border-radius:50%;
-  background:radial-gradient(circle,#d9c9d220 0%,#8c76831a 39%,transparent 72%);
-  filter:blur(8px);
+  width:44px;height:44px;border-radius:50%;
+  background:radial-gradient(circle,#e1d5dc2e 0%,#92798425 38%,transparent 72%);
+  filter:blur(9px);
   animation:dvSmokeRise var(--dur) ease-out var(--delay) infinite;
 }
 .door-burst-soft,.door-burst-hot{
@@ -535,8 +568,8 @@ html[data-spicy=on][data-theme=light] .advantage-board{
   animation:dvSoftBurst .95s cubic-bezier(.2,.8,.2,1) forwards;
 }
 .door-burst-hot{
-  color:#ffbf69;
-  filter:drop-shadow(0 0 8px #ff783d);
+  color:#ffd07a;
+  filter:drop-shadow(0 0 8px #ffad4d) drop-shadow(0 0 15px #ff5f2f);
   animation:dvHotBurst 1.05s cubic-bezier(.15,.72,.2,1) forwards;
 }
 
@@ -549,9 +582,20 @@ html[data-theme=light] .choice-door-soft{
 }
 html[data-theme=light] .choice-door-soft .door-glow{
   background:
-    radial-gradient(circle at 50% 78%,#fffdf0b0 0 7%,transparent 39%),
-    radial-gradient(circle at 24% 35%,#fff3d982 0,transparent 31%),
-    radial-gradient(circle at 78% 30%,#f9dceb73 0,transparent 31%);
+    radial-gradient(circle at 50% 78%,#fffef2e8 0 8%,transparent 41%),
+    radial-gradient(circle at 24% 35%,#ffe9bfc2 0,transparent 32%),
+    radial-gradient(circle at 78% 30%,#f6cfe9b8 0,transparent 32%),
+    radial-gradient(ellipse at 50% 92%,#fff4d49c 0,transparent 45%);
+}
+html[data-theme=light] .door-soft-mote{
+  width:10px;height:10px;
+  background:radial-gradient(circle,#ffffff 0%,#fff4c9 36%,#ffcfa7a6 57%,transparent 76%);
+  filter:drop-shadow(0 0 8px #fff0a9) drop-shadow(0 0 15px #f5c9d8);
+}
+html[data-theme=light] .door-soft-mote.alt{
+  width:8px;height:8px;
+  background:radial-gradient(circle,#ffffff 0%,#fbd9ee 42%,#edacd0a0 61%,transparent 76%);
+  filter:drop-shadow(0 0 8px #f8cfe5) drop-shadow(0 0 14px #f3bcd8);
 }
 html[data-theme=light] .choice-door-hot{
   background:
@@ -561,9 +605,17 @@ html[data-theme=light] .choice-door-hot{
 }
 html[data-theme=light] .choice-door-hot .door-glow{
   background:
-    radial-gradient(ellipse at 50% 92%,#ffd9958f 0 7%,#ff9a5963 28%,transparent 56%),
-    radial-gradient(circle at 18% 31%,#f47b5140 0,transparent 29%),
-    radial-gradient(circle at 81% 28%,#f6b56640 0,transparent 29%);
+    radial-gradient(ellipse at 50% 92%,#fff1b5c9 0 7%,#ffc266ae 20%,#ff82488d 37%,transparent 59%),
+    radial-gradient(circle at 18% 31%,#f76e465e 0,transparent 30%),
+    radial-gradient(circle at 81% 28%,#ffb65061 0,transparent 30%);
+}
+html[data-theme=light] .door-ember{
+  background:radial-gradient(circle,#fffde8 0 13%,#ffe26f 28%,#ffad3f 47%,#f85e28 66%,transparent 78%);
+  filter:drop-shadow(0 0 9px #ffbc4f) drop-shadow(0 0 16px #ff5a27);
+}
+html[data-theme=light] .door-smoke{
+  background:radial-gradient(circle,#9a788640 0%,#805d6d30 38%,transparent 72%);
+  opacity:.72;
 }
 
 @keyframes dvSoftGlow{
@@ -584,22 +636,28 @@ html[data-theme=light] .choice-door-hot .door-glow{
   to{opacity:1;transform:scaleX(1.08) scaleY(1.13)}
 }
 @keyframes dvSoftMote{
-  0%{opacity:0;transform:translate3d(0,12px,0) scale(.6)}
-  14%{opacity:.78}
-  72%{opacity:.55}
-  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.22)}
+  0%{opacity:0;transform:translate3d(0,14px,0) scale(.58)}
+  10%{opacity:.96;transform:translate3d(5px,-8px,0) scale(.82)}
+  23%{opacity:1;transform:translate3d(-5px,-28px,0) scale(.96)}
+  36%{opacity:.92;transform:translate3d(7px,-14px,0) scale(1.03)}
+  50%{opacity:.98;transform:translate3d(-6px,-45px,0) scale(1.08)}
+  63%{opacity:.86;transform:translate3d(8px,-29px,0) scale(1.12)}
+  76%{opacity:.78;transform:translate3d(-5px,-68px,0) scale(1.16)}
+  88%{opacity:.62;transform:translate3d(5px,-53px,0) scale(1.18)}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.24)}
 }
 @keyframes dvEmberRise{
-  0%{opacity:0;transform:translate3d(0,15px,0) scale(.55)}
-  10%{opacity:.98}
-  72%{opacity:.72}
-  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.08)}
+  0%{opacity:0;transform:translate3d(0,16px,0) scale(.52)}
+  7%{opacity:1}
+  42%{opacity:.96;transform:translate3d(5px,-42px,0) scale(.92)}
+  67%{opacity:.83;transform:translate3d(-4px,-82px,0) scale(1.02)}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.16)}
 }
 @keyframes dvSmokeRise{
-  0%{opacity:0;transform:translate3d(0,14px,0) scale(.62)}
-  18%{opacity:.28}
-  64%{opacity:.2}
-  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.55)}
+  0%{opacity:0;transform:translate3d(0,14px,0) scale(.6)}
+  14%{opacity:.42}
+  58%{opacity:.29;transform:translate3d(5px,-42px,0) scale(1.08)}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.72)}
 }
 @keyframes dvSoftBurst{
   from{opacity:1;transform:translate(-50%,-50%) scale(.45)}
@@ -621,6 +679,8 @@ html[data-theme=light] .choice-door-hot .door-glow{
   .choice-door-hot .door-glow,
   .choice-door-soft::after,
   .choice-door-hot::after,
+  .choice-door-hot .door-glow::before,
+  .choice-door-hot .door-glow::after,
   .door-soft-mote,
   .door-ember,
   .door-smoke,
