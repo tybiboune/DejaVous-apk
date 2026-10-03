@@ -199,6 +199,80 @@ if (drawButton && drawFace) drawButton.addEventListener('click', () => {
   }
 });
 
+function doorFxEl(className, vars = {}) {
+  const el = document.createElement('span');
+  el.className = className;
+  el.setAttribute('aria-hidden', 'true');
+  Object.entries(vars).forEach(([key, value]) => el.style.setProperty(key, value));
+  return el;
+}
+
+function seedDoorAtmospheres() {
+  if (reducedMotion) return;
+
+  document.querySelectorAll('.choice-door-soft').forEach(door => {
+    if (door.querySelector('.door-fx')) return;
+    const fx = doorFxEl('door-fx');
+
+    for (let i = 0; i < 9; i++) {
+      fx.append(doorFxEl(`door-soft-mote${i % 3 === 1 ? ' alt' : ''}`, {
+        left: `${18 + Math.random() * 64}%`,
+        top: `${54 + Math.random() * 31}%`,
+        '--dx': `${(Math.random() - .5) * 34}px`,
+        '--rise': `${60 + Math.random() * 72}px`,
+        '--dur': `${4.2 + Math.random() * 2.8}s`,
+        '--delay': `${-Math.random() * 6}s`
+      }));
+    }
+    door.prepend(fx);
+  });
+
+  document.querySelectorAll('.choice-door-hot').forEach(door => {
+    if (door.querySelector('.door-fx')) return;
+    const fx = doorFxEl('door-fx');
+
+    for (let i = 0; i < 13; i++) {
+      fx.append(doorFxEl(`door-ember${i % 4 === 0 ? ' tiny' : ''}`, {
+        left: `${18 + Math.random() * 64}%`,
+        top: `${61 + Math.random() * 24}%`,
+        '--dx': `${(Math.random() - .5) * 50}px`,
+        '--rise': `${78 + Math.random() * 110}px`,
+        '--dur': `${1.65 + Math.random() * 1.45}s`,
+        '--delay': `${-Math.random() * 2.8}s`
+      }));
+    }
+
+    for (let i = 0; i < 5; i++) {
+      fx.append(doorFxEl('door-smoke', {
+        left: `${26 + Math.random() * 48}%`,
+        top: `${51 + Math.random() * 18}%`,
+        '--dx': `${(Math.random() - .5) * 34}px`,
+        '--rise': `${62 + Math.random() * 75}px`,
+        '--dur': `${3.1 + Math.random() * 1.7}s`,
+        '--delay': `${-Math.random() * 4.3}s`
+      }));
+    }
+    door.prepend(fx);
+  });
+}
+
+function burstDoorAtmosphere(door, hot) {
+  if (reducedMotion) return;
+  const count = hot ? 15 : 10;
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('i');
+    particle.className = hot ? 'door-burst-hot' : 'door-burst-soft';
+    particle.setAttribute('aria-hidden', 'true');
+    particle.textContent = hot ? (i % 3 ? '✦' : '•') : (i % 2 ? '✧' : '·');
+    particle.style.setProperty('--bx', `${(Math.random() - .5) * (hot ? 190 : 125)}px`);
+    particle.style.setProperty('--by', `${-24 - Math.random() * (hot ? 155 : 92)}px`);
+    door.append(particle);
+    setTimeout(() => particle.remove(), 1150);
+  }
+}
+
+seedDoorAtmospheres();
+
 document.querySelectorAll('[data-door]').forEach(door => door.addEventListener('click', () => {
   const hot = door.dataset.door === 'hot';
   const stage = door.closest('.door-stage');
@@ -209,12 +283,16 @@ document.querySelectorAll('[data-door]').forEach(door => door.addEventListener('
   if (result) result.textContent = en
     ? (hot ? 'Burning. The next beat turns up the tension — because you chose it.' : 'Soft. You keep control of the pace without killing the surprise.')
     : (hot ? 'Brûlante. La suite monte d’un cran — parce que vous l’avez choisi.' : 'Douce. Vous gardez le contrôle du rythme sans tuer la surprise.');
+
+  burstDoorAtmosphere(door, hot);
+
   if (!reducedMotion) {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 8; i++) {
       const spark = node('i', 'door-spark', i % 2 ? '✦' : '·');
-      spark.style.setProperty('--sx', `${(Math.random() - .5) * 180}px`);
-      spark.style.setProperty('--sy', `${-20 - Math.random() * 150}px`);
-      door.append(spark); setTimeout(() => spark.remove(), 900);
+      spark.style.setProperty('--sx', `${(Math.random() - .5) * 160}px`);
+      spark.style.setProperty('--sy', `${-20 - Math.random() * 125}px`);
+      door.append(spark);
+      setTimeout(() => spark.remove(), 900);
     }
   }
 }));
