@@ -214,14 +214,14 @@ function seedDoorAtmospheres() {
     if (door.querySelector('.door-fx')) return;
     const fx = doorFxEl('door-fx');
 
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 12; i++) {
       fx.append(doorFxEl(`door-soft-mote${i % 3 === 1 ? ' alt' : ''}`, {
-        left: `${18 + Math.random() * 64}%`,
-        top: `${54 + Math.random() * 31}%`,
-        '--dx': `${(Math.random() - .5) * 34}px`,
-        '--rise': `${60 + Math.random() * 72}px`,
-        '--dur': `${4.2 + Math.random() * 2.8}s`,
-        '--delay': `${-Math.random() * 6}s`
+        left: `${15 + Math.random() * 70}%`,
+        top: `${48 + Math.random() * 35}%`,
+        '--dx': `${(Math.random() - .5) * 40}px`,
+        '--rise': `${96 + Math.random() * 58}px`,
+        '--dur': `${5.4 + Math.random() * 3.4}s`,
+        '--delay': `${-Math.random() * 8}s`
       }));
     }
     door.prepend(fx);
@@ -231,25 +231,25 @@ function seedDoorAtmospheres() {
     if (door.querySelector('.door-fx')) return;
     const fx = doorFxEl('door-fx');
 
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i < 20; i++) {
       fx.append(doorFxEl(`door-ember${i % 4 === 0 ? ' tiny' : ''}`, {
-        left: `${18 + Math.random() * 64}%`,
-        top: `${61 + Math.random() * 24}%`,
-        '--dx': `${(Math.random() - .5) * 50}px`,
-        '--rise': `${78 + Math.random() * 110}px`,
-        '--dur': `${1.65 + Math.random() * 1.45}s`,
-        '--delay': `${-Math.random() * 2.8}s`
+        left: `${15 + Math.random() * 70}%`,
+        top: `${57 + Math.random() * 28}%`,
+        '--dx': `${(Math.random() - .5) * 64}px`,
+        '--rise': `${105 + Math.random() * 135}px`,
+        '--dur': `${1.3 + Math.random() * 1.1}s`,
+        '--delay': `${-Math.random() * 2.6}s`
       }));
     }
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       fx.append(doorFxEl('door-smoke', {
-        left: `${26 + Math.random() * 48}%`,
-        top: `${51 + Math.random() * 18}%`,
-        '--dx': `${(Math.random() - .5) * 34}px`,
-        '--rise': `${62 + Math.random() * 75}px`,
-        '--dur': `${3.1 + Math.random() * 1.7}s`,
-        '--delay': `${-Math.random() * 4.3}s`
+        left: `${22 + Math.random() * 56}%`,
+        top: `${48 + Math.random() * 21}%`,
+        '--dx': `${(Math.random() - .5) * 46}px`,
+        '--rise': `${78 + Math.random() * 92}px`,
+        '--dur': `${2.7 + Math.random() * 1.4}s`,
+        '--delay': `${-Math.random() * 4.1}s`
       }));
     }
     door.prepend(fx);
@@ -258,12 +258,14 @@ function seedDoorAtmospheres() {
 
 function burstDoorAtmosphere(door, hot) {
   if (reducedMotion) return;
-  const count = hot ? 15 : 10;
+  const count = hot ? 22 : 12;
   for (let i = 0; i < count; i++) {
     const particle = document.createElement('i');
     particle.className = hot ? 'door-burst-hot' : 'door-burst-soft';
     particle.setAttribute('aria-hidden', 'true');
-    particle.textContent = hot ? (i % 3 ? '✦' : '•') : (i % 2 ? '✧' : '·');
+    particle.textContent = hot
+      ? (i % 4 === 0 ? '✹' : (i % 2 ? '✦' : '•'))
+      : (i % 2 ? '✧' : '·');
     particle.style.setProperty('--bx', `${(Math.random() - .5) * (hot ? 190 : 125)}px`);
     particle.style.setProperty('--by', `${-24 - Math.random() * (hot ? 155 : 92)}px`);
     door.append(particle);
