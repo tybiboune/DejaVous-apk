@@ -113,9 +113,10 @@ mystery.addEventListener('click', () => {
   mystery.querySelector('span:nth-child(2)').textContent = copy.surpriseAgain;
   if (!reducedMotion) { reveal.style.animation = 'none'; requestAnimationFrame(() => { reveal.style.animation = ''; }); }
 });
+const promoStored = (() => { try { return { theme: localStorage.getItem('dv-promo-theme'), spicy: localStorage.getItem('dv-promo-spicy') }; } catch { return {}; } })();
 const promoTheme = {
-  theme: ['dark', 'light'].includes(localStorage.getItem('dv-promo-theme')) ? localStorage.getItem('dv-promo-theme') : 'dark',
-  spicy: ['on', 'off'].includes(localStorage.getItem('dv-promo-spicy')) ? localStorage.getItem('dv-promo-spicy') : 'off'
+  theme: ['dark', 'light'].includes(promoStored.theme) ? promoStored.theme : 'dark',
+  spicy: ['on', 'off'].includes(promoStored.spicy) ? promoStored.spicy : 'off'
 };
 const themeMessages = en ? {
   'off-dark': 'Soft + dark. The game’s default mood.',
@@ -226,8 +227,10 @@ if (!reducedMotion && matchMedia('(pointer:fine)').matches) {
     const y = ((e.clientY - r.top) / r.height - .5);
     heroArt.style.setProperty('--hero-shift-x', `${(x * 18).toFixed(1)}px`);
     heroArt.style.setProperty('--hero-shift-y', `${(y * 16).toFixed(1)}px`);
+    heroArt.style.setProperty('--hero-back-x', `${(-x * 11).toFixed(1)}px`);
+    heroArt.style.setProperty('--hero-back-y', `${(-y * 9).toFixed(1)}px`);
   });
-  heroArt?.addEventListener('pointerleave', () => { heroArt.style.setProperty('--hero-shift-x', '0px'); heroArt.style.setProperty('--hero-shift-y', '0px'); });
+  heroArt?.addEventListener('pointerleave', () => { heroArt.style.setProperty('--hero-shift-x', '0px'); heroArt.style.setProperty('--hero-shift-y', '0px'); heroArt.style.setProperty('--hero-back-x', '0px'); heroArt.style.setProperty('--hero-back-y', '0px'); });
 }
 
 const floatingCta = document.querySelector('#floating-cta');
