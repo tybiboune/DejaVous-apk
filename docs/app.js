@@ -21,7 +21,7 @@ const copy = {
     rapidKicker: 'Tir rapide', rapidTitle: 'Votre instinct dit quoi ?', rapidHelp: 'Choisissez sans trop réfléchir.', rapidEnd: 'Votre trio est prêt.', rapidEndHelp: 'Dans le jeu, vous comparez vos réflexes à ceux de votre partenaire.', restart: 'Recommencer',
     fusionKicker: 'Fusion · thème : week-end', fusionTitle: 'Un mot chacun. Une idée commune.', fusionFirst: 'Écrivez un mot, puis passez l’écran.', fusionSecond: 'Votre partenaire a écrit son mot en secret. Écrivez le vôtre.',
     word: 'Mot de la personne', idea: 'Votre idée', hideWord: 'Garder mon mot secret', revealWords: 'Révéler les deux mots', wordHidden: 'Mot gardé secret', passPhone: 'Passez le téléphone.', fusionWin: 'Vous avez fusionné !', fusionBridge: 'Trouvez le mot-pont.', fusionBridgeHelp: 'Écrivez chacun un mot entre ces deux idées. Révélez, rapprochez-vous, recommencez !', fusionAgain: 'Essayer deux autres mots',
-    duelUs: 'DÉJÀ VOUS', duelSource: 'Source éditeur ↗', content: 'Contenu annoncé', mechanics: 'Mécaniques annoncées', guided: 'Soirée guidée avec final', comfort: 'Niveau choisi en secret', spicy: 'Mode épicé visuel et contenu', phones: 'Jeu direct à deux téléphones', private: 'Sans compte ni publicité',
+    duelUs: 'DÉJÀ VOUS', duelSource: 'Source éditeur ↗', price: 'Prix / offre', oursPrice: 'Jeu complet · 24,90 € une fois (prix visé)', content: 'Contenu annoncé', mechanics: 'Mécaniques annoncées', guided: 'Soirée guidée avec final', comfort: 'Niveau choisi en secret', spicy: 'Mode épicé visuel et contenu', phones: 'Jeu direct à deux téléphones', private: 'Sans compte ni publicité',
     oursContent: '6 065 questions, thèmes et paires', oursMechanics: '6 jeux distincts + « Ce soir »', oursGuided: '✓ 5 étapes et un final', oursComfort: '✓ Le choix le plus doux décide', oursSpicy: '✓ Palette et cartes adaptées', oursPhones: '✓ Bluetooth local', oursPrivate: '✓ Aucun compte, aucune pub', unknown: '? Non confirmé par la source', physicalNA: '— Sans objet pour un jeu physique',
     pairedGuided: 'Parcours guidés ; format différent', togellaSpicy: 'Contenu épicé ; thème visuel non précisé', lovifyPhones: '✓ Deux téléphones, à distance', physicalFormat: 'Cartes / activités physiques',
     prices: { freePremium: 'Gratuit + Premium 74,99 €/an', agape: 'Gratuit + dès 9,99 €/mois', lovewick: 'Gratuit + 29,99 €/an', gottman: 'Gratuit', togella: 'Gratuit + 22,99 €/an', lovify: 'Gratuit + achats dès 3,99 €', connected: 'Gratuit + 12,99 $/mois' },
@@ -40,7 +40,7 @@ const copy = {
     rapidKicker: 'Rapid Fire', rapidTitle: 'What does your gut say?', rapidHelp: 'Pick without overthinking.', rapidEnd: 'Your three picks are in.', rapidEndHelp: 'In the full game, compare your reflexes with your partner’s.', restart: 'Start again',
     fusionKicker: 'Fusion · theme: weekend', fusionTitle: 'One word each. One shared idea.', fusionFirst: 'Write one word, then pass the phone.', fusionSecond: 'Your partner wrote a secret word. Write yours.',
     word: 'Player', idea: 'Your idea', hideWord: 'Keep my word secret', revealWords: 'Reveal both words', wordHidden: 'Word saved in secret', passPhone: 'Pass the phone.', fusionWin: 'You fused!', fusionBridge: 'Find the bridge word.', fusionBridgeHelp: 'Each write a word between these ideas. Reveal, get closer, and try again!', fusionAgain: 'Try two new words',
-    duelUs: 'DÉJÀ VOUS', duelSource: 'Publisher source ↗', content: 'Published content', mechanics: 'Published game formats', guided: 'Guided night with a finale', comfort: 'Secret comfort choice', spicy: 'Spicy visuals and content', phones: 'Direct two-phone play', private: 'No account or ads',
+    duelUs: 'DÉJÀ VOUS', duelSource: 'Publisher source ↗', price: 'Price / offer', oursPrice: 'Full game · €24.90 once (planned)', content: 'Published content', mechanics: 'Published game formats', guided: 'Guided night with a finale', comfort: 'Secret comfort choice', spicy: 'Spicy visuals and content', phones: 'Direct two-phone play', private: 'No account or ads',
     oursContent: '6,065 questions, themes and pairs', oursMechanics: '6 distinct games + Tonight', oursGuided: '✓ 5 stages and a finale', oursComfort: '✓ The softer choice wins', oursSpicy: '✓ Visuals and cards adapt', oursPhones: '✓ Local Bluetooth', oursPrivate: '✓ No account, no ads', unknown: '? Not confirmed by the source', physicalNA: '— Not applicable to a physical game',
     pairedGuided: 'Guided journeys; a different format', togellaSpicy: 'Spicy content; visual theme not specified', lovifyPhones: '✓ Two phones, remotely', physicalFormat: 'Physical cards / activities',
     prices: { freePremium: 'Free + Premium €74.99/year', agape: 'Free + from €9.99/month', lovewick: 'Free + €29.99/year', gottman: 'Free', togella: 'Free + €22.99/year', lovify: 'Free + in-app purchases from €3.99', connected: 'Free + $12.99/month' },
@@ -169,7 +169,10 @@ function renderDuel() {
   const source = node('a', '', copy.duelSource); source.href = sources[rival.id]; source.target = '_blank'; source.rel = 'noopener noreferrer'; heading.append(source); duel.append(heading);
   const table = node('table', 'duel-table'); const thead = node('thead'); const header = node('tr'); [en ? 'THE FACTS' : 'LES FAITS', copy.duelUs, rival.name].forEach(text => header.append(node('th', '', text))); thead.append(header); table.append(thead);
   const body = node('tbody');
+  const priceRow = duelRow(copy.price, copy.oursPrice, rival.price);
+  priceRow.classList.add('price-row');
   body.append(
+    priceRow,
     duelRow(copy.content, copy.oursContent, copy.volumes[rival.id]),
     duelRow(copy.mechanics, copy.oursMechanics, copy.formats[rival.id]),
     duelRow(copy.guided, copy.oursGuided, rival.guided || (physical ? copy.physicalNA : copy.unknown), true),
