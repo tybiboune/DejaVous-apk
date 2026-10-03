@@ -112,22 +112,22 @@ showBrain();
 // Volumes keep the publisher's original unit; an activity is not a question.
 const markets = {
   digital: [
-    ['Paired', 'Gratuit + Premium 74,99 €/an affichés', '1 000+ activités', 'Questions quotidiennes, quiz, parcours', 'Plusieurs tarifs promotionnels en achat intégré.', 'https://apps.apple.com/fr/app/paired-appli-de-relation/id1469609343'],
-    ['Agapé', 'Gratuit + dès 9,99 €/mois affichés', 'Non publié', 'Question quotidienne, révélation à deux', 'Tarifs d’abonnement variables selon l’offre.', 'https://apps.apple.com/fr/app/agap%C3%A9-feel-close-when-apart/id1507907556'],
-    ['Lovewick', 'Gratuit + 29,99 €/an affichés', '1 000+ questions', 'Cartes en 6 catégories + idées de rendez-vous', 'Les 6 catégories ne sont pas 6 mécaniques.', 'https://apps.apple.com/fr/app/lovewick-relationship-tracker/id1516199115'],
-    ['Gottman Card Decks', 'Gratuit', '1 000+ cartes, 22 decks', 'Piocher, mélanger, mettre en favori', 'Les 22 decks sont des thèmes, pas 22 jeux.', 'https://apps.apple.com/us/app/gottman-card-decks/id1292398843'],
+    ['Paired', 'Gratuit + Premium 74,99 €/an affichés', '1 000+ activités', 'Nombre de jeux non publié ; questions, quiz, parcours', 'Plusieurs tarifs promotionnels en achat intégré.', 'https://apps.apple.com/fr/app/paired-appli-de-relation/id1469609343'],
+    ['Agapé', 'Gratuit + dès 9,99 €/mois affichés', 'Non publié', '1 flux principal : question quotidienne à deux', 'Tarifs d’abonnement variables selon l’offre.', 'https://apps.apple.com/fr/app/agap%C3%A9-feel-close-when-apart/id1507907556'],
+    ['Lovewick', 'Gratuit + 29,99 €/an affichés', '1 000+ questions', '1 flux de cartes en 6 catégories + idées de rendez-vous', 'Les 6 catégories ne sont pas 6 mécaniques.', 'https://apps.apple.com/fr/app/lovewick-relationship-tracker/id1516199115'],
+    ['Gottman Card Decks', 'Gratuit', '1 000+ cartes, 22 decks', '1 flux de cartes : piocher, mélanger, favoris', 'Les 22 decks sont des thèmes, pas 22 jeux.', 'https://apps.apple.com/us/app/gottman-card-decks/id1292398843'],
     ['Togella', 'Gratuit + 22,99 €/an affichés', '2 000+ questions', '11 modes annoncés', 'Concurrent fort sur le volume et la variété.', 'https://apps.apple.com/fr/app/togella-couples-question-games/id6777234833'],
-    ['Lovify', 'Gratuit + achats intégrés dès 3,99 €', '1 000+ questions, 50+ sujets', 'Répondre / deviner sur deux téléphones', 'Le contenu inclus gratuitement n’est pas détaillé.', 'https://apps.apple.com/fr/app/lovify-jeu-en-couple-quiz/id1645893544'],
-    ['Connected', 'Gratuit + 12,99 $/mois affichés', '700+ questions', 'Check-in, bilans, coach, activités', 'Outils relationnels ; nombre de jeux non publié.', 'https://www.connectedcouples.app/']
+    ['Lovify', 'Gratuit + achats intégrés dès 3,99 €', '1 000+ questions, 50+ sujets', '1 flux principal : répondre / deviner à deux', 'Le contenu inclus gratuitement n’est pas détaillé.', 'https://apps.apple.com/fr/app/lovify-jeu-en-couple-quiz/id1645893544'],
+    ['Connected', 'Gratuit + 12,99 $/mois affichés', '700+ questions', 'Nombre de jeux non publié ; check-in, bilans, coach', 'Plusieurs outils relationnels.', 'https://www.connectedcouples.app/']
   ],
   physical: [
-    ["We're Not Really Strangers — Couples", '20 $', '150 cartes', '3 niveaux de conversation', 'Un jeu progressif, pas 3 jeux distincts.', 'https://www.werenotreallystrangers.com/pages/couples-edition'],
-    ['Love Lingual — Couples', '26,95 $', '150 questions', 'Piocher et discuter', 'Profondeur par catégories.', 'https://lovelingual.com/products/love-lingual-couples-edition'],
-    ['{THE AND} — Couples', '29 $', '199 questions', 'Piocher et répondre', 'Version physique ; version numérique vendue séparément.', 'https://shop.theskindeep.com/products/the-and-couples-edition'],
-    ['Where Should We Begin? — 2e éd.', '34,99 $', '200 cartes-histoires', 'Histoires + dés, jetons et cartes-guides', '200 désigne les cartes-histoires, pas tout le contenu.', 'https://game.estherperel.com/products/where-should-we-begin-a-game-of-stories-2nd-edition'],
-    ['BestSelf — Intimacy Deck', '27 $', '170 cartes', 'Questions en 7 catégories', 'Les catégories ne sont pas 7 mécaniques.', 'https://bestself.co/collections/relationships/products/intimacy-deck'],
-    ['TableTopics — Couples', '25 $', '135 cartes', 'Piocher et discuter', 'Prix US ; disponibilité variable.', 'https://tabletopics.com/products/couples?currency=USD&variant=42509261799573'],
-    ['The Adventure Challenge — Couples', '49,99 $', '50 aventures à gratter', 'Expériences surprises à réaliser', 'Livre d’activités, pas un paquet de questions.', 'https://www.theadventurechallenge.com/products/couples-edition-book/']
+    ["We're Not Really Strangers — Couples", '20 $', '150 cartes', '1 jeu progressif en 3 niveaux', 'Les niveaux ne sont pas 3 jeux distincts.', 'https://www.werenotreallystrangers.com/pages/couples-edition'],
+    ['Love Lingual — Couples', '26,95 $', '150 questions', '1 format principal : piocher et discuter', 'Profondeur par catégories.', 'https://lovelingual.com/products/love-lingual-couples-edition'],
+    ['{THE AND} — Couples', '29 $', '199 questions', '1 format principal : piocher et répondre', 'Version physique ; version numérique vendue séparément.', 'https://shop.theskindeep.com/products/the-and-couples-edition'],
+    ['Where Should We Begin? — 2e éd.', '34,99 $', '200 cartes-histoires', 'Nombre de règles non publié ; dés, jetons, guides', '200 désigne les cartes-histoires, pas tout le contenu.', 'https://game.estherperel.com/products/where-should-we-begin-a-game-of-stories-2nd-edition'],
+    ['BestSelf — Intimacy Deck', '27 $', '170 cartes', '1 format de questions en 7 catégories', 'Les catégories ne sont pas 7 mécaniques.', 'https://bestself.co/collections/relationships/products/intimacy-deck'],
+    ['TableTopics — Couples', '25 $', '135 cartes', '1 format principal : piocher et discuter', 'Prix US ; disponibilité variable.', 'https://tabletopics.com/products/couples?currency=USD&variant=42509261799573'],
+    ['The Adventure Challenge — Couples', '49,99 $', '50 aventures à gratter', '1 format principal : expérience surprise', 'Livre d’activités, pas un paquet de questions.', 'https://www.theadventurechallenge.com/products/couples-edition-book/']
   ]
 };
 
