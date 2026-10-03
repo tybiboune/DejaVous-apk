@@ -690,3 +690,84 @@ html[data-theme=light] .door-smoke{
   }
   .door-fx{display:none}
 }
+
+
+/* =========================================================
+   V2.2 — light-mode soft door particle visibility
+   ========================================================= */
+html[data-theme=light] .choice-door-soft{
+  background:
+    radial-gradient(ellipse at 50% 90%,#fff0c8b8 0%,transparent 52%),
+    linear-gradient(180deg,#f6e6ec,#e3c8d4 72%);
+}
+
+html[data-theme=light] .choice-door-soft .door-glow{
+  background:
+    radial-gradient(circle at 50% 77%,#fffef5f5 0 9%,transparent 42%),
+    radial-gradient(circle at 23% 35%,#ffd79fd6 0,transparent 34%),
+    radial-gradient(circle at 79% 29%,#efb7d5cc 0,transparent 34%),
+    radial-gradient(ellipse at 50% 92%,#ffe9b8c9 0,transparent 48%);
+}
+
+html[data-theme=light] .choice-door-soft::after{
+  background:
+    radial-gradient(ellipse,#fff8cce8 0%,#ffdbaecf 28%,#f4b8d2b8 52%,#e89fc591 68%,transparent 82%);
+  filter:blur(9px);
+  opacity:1;
+}
+
+html[data-theme=light] .door-soft-mote{
+  width:14px;
+  height:14px;
+  opacity:1;
+  mix-blend-mode:normal;
+  background:
+    radial-gradient(circle,#fff 0 18%,#fff5bd 34%,#ffc97d 51%,#ed9fc8 69%,transparent 82%);
+  box-shadow:
+    0 0 0 1px #8b4a6742,
+    0 0 7px #fff0a8,
+    0 0 14px #ffc98f,
+    0 0 22px #eeb0d4;
+  filter:none;
+}
+
+html[data-theme=light] .door-soft-mote.alt{
+  width:11px;
+  height:11px;
+  opacity:1;
+  mix-blend-mode:normal;
+  background:
+    radial-gradient(circle,#fff 0 18%,#ffe7f3 36%,#f4b9d8 55%,#ce7ea9 72%,transparent 83%);
+  box-shadow:
+    0 0 0 1px #7b45604a,
+    0 0 7px #ffe2f0,
+    0 0 14px #f5b9d9,
+    0 0 20px #d98bb5;
+  filter:none;
+}
+
+html[data-theme=light] .door-burst-soft{
+  color:#b75f88;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 9px #ffd9a8,
+    0 0 13px #e8a6c8;
+  filter:none;
+}
+
+/* Keep the floating motes fully visible for longer before fading. */
+@keyframes dvSoftMoteLight{
+  0%{opacity:0;transform:translate3d(0,14px,0) scale(.72)}
+  8%{opacity:1;transform:translate3d(6px,-8px,0) scale(.92)}
+  22%{opacity:1;transform:translate3d(-7px,-31px,0) scale(1)}
+  35%{opacity:1;transform:translate3d(8px,-15px,0) scale(1.04)}
+  49%{opacity:1;transform:translate3d(-8px,-49px,0) scale(1.08)}
+  62%{opacity:.98;transform:translate3d(9px,-31px,0) scale(1.11)}
+  76%{opacity:.92;transform:translate3d(-7px,-73px,0) scale(1.14)}
+  88%{opacity:.75;transform:translate3d(6px,-57px,0) scale(1.17)}
+  100%{opacity:0;transform:translate3d(var(--dx),calc(-1 * var(--rise)),0) scale(1.22)}
+}
+
+html[data-theme=light] .door-soft-mote{
+  animation-name:dvSoftMoteLight;
+}
