@@ -113,12 +113,129 @@ mystery.addEventListener('click', () => {
   mystery.querySelector('span:nth-child(2)').textContent = copy.surpriseAgain;
   if (!reducedMotion) { reveal.style.animation = 'none'; requestAnimationFrame(() => { reveal.style.animation = ''; }); }
 });
-document.querySelectorAll('[data-heat]').forEach(tab => tab.addEventListener('click', () => {
-  const hot = tab.dataset.heat === 'spicy'; document.body.classList.toggle('heat-on', hot);
-  document.querySelectorAll('[data-heat]').forEach(other => other.setAttribute('aria-pressed', String(other === tab)));
-  const image = document.querySelector('#heat-image'); image.src = hot ? (en ? 'assets/en-spicy.jpg' : 'assets/spicy.jpg') : (en ? 'assets/en-home.jpg' : 'assets/home.jpg'); image.alt = hot ? copy.heatSpicyAlt : copy.heatSoftAlt;
-  document.querySelector('#heat-caption').textContent = hot ? copy.heatSpicy : copy.heatSoft;
+const promoTheme = {
+  theme: ['dark', 'light'].includes(localStorage.getItem('dv-promo-theme')) ? localStorage.getItem('dv-promo-theme') : 'dark',
+  spicy: ['on', 'off'].includes(localStorage.getItem('dv-promo-spicy')) ? localStorage.getItem('dv-promo-spicy') : 'off'
+};
+const themeMessages = en ? {
+  'off-dark': 'Soft + dark. The game’s default mood.',
+  'off-light': 'Soft + light. Warm paper, same game.',
+  'on-dark': 'Spicy + dark. Aubergine, wine and a little more tension.',
+  'on-light': 'Spicy + light. Brighter, still unmistakably Spicy.'
+} : {
+  'off-dark': 'Doux + sombre. L’ambiance par défaut du jeu.',
+  'off-light': 'Doux + clair. Papier chaud, même jeu.',
+  'on-dark': 'Épicé + sombre. Aubergine, vin et un peu plus de tension.',
+  'on-light': 'Épicé + clair. Plus lumineux, toujours franchement épicé.'
+};
+function applyPromoTheme({ persist = true } = {}) {
+  document.documentElement.dataset.theme = promoTheme.theme;
+  document.documentElement.dataset.spicy = promoTheme.spicy;
+  document.body.classList.toggle('heat-on', promoTheme.spicy === 'on');
+  document.querySelectorAll('[data-theme-mode]').forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.themeMode === promoTheme.theme)));
+  document.querySelectorAll('[data-spicy-mode]').forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.spicyMode === promoTheme.spicy)));
+  const key = `${promoTheme.spicy}-${promoTheme.theme}`;
+  const caption = document.querySelector('#heat-caption');
+  if (caption) caption.textContent = themeMessages[key];
+  const chip = document.querySelector('#live-preview-chip');
+  if (chip) chip.textContent = en
+    ? `${promoTheme.spicy === 'on' ? 'SPICY' : 'SOFT'} · ${promoTheme.theme.toUpperCase()}`
+    : `${promoTheme.spicy === 'on' ? 'ÉPICÉ' : 'DOUX'} · ${promoTheme.theme === 'dark' ? 'SOMBRE' : 'CLAIR'}`;
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeMeta) themeMeta.content = promoTheme.theme === 'light'
+    ? (promoTheme.spicy === 'on' ? '#f8eff4' : '#f8efe9')
+    : (promoTheme.spicy === 'on' ? '#150f1d' : '#191020');
+  if (persist) {
+    try { localStorage.setItem('dv-promo-theme', promoTheme.theme); localStorage.setItem('dv-promo-spicy', promoTheme.spicy); } catch {}
+  }
+}
+document.querySelectorAll('[data-spicy-mode]').forEach(btn => btn.addEventListener('click', () => {
+  promoTheme.spicy = btn.dataset.spicyMode; applyPromoTheme();
 }));
+document.querySelectorAll('[data-theme-mode]').forEach(btn => btn.addEventListener('click', () => {
+  promoTheme.theme = btn.dataset.themeMode; applyPromoTheme();
+}));
+applyPromoTheme({ persist: false });
+
+const drawCards = en ? [
+  ['SAME BRAIN', 'Who would get us lost and call it an adventure?', 'Answer separately. Reveal together.'],
+  ['RAPID FIRE', 'Sea or mountains?', 'No debate. Go with your gut.'],
+  ['SAME BRAIN', 'Who would adopt a stray animal without thinking twice?', 'Pick in secret.'],
+  ['RAPID FIRE', 'Coffee or tea?', 'Three seconds. Choose.'],
+  ['SAME BRAIN', 'Who would win a terrible-dancing contest?', 'There is only one honest answer.'],
+  ['RAPID FIRE', 'Sunrise or sunset?', 'Don’t overthink it.']
+] : [
+  ['MÊME CERVEAU', 'Qui nous perdrait en chemin et appellerait ça une aventure ?', 'Répondez séparément. Révélez ensemble.'],
+  ['TIR RAPIDE', 'Mer ou montagne ?', 'Pas de débat. À l’instinct.'],
+  ['MÊME CERVEAU', 'Qui adopterait un animal errant sans réfléchir ?', 'Choisissez en secret.'],
+  ['TIR RAPIDE', 'Café ou thé ?', 'Trois secondes. Choisissez.'],
+  ['MÊME CERVEAU', 'Qui gagnerait un concours de mauvaise danse ?', 'Il n’y a qu’une réponse honnête.'],
+  ['TIR RAPIDE', 'Lever ou coucher de soleil ?', 'Ne réfléchissez pas trop.']
+];
+let drawn = 0;
+const drawButton = document.querySelector('#draw-card');
+const drawFace = document.querySelector('#draw-card-face');
+const drawCounter = document.querySelector('#draw-counter');
+const drawDownload = document.querySelector('#draw-download');
+if (drawButton && drawFace) drawButton.addEventListener('click', () => {
+  drawn += 1;
+  const card = drawCards[drawn % drawCards.length];
+  const swap = () => {
+    drawFace.querySelector('span').textContent = card[0];
+    drawFace.querySelector('strong').textContent = card[1];
+    drawFace.querySelector('small').textContent = card[2];
+    drawFace.classList.remove('is-dealing');
+    void drawFace.offsetWidth;
+    drawFace.classList.add('is-dealing');
+  };
+  swap();
+  const remaining = 6065 - drawn;
+  drawCounter.textContent = en ? `${remaining.toLocaleString('en-US')} left in the full game.` : `Il en reste ${remaining.toLocaleString('fr-FR')} dans le jeu complet.`;
+  if (drawn >= 3) {
+    drawButton.hidden = true;
+    drawDownload.hidden = false;
+    drawCounter.textContent = en ? 'That was three. There are 6,062 more reasons to keep going.' : 'Ça, c’était trois. Il reste 6 062 raisons de continuer.';
+  }
+});
+
+document.querySelectorAll('[data-door]').forEach(door => door.addEventListener('click', () => {
+  const hot = door.dataset.door === 'hot';
+  const stage = door.closest('.door-stage');
+  stage.classList.toggle('picked-hot', hot);
+  stage.classList.toggle('picked-soft', !hot);
+  stage.querySelectorAll('[data-door]').forEach(other => other.setAttribute('aria-pressed', String(other === door)));
+  const result = document.querySelector('#door-result');
+  if (result) result.textContent = en
+    ? (hot ? 'Burning. The next beat turns up the tension — because you chose it.' : 'Soft. You keep control of the pace without killing the surprise.')
+    : (hot ? 'Brûlante. La suite monte d’un cran — parce que vous l’avez choisi.' : 'Douce. Vous gardez le contrôle du rythme sans tuer la surprise.');
+  if (!reducedMotion) {
+    for (let i = 0; i < 10; i++) {
+      const spark = node('i', 'door-spark', i % 2 ? '✦' : '·');
+      spark.style.setProperty('--sx', `${(Math.random() - .5) * 180}px`);
+      spark.style.setProperty('--sy', `${-20 - Math.random() * 150}px`);
+      door.append(spark); setTimeout(() => spark.remove(), 900);
+    }
+  }
+}));
+
+if (!reducedMotion && matchMedia('(pointer:fine)').matches) {
+  const heroArt = document.querySelector('.hero-art');
+  heroArt?.addEventListener('pointermove', e => {
+    const r = heroArt.getBoundingClientRect();
+    heroArt.style.setProperty('--hero-x', ((e.clientX - r.left) / r.width - .5).toFixed(3));
+    heroArt.style.setProperty('--hero-y', ((e.clientY - r.top) / r.height - .5).toFixed(3));
+  });
+  heroArt?.addEventListener('pointerleave', () => { heroArt.style.setProperty('--hero-x', 0); heroArt.style.setProperty('--hero-y', 0); });
+}
+
+const floatingCta = document.querySelector('#floating-cta');
+const closingSection = document.querySelector('.closing');
+const updateFloatingCta = () => {
+  if (!floatingCta) return;
+  const closingNear = closingSection ? closingSection.getBoundingClientRect().top < innerHeight * .9 : false;
+  floatingCta.classList.toggle('is-visible', scrollY > 650 && !closingNear);
+};
+addEventListener('scroll', updateFloatingCta, { passive: true }); updateFloatingCta();
 
 function buildMarquee() {
   const track = document.querySelector('#marquee-track'); if (!track) return;
@@ -190,7 +307,7 @@ renderDuel();
 
 if (!reducedMotion && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: 0.1 });
-  document.querySelectorAll('.story-card,.benefit-grid article,.advantage-board,.heat-layout,.duel-panel').forEach(el => { el.classList.add('reveal-ready'); observer.observe(el); });
+  document.querySelectorAll('.story-card,.benefit-grid article,.advantage-board,.heat-layout,.draw-layout,.door-layout,.price-band-inner,.duel-panel').forEach(el => { el.classList.add('reveal-ready'); observer.observe(el); });
 }
 const updateScroll = () => document.documentElement.style.setProperty('--scroll-progress', `${Math.round(scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) * 100)}%`);
 addEventListener('scroll', updateScroll, { passive: true }); updateScroll();
