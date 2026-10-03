@@ -222,10 +222,12 @@ if (!reducedMotion && matchMedia('(pointer:fine)').matches) {
   const heroArt = document.querySelector('.hero-art');
   heroArt?.addEventListener('pointermove', e => {
     const r = heroArt.getBoundingClientRect();
-    heroArt.style.setProperty('--hero-x', ((e.clientX - r.left) / r.width - .5).toFixed(3));
-    heroArt.style.setProperty('--hero-y', ((e.clientY - r.top) / r.height - .5).toFixed(3));
+    const x = ((e.clientX - r.left) / r.width - .5);
+    const y = ((e.clientY - r.top) / r.height - .5);
+    heroArt.style.setProperty('--hero-shift-x', `${(x * 18).toFixed(1)}px`);
+    heroArt.style.setProperty('--hero-shift-y', `${(y * 16).toFixed(1)}px`);
   });
-  heroArt?.addEventListener('pointerleave', () => { heroArt.style.setProperty('--hero-x', 0); heroArt.style.setProperty('--hero-y', 0); });
+  heroArt?.addEventListener('pointerleave', () => { heroArt.style.setProperty('--hero-shift-x', '0px'); heroArt.style.setProperty('--hero-shift-y', '0px'); });
 }
 
 const floatingCta = document.querySelector('#floating-cta');
