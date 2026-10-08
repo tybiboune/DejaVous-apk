@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#191020"><meta name="description" content="Two versions of Déjà Vous: Google Play (toned down) and Unleashed (complete, 18+). Why, what changes, and how to upgrade.">
+<title>Thank you! — Déjà Vous Unleashed</title>
+<link rel="alternate" hreflang="fr" href="https://tybiboune.github.io/DejaVous-apk/unleashed.html"><link rel="alternate" hreflang="en" href="https://tybiboune.github.io/DejaVous-apk/unleashed-en.html">
+<link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="campaign.css"><link rel="stylesheet" href="impact.css"><link rel="stylesheet" href="unleashed.css"></head>
+<body>
+  <header class="topbar"><div class="topbar-inner wrap"><a class="brand" href="en.html" aria-label="Déjà Vous"><img src="assets/icon.png" alt="" width="36" height="36"><span>Déjà <em>Vous</em></span></a><nav><a href="en.html">← Back to the site</a><a href="unleashed.html">Français</a></nav></div></header>
+  <main class="wrap"><section class="ul-hero"><span class="ul-badge">UNLEASHED</span><h1>Thank you!</h1><p id="state">Confirming your payment…</p></section>
+    <section class="ul-why" id="done" hidden><h2>Your code</h2><code class="ul-code" id="code"></code><p style="display:flex;gap:12px;flex-wrap:wrap"><button class="ul-btn" id="copy" type="button">Copy the code</button><a class="ul-btn ghost" href="unleashed-en.html#telecharger" style="text-decoration:none">Download the app</a></p><p class="ul-note">It was also sent to you by e-mail (check spam). Keep it: it is your proof of purchase.</p><ol class="ul-steps"><li>Download and install the APK.</li><li>Open Déjà Vous → Settings → “Full game”.</li><li>Paste the code. Done: everything is unlocked, even offline.</li></ol></section>
+    <section class="ul-why" id="late" hidden><p>Confirmation is taking a while. Nothing is lost: the code is e-mailed as soon as the payment is confirmed, or find it with your address.</p><p><a class="ul-btn ghost" href="unleashed-en.html#acheter" style="text-decoration:none">Find my code</a></p></section></main>
+  <footer class="footer wrap"><a class="brand" href="en.html"><img src="assets/icon.png" alt="" width="31" height="31"><span>Déjà <em>Vous</em></span></a><p>A problem? Reply to the confirmation e-mail.</p><a href="privacy-en.html">Privacy</a></footer>
+<script type="module">
+import { showCode } from './unleashed.js';
+showCode({ copy: "Copy the code", copied: "Copied ✓", bad: "Invalid link." });
+</script>
+</body></html>

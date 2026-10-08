@@ -1,0 +1,52 @@
+.ul-hero{padding:clamp(40px,8vw,90px) 0 24px;text-align:center}
+.ul-hero h1{font:400 clamp(38px,7vw,72px)/1.05 var(--serif);margin:.2em 0}
+.ul-hero h1 em{color:var(--rose)}
+.ul-hero p{max-width:640px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.55}
+.ul-badge{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:99px;color:var(--peach);font:700 12px/1 var(--sans);letter-spacing:.14em}
+.ul-vs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0}
+.ul-col{border:1px solid var(--line);border-radius:26px;padding:26px;background:var(--glass)}
+.ul-col h3{font:400 28px/1.1 var(--serif);margin:0 0 4px}
+.ul-col small{display:block;color:var(--muted);margin-bottom:14px}
+.ul-col ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.ul-col li{display:flex;gap:10px;line-height:1.4}
+.ul-col li::before{content:"–";color:var(--muted);flex:none}
+.ul-col.hot{border-color:#ff8aa0;background:linear-gradient(160deg,#7a2a4acc,#3b2250cc);box-shadow:0 0 60px #ff4f7b33}
+.ul-col.hot li::before{content:"✦";color:#ffb3c2}
+.ul-col.hot h3{color:#ffd3df}
+.ul-price{font:700 15px/1.2 var(--sans);margin-top:18px;color:var(--peach)}
+.ul-why{margin:46px 0}
+.ul-why h2,.ul-paths h2,.ul-faq h2{font:400 clamp(28px,5vw,44px)/1.1 var(--serif);margin:0 0 14px}
+.ul-why p{max-width:720px;color:var(--muted);line-height:1.65;font-size:17px}
+.ul-why .ul-punch{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:18px}
+.ul-punch b{display:block;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--glass);font:600 16px/1.35 var(--sans);color:var(--ink)}
+.ul-paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin:34px 0}
+.ul-path{border:1px solid var(--line);border-radius:26px;padding:24px;background:var(--glass);display:flex;flex-direction:column;gap:12px}
+.ul-path h3{font:400 24px/1.15 var(--serif);margin:0}
+.ul-path .ul-amount{font:700 34px/1 var(--sans);color:var(--peach)}
+.ul-path p{color:var(--muted);margin:0;line-height:1.5}
+.ul-path label{display:grid;gap:5px;font:600 13px/1.2 var(--sans);color:var(--muted)}
+.ul-path input[type=email],.ul-path input[type=text]{padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:#0000002e;color:var(--ink);font:inherit}
+.ul-path .ul-check{display:flex;gap:9px;align-items:flex-start;font-weight:500}
+.ul-path .ul-check input{margin-top:3px}
+.ul-btn{appearance:none;border:0;border-radius:99px;padding:15px 22px;background:linear-gradient(110deg,#ffb3c2,#ff8aa0);color:#3b1630;font:800 16px/1 var(--sans);cursor:pointer}
+.ul-btn[disabled]{opacity:.5;cursor:not-allowed}
+.ul-btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.ul-msg{min-height:1.3em;font-size:14px;color:#ffb3c2}
+.ul-note{font-size:13px;color:var(--muted)}
+.ul-steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:12px}
+.ul-steps li{counter-increment:s;display:flex;gap:12px;line-height:1.5}
+.ul-steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--wine);display:grid;place-items:center;font:700 14px/1 var(--sans)}
+.ul-faq details{border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:10px 0;background:var(--glass)}
+.ul-faq summary{cursor:pointer;font:700 16px/1.4 var(--sans)}
+.ul-faq p{color:var(--muted);line-height:1.6;margin:10px 0 0}
+.ul-code{display:block;word-break:break-all;padding:16px;border-radius:16px;border:1px dashed #ffb3c2;background:#0000003a;font:600 15px/1.5 ui-monospace,Menlo,monospace;user-select:all}
+.ul-encart{margin:56px auto;padding-inline:clamp(16px,4vw,32px)}
+.ul-encart .ul-vs{margin:22px 0}
+.ul-encart-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
+@media(max-width:760px){.ul-vs{grid-template-columns:1fr}}
+html[data-theme=light] .ul-col,html[data-theme=light] .ul-path,html[data-theme=light] .ul-faq details,html[data-theme=light] .ul-punch b{background:#fffaf5d9;color:#362438;border-color:#d7b6b0}
+html[data-theme=light] .ul-col.hot{background:linear-gradient(160deg,#ffd3df,#f6b6cc);color:#3b1630}
+html[data-theme=light] .ul-col.hot h3{color:#7a1d45}
+html[data-theme=light] .ul-hero p,html[data-theme=light] .ul-why p,html[data-theme=light] .ul-path p,html[data-theme=light] .ul-faq p,html[data-theme=light] .ul-col small,html[data-theme=light] .ul-note{color:#5b4458}
+html[data-theme=light] .ul-path input[type=email],html[data-theme=light] .ul-path input[type=text]{background:#fff;color:#362438}
+html[data-theme=light] .ul-path .ul-amount,html[data-theme=light] .ul-price{color:#a02c55}
