@@ -31,6 +31,7 @@ export function initShop({ lang, errors, soon, redirect, lostOk }) {
 // The thank-you page: the code of the paid session, polled until the payment is confirmed (up to about 80 seconds).
 export async function showCode({ copy, copied, bad }) {
   const sid = new URLSearchParams(location.search).get('session_id') || '';
+  const other = document.querySelector('#lang-other'); if (other && sid) other.href += '?session_id=' + encodeURIComponent(sid); // the other language keeps the order reference
   const state = document.querySelector('#state');
   if (!/^cs_(live|test)_[A-Za-z0-9]{20,200}$/.test(sid) || !STORE.api) { state.textContent = bad; document.querySelector('#late').hidden = false; return; }
   for (let i = 0; i < 40; i++) {
