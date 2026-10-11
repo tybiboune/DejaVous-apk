@@ -1,4 +1,4 @@
-import { STORE } from './store-config.js';
+const APK = 'https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk';
 
 // Demo answers live only in memory. Invitations contain a public card id, never an answer or a name.
 const en = document.documentElement.lang === 'en';
@@ -15,13 +15,12 @@ const C = en ? {
   final: 'Your finale. Make it real.', finalHelp: 'Choose a little promise to keep tonight, together.',
   promises: ['One song. One terrible dance.', 'Ten minutes with the phones put away.', 'Plan your next date together.'],
   done: 'Three rounds. One evening already different.', doneHelp: 'No relationship score. Just three moments you made together.',
-  commitment: 'Your promise for tonight:', offer: 'Want a whole night of this?', offerHelp: 'Six games, a guided evening, secret choices and Spicy mode. One purchase for your duo.',
-  offerButton: 'See Unleashed · €34.90 planned', replay: 'Play again', share: 'Prepare a surprise',
+  commitment: 'Your promise for tonight:', offer: 'Want a whole night of this?', offerHelp: 'Install Discovery for free on Android. One purchase then unlocks the whole game on 2 phones: yours and your partner’s.',
+  offerButton: 'Download for free · Android', offerBuy: 'Unlock everything for two · €34.90', replay: 'Play again', share: 'Prepare a surprise',
   surpriseTitle: 'A bet to send. A night to look forward to.', surpriseHelp: 'Pick a card. Your partner opens the link and can start the three-round demo. No install needed.',
   send: 'Share the invitation', copy: 'Copy the invitation', copied: 'Invitation copied.', fallback: 'Copy this invitation and send it yourself:',
   message: q => `I bet I know your answer: “${q}” Shall we find out together?`,
   status: 'Demo only: answers stay on this page and disappear when it closes.',
-  shopClosed: 'Planned launch price. Checkout is not open yet. Try Discovery on Android today.', shopOpen: 'One-time purchase. No subscription. Android · 18+.',
   shared: 'You received a bet. Ready to surprise them?', together: 'Play together', back: 'Back to the card',
 } : {
   steps: ['Le pari', 'Le réflexe', 'Votre final'],
@@ -36,13 +35,12 @@ const C = en ? {
   final: 'Votre final. Pour de vrai.', finalHelp: 'Choisissez ensemble une petite promesse à tenir ce soir.',
   promises: ['Une chanson. Une danse catastrophique.', 'Dix minutes avec les téléphones rangés.', 'Imaginer votre prochain rendez-vous.'],
   done: 'Trois manches. Une soirée déjà différente.', doneHelp: 'Pas de note sur votre couple. Juste trois moments que vous avez créés à deux.',
-  commitment: 'Votre promesse pour ce soir :', offer: 'On continue toute la soirée ?', offerHelp: 'Six jeux, une soirée guidée, des choix secrets et le mode épicé. Un achat pour votre duo.',
-  offerButton: 'Voir Unleashed · 34,90 € prévus', replay: 'Rejouer', share: 'Préparer une surprise',
+  commitment: 'Votre promesse pour ce soir :', offer: 'On continue toute la soirée ?', offerHelp: 'Installez Découverte gratuitement sur Android. Un achat unique débloque ensuite tout le jeu sur 2 téléphones : le vôtre et celui de l’autre.',
+  offerButton: 'Télécharger gratuitement · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', replay: 'Rejouer', share: 'Préparer une surprise',
   surpriseTitle: 'Un pari à envoyer. Une soirée à attendre.', surpriseHelp: 'Choisissez une carte. Votre partenaire ouvre le lien et peut commencer la démo en trois manches. Rien à installer.',
   send: 'Partager l’invitation', copy: 'Copier l’invitation', copied: 'Invitation copiée.', fallback: 'Copiez cette invitation pour l’envoyer vous-même :',
   message: q => `Je parie que je connais ta réponse : « ${q} » On vérifie ensemble ?`,
   status: 'Démo uniquement : vos réponses restent sur cette page et disparaissent quand elle se ferme.',
-  shopClosed: 'Prix prévu au lancement. Le paiement n’est pas encore ouvert. Essayez Découverte sur Android dès maintenant.', shopOpen: 'Achat unique. Aucun abonnement. Android · 18+.',
   shared: 'On vous a envoyé un pari. Prêt·e à surprendre l’autre ?', together: 'Jouer à deux', back: 'Revenir à la carte',
 };
 const stage = document.querySelector('#evening-stage');
@@ -96,8 +94,8 @@ function finale() {
 function finish(promise) {
   round = 3; draw(C.done, C.doneHelp, en ? 'DEMO COMPLETE · YOUR NIGHT IS YOURS' : 'DÉMO TERMINÉE · LA SOIRÉE EST À VOUS');
   stage.append(el('p', 'evening-help', C.commitment), el('strong', 'evening-promise', promise), el('h3', '', C.offer), el('p', 'evening-help', C.offerHelp));
-  link(stage, C.offerButton, `${shop}#acheter`);
-  stage.append(el('p', 'evening-note', STORE.api ? C.shopOpen : C.shopClosed));
+  link(stage, C.offerButton, APK);
+  link(stage, C.offerBuy, `${shop}#acheter`, 'evening-buy');
   const tools = el('div', 'evening-tools'); action(tools, C.replay, () => { round = 0; answers = []; ask(0, true); }, 'text-action'); action(tools, C.share, showSurprise, 'text-action'); stage.append(tools); focusStage();
 }
 function inviteUrl() { const u = new URL(en ? 'en.html' : 'index.html', location.href); u.search = `invite=${card}`; u.hash = 'essayer'; return u.href; }
@@ -132,4 +130,3 @@ if (stage) {
   document.querySelector('#evening-privacy').textContent = C.status;
   if (/^[0-2]$/.test(invitation || '')) document.querySelector('#invitation-banner').textContent = C.shared;
 }
-document.querySelectorAll('[data-store-state]').forEach(n => n.textContent = STORE.api ? C.shopOpen : C.shopClosed);
