@@ -16,11 +16,12 @@ const C = en ? {
   promises: ['One song. One terrible dance.', 'Ten minutes with the phones put away.', 'Plan your next date together.'],
   done: 'Three rounds. One evening already different.', doneHelp: 'No relationship score. Just three moments you made together.',
   commitment: 'Your promise for tonight:', offer: 'Want a whole night of this?', offerHelp: 'Install Discovery for free on Android. One purchase then unlocks the whole game on 2 phones: yours and your partner’s.',
-  offerButton: 'Download for free · Android', offerBuy: 'Unlock everything for two · €34.90', replay: 'Play again', share: 'Prepare a surprise',
+  offerButton: 'Install Discovery · Android', offerBuy: 'Unlock everything for two · €34.90', replay: 'Play again', share: 'Prepare a surprise',
   surpriseTitle: 'A bet to send. A night to look forward to.', surpriseHelp: 'Pick a card. Your partner opens the link and can start the three-round demo. No install needed.',
   send: 'Share the invitation', copy: 'Copy the invitation', copied: 'Invitation copied.', fallback: 'Copy this invitation and send it yourself:',
   message: q => `I bet I know your answer: “${q}” Shall we find out together?`,
   status: 'Demo only: answers stay on this page and disappear when it closes.',
+  noteLabel: 'Your personal note (optional)', notePlaceholder: 'Tonight, I have a surprise for us…',
   shared: 'You received a bet. Ready to surprise them?', together: 'Play together', back: 'Back to the card',
 } : {
   steps: ['Le pari', 'Le réflexe', 'Votre final'],
@@ -36,11 +37,12 @@ const C = en ? {
   promises: ['Une chanson. Une danse catastrophique.', 'Dix minutes avec les téléphones rangés.', 'Imaginer votre prochain rendez-vous.'],
   done: 'Trois manches. Une soirée déjà différente.', doneHelp: 'Pas de note sur votre couple. Juste trois moments que vous avez créés à deux.',
   commitment: 'Votre promesse pour ce soir :', offer: 'On continue toute la soirée ?', offerHelp: 'Installez Découverte gratuitement sur Android. Un achat unique débloque ensuite tout le jeu sur 2 téléphones : le vôtre et celui de l’autre.',
-  offerButton: 'Télécharger gratuitement · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', replay: 'Rejouer', share: 'Préparer une surprise',
+  offerButton: 'Installer Découverte · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', replay: 'Rejouer', share: 'Préparer une surprise',
   surpriseTitle: 'Un pari à envoyer. Une soirée à attendre.', surpriseHelp: 'Choisissez une carte. Votre partenaire ouvre le lien et peut commencer la démo en trois manches. Rien à installer.',
   send: 'Partager l’invitation', copy: 'Copier l’invitation', copied: 'Invitation copiée.', fallback: 'Copiez cette invitation pour l’envoyer vous-même :',
   message: q => `Je parie que je connais ta réponse : « ${q} » On vérifie ensemble ?`,
   status: 'Démo uniquement : vos réponses restent sur cette page et disparaissent quand elle se ferme.',
+  noteLabel: 'Votre petit mot (facultatif)', notePlaceholder: 'Ce soir, j’ai une surprise pour nous…',
   shared: 'On vous a envoyé un pari. Prêt·e à surprendre l’autre ?', together: 'Jouer à deux', back: 'Revenir à la carte',
 };
 const stage = document.querySelector('#evening-stage');
@@ -49,11 +51,32 @@ const shop = en ? 'unleashed-en.html' : 'unleashed.html';
 const invitation = new URLSearchParams(location.search).get('invite');
 let card = /^[0-2]$/.test(invitation || '') ? Number(invitation) : 0;
 let round = 0, answers = [];
+let started = false, surprise = false, personalNote = '';
+
+function syncJourneyLinks() {
+  const finished = round === 3 && !surprise;
+  document.querySelectorAll('[data-journey-cta]').forEach(a => {
+    a.href = finished ? APK : '#essayer';
+    const caption = a.querySelector('span');
+    const label = a.querySelector('b');
+    const text = finished ? (en ? 'Install Discovery ↗' : 'Installer Découverte ↗')
+      : surprise ? (en ? 'My invitation ↗' : 'Mon invitation ↗')
+      : started ? (en ? 'Continue the demo ↗' : 'Continuer la démo ↗')
+      : (en ? 'Play here ↗' : 'Jouer ici ↗');
+    if (label) label.textContent = text;
+    else a.textContent = text;
+    if (caption) caption.textContent = finished ? (en ? 'Discovery · Android' : 'Découverte · Android')
+      : surprise ? (en ? 'A surprise for two' : 'Une surprise pour deux')
+      : started ? (en ? `Your evening · ${round + 1}/3` : `Votre soirée · ${round + 1}/3`)
+      : (en ? 'Three rounds. Nothing to install.' : 'Trois manches. Rien à installer.');
+  });
+}
 
 function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
 function action(parent, text, fn, cls = 'evening-button') { const b = el('button', cls, text); b.type = 'button'; b.addEventListener('click', fn); parent.append(b); return b; }
 function link(parent, text, href, cls = 'button button-primary') { const a = el('a', cls, text); a.href = href; parent.append(a); return a; }
 function draw(title, help, label = C.steps[round]) {
+  syncJourneyLinks();
   progress.hidden = false;
   stage.replaceChildren(el('p', 'evening-kicker', label), el('h2', '', title));
   if (help) stage.append(el('p', 'evening-help', help));
@@ -66,6 +89,7 @@ function ask(player = 0, moved = false) {
   draw(round === 0 ? C.questions[card] : C.rapid, player === 0 ? (round === 0 ? C.first : C.rapidHelp) : C.second);
   const choices = el('div', 'evening-choices');
   (round === 0 ? C.players : C.choices).forEach((text, choice) => action(choices, text, () => {
+    started = true;
     answers.push(choice);
     if (player === 0) {
       draw(C.pass, C.hidden);
@@ -96,16 +120,22 @@ function finish(promise) {
   stage.append(el('p', 'evening-help', C.commitment), el('strong', 'evening-promise', promise), el('h3', '', C.offer), el('p', 'evening-help', C.offerHelp));
   link(stage, C.offerButton, APK);
   link(stage, C.offerBuy, `${shop}#acheter`, 'evening-buy');
-  const tools = el('div', 'evening-tools'); action(tools, C.replay, () => { round = 0; answers = []; ask(0, true); }, 'text-action'); action(tools, C.share, showSurprise, 'text-action'); stage.append(tools); focusStage();
+  const tools = el('div', 'evening-tools'); action(tools, C.replay, () => { round = 0; started = false; answers = []; ask(0, true); }, 'text-action'); action(tools, C.share, showSurprise, 'text-action'); stage.append(tools); focusStage();
 }
 function inviteUrl() { const u = new URL(en ? 'en.html' : 'index.html', location.href); u.search = `invite=${card}`; u.hash = 'essayer'; return u.href; }
-function shareText() { return `${C.message(C.questions[card])}\n${inviteUrl()}`; }
+function inviteMessage() { return [personalNote.trim(), C.message(C.questions[card])].filter(Boolean).join('\n\n'); }
+function shareText() { return `${inviteMessage()}\n${inviteUrl()}`; }
 function showSurprise() {
+  surprise = true;
   draw(C.surpriseTitle, C.surpriseHelp, en ? 'PREPARE A SURPRISE' : 'PRÉPAREZ UNE SURPRISE');
   progress.hidden = true;
   const cards = el('div', 'evening-choices promises');
   C.questions.forEach((q, i) => { const b = action(cards, q, () => { card = i; showSurprise(); focusStage(); }); b.setAttribute('aria-pressed', String(i === card)); }); stage.append(cards);
-  const preview = el('blockquote', 'invite-preview', C.message(C.questions[card])); stage.append(preview);
+  const noteLabel = el('label', 'invite-note-label', C.noteLabel);
+  const note = el('textarea', 'invite-note'); note.rows = 2; note.maxLength = 160; note.placeholder = C.notePlaceholder; note.value = personalNote; note.autocomplete = 'off';
+  noteLabel.append(note); stage.append(noteLabel);
+  const preview = el('blockquote', 'invite-preview', inviteMessage()); stage.append(preview);
+  note.addEventListener('input', () => { personalNote = note.value; preview.textContent = inviteMessage(); });
   const tools = el('div', 'evening-tools');
   const status = el('p', 'evening-note'); status.setAttribute('role', 'status');
   const fallback = el('textarea', 'invite-fallback'); fallback.readOnly = true; fallback.hidden = true; fallback.setAttribute('aria-label', C.fallback);
@@ -113,13 +143,14 @@ function showSurprise() {
     try { await navigator.clipboard.writeText(shareText()); status.textContent = C.copied; }
     catch { status.textContent = C.fallback; fallback.value = shareText(); fallback.hidden = false; fallback.focus(); fallback.select(); }
   }
-  if (navigator.share) action(tools, C.send, async () => { try { await navigator.share({ title: 'Déjà Vous', text: C.message(C.questions[card]), url: inviteUrl() }); } catch (e) { if (e.name !== 'AbortError') await copyInvite(); } });
+  if (navigator.share) action(tools, C.send, async () => { try { await navigator.share({ title: 'Déjà Vous', text: inviteMessage(), url: inviteUrl() }); } catch (e) { if (e.name !== 'AbortError') await copyInvite(); } });
   action(tools, C.copy, copyInvite);
-  action(tools, C.together, () => { round = 0; answers = []; ask(0, true); }, 'text-action');
+  action(tools, C.together, () => { surprise = false; round = 0; started = false; answers = []; ask(0, true); }, 'text-action');
   stage.append(tools, status, fallback); focusStage();
 }
 document.querySelectorAll('[data-surprise]').forEach(b => b.addEventListener('click', () => { showSurprise(); document.querySelector('#essayer').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }));
-document.querySelectorAll('[data-play-evening]').forEach(b => b.addEventListener('click', () => { round = 0; answers = []; ask(0, true); }));
+document.querySelectorAll('[data-play-evening]').forEach(b => b.addEventListener('click', () => { surprise = false; round = 0; started = false; answers = []; ask(0, true); }));
+document.querySelectorAll('[data-journey-cta]').forEach(a => a.addEventListener('click', () => { if (a.getAttribute('href') === '#essayer') focusStage(); }));
 document.querySelectorAll('.language-switch a').forEach(a => {
   if (/^[0-2]$/.test(invitation || '')) { const u = new URL(a.href); u.searchParams.set('invite', invitation); a.href = u.href; }
 });
