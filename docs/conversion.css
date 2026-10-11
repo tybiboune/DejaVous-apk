@@ -54,6 +54,13 @@
 }
 
 .gift-actions{margin:20px 0 8px}.closing-second{margin:14px 0 0}.closing-second a,.hero-trust a{color:var(--peach);text-underline-offset:3px}.evening-stage .evening-buy{display:block;margin:14px 0 0;padding:0;border:0;background:none;color:var(--peach);text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.invite-note-label{display:block;margin-top:22px;font-size:12px;color:var(--muted)}
+.invite-note{display:block;width:100%;resize:vertical;margin-top:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
+.invite-preview{white-space:pre-line}.gift-steps{list-style:none;padding:0;margin:20px 0;display:grid;gap:14px;counter-reset:gift}
+.gift-steps li{position:relative;padding-left:36px;font-size:13px;color:var(--muted);counter-increment:gift}
+.gift-steps li::before{content:counter(gift);position:absolute;left:0;top:0;width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--peach);font-size:11px;font-weight:800}
+.gift-steps b{display:block;color:var(--ink)}
+@media(max-width:720px){.floating-cta span{font-size:12px}.floating-cta{gap:8px}.floating-cta b{font-size:10px}}
 
 /* parcours, aperçu, FAQ */
 .journey{padding-top:40px}
