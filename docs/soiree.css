@@ -1,0 +1,46 @@
+/* Votre soirée : progression offerte, reprise, parcours, FAQ */
+.soiree{position:fixed;top:86px;right:12px;z-index:110;font-family:var(--sans)}
+.soiree-chip{display:flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:100px;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--ink);font:800 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 30px #09030e55}
+.soiree-dots{display:flex;gap:4px}.soiree-dots i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--rose);transition:background .4s,transform .4s}
+.soiree-dots i.on{background:linear-gradient(135deg,var(--peach),var(--rose));border-color:transparent}
+.soiree-dots i.pop{animation:soireePop .6s}
+@keyframes soireePop{40%{transform:scale(1.7)}}
+.soiree-panel{position:absolute;right:0;top:calc(100% + 8px);width:min(320px,calc(100vw - 24px));padding:16px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 18px 55px #09030eb0}
+.soiree-panel[hidden]{display:none}
+.soiree-panel h3{margin:0 0 4px;font:400 20px/1.2 var(--serif)}.soiree-panel p{margin:0 0 12px;font-size:13px;color:var(--muted)}
+.soiree-panel ol{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.soiree-panel li a,.soiree-panel li span{display:flex;gap:9px;align-items:center;font-size:13px;color:var(--ink);text-decoration:none}
+.soiree-panel li b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--rose);font-size:11px}
+.soiree-panel li.on b{background:linear-gradient(135deg,var(--peach),var(--rose));border-color:transparent;color:#3f2135}
+.soiree-panel li.on a,.soiree-panel li.on span{color:var(--muted);text-decoration:line-through}
+.soiree-panel .button{width:100%;justify-content:center}
+.soiree.is-done .soiree-chip{border-color:var(--peach);animation:soireeGlow 2.4s ease-in-out infinite}
+@keyframes soireeGlow{50%{box-shadow:0 0 28px #ffd3bd88}}
+.soiree-back{position:fixed;left:50%;top:84px;z-index:105;transform:translateX(-50%);display:flex;align-items:center;gap:12px;max-width:min(520px,calc(100vw - 24px));padding:10px 12px 10px 16px;border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font-size:13px;box-shadow:0 14px 40px #09030e88}
+.soiree-back a{color:var(--peach);font-weight:800;white-space:nowrap}.soiree-back button{border:0;background:none;color:var(--muted);font-size:18px;cursor:pointer;padding:2px 6px}
+.soiree-back[hidden]{display:none}
+.journey{padding-top:40px}
+.ladder{list-style:none;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:rung}
+.rung{position:relative;padding:20px 16px;border:1px solid var(--line);border-radius:20px;background:color-mix(in srgb,var(--plum) 35%,transparent)}
+.rung h3{margin:0 0 4px;font:400 22px/1.15 var(--serif)}.rung small{display:block;font:800 10px/1.4 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
+.rung p{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.rung.now{border-color:var(--peach);background:linear-gradient(160deg,#7a2a4a99,#3b225099)}
+.rung.now::after{content:attr(data-here);position:absolute;top:-11px;left:14px;padding:3px 10px;border-radius:100px;background:linear-gradient(110deg,var(--peach),var(--rose));color:#3f2135;font:900 10px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.rung.top{border-style:dashed}
+.rung-bar{display:block;height:6px;margin-top:14px;border-radius:6px;background:#ffffff1f;overflow:hidden}.rung-bar i{display:block;height:100%;width:var(--p,0%);background:linear-gradient(90deg,var(--peach),var(--rose))}
+.journey-note{margin:26px 0 0;max-width:760px;color:var(--muted)}
+.peek{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.peek article{position:relative;overflow:hidden;min-height:170px;padding:20px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,#4a2a5acc,#2a1b38cc)}
+.peek small{display:block;font:900 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:14px}
+.peek p{margin:0;font:400 20px/1.35 var(--serif);color:var(--ink)}.peek p s{text-decoration:none;filter:blur(6px);user-select:none;opacity:.8}
+.peek article::after{content:"✦ " attr(data-lock);position:absolute;right:14px;bottom:12px;font:800 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--peach)}
+.peek-cap{margin:16px 0 0;font-size:13px;color:var(--muted)}
+.faq{max-width:860px;margin-inline:auto}.faq details{border-top:1px solid var(--line);padding:16px 0}.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font:400 20px/1.3 var(--serif);list-style:none;display:flex;justify-content:space-between;gap:14px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--peach)}.faq details[open] summary::after{content:"–"}
+.faq details p{margin:10px 0 0;color:var(--muted)}
+.hero-trust{margin:14px 0 0;font-size:13px;color:var(--muted)}.hero-trust b{color:var(--peach)}
+@media(max-width:1050px){.ladder{grid-template-columns:1fr 1fr}.peek{grid-template-columns:1fr}}
+@media(max-width:700px){.soiree{top:auto;bottom:76px;right:8px}.soiree-panel{top:auto;bottom:calc(100% + 8px)}.soiree-back{top:78px}.ladder{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.soiree-dots i,.soiree.is-done .soiree-chip{animation:none!important;transition:none!important}}
+html[data-theme=light] .peek article{background:linear-gradient(160deg,#f3d9e4,#e9cfe6)}html[data-theme=light] .rung{background:#ffffff99}html[data-theme=light] .rung.now{background:linear-gradient(160deg,#f6c7d3,#ecd0ee)}html[data-theme=light] .rung-bar{background:#00000018}
+.soiree-panel .button[hidden]{display:none}
