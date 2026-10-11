@@ -6,6 +6,10 @@ const post = async (path, body) => { const r = await fetch(STORE.api + path, { m
 export function initShop({ lang, errors, soon, redirect, lostOk }) {
   document.querySelector('#apk')?.setAttribute('href', STORE.apk); document.querySelector('#sums')?.setAttribute('href', STORE.sums);
   const open = !!STORE.api;
+  const availability = document.querySelector('#shop-availability');
+  if (availability) availability.textContent = open
+    ? (lang === 'en' ? 'Checkout is open. Choose your offer below.' : 'Le paiement est ouvert. Choisissez votre offre ci-dessous.')
+    : (lang === 'en' ? 'Planned prices. Checkout is not open yet: no payment or gift-code delivery is currently available. Try Discovery first.' : 'Prix prévus. Le paiement n’est pas encore ouvert : aucun achat ni envoi de code cadeau n’est disponible actuellement. Essayez Découverte d’abord.');
   for (const form of document.querySelectorAll('form.ul-path')) {
     const btn = form.querySelector('button'), msg = form.querySelector('.ul-msg');
     if (!open) { btn.disabled = true; msg.textContent = soon; continue; }

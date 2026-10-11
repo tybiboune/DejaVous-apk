@@ -21,7 +21,7 @@ const copy = {
     rapidKicker: 'Tir rapide', rapidTitle: 'Votre instinct dit quoi ?', rapidHelp: 'Choisissez sans trop réfléchir.', rapidEnd: 'Votre trio est prêt.', rapidEndHelp: 'Dans le jeu, vous comparez vos réflexes à ceux de votre partenaire.', restart: 'Recommencer',
     fusionKicker: 'Fusion · thème : week-end', fusionTitle: 'Un mot chacun. Une idée commune.', fusionFirst: 'Écrivez un mot, puis passez l’écran.', fusionSecond: 'Votre partenaire a écrit son mot en secret. Écrivez le vôtre.',
     word: 'Mot de la personne', idea: 'Votre idée', hideWord: 'Garder mon mot secret', revealWords: 'Révéler les deux mots', wordHidden: 'Mot gardé secret', passPhone: 'Passez le téléphone.', fusionWin: 'Vous avez fusionné !', fusionBridge: 'Trouvez le mot-pont.', fusionBridgeHelp: 'Écrivez chacun un mot entre ces deux idées. Révélez, rapprochez-vous, recommencez !', fusionAgain: 'Essayer deux autres mots',
-    duelUs: 'DÉJÀ VOUS', duelSource: 'Source éditeur ↗', price: 'Prix / offre', oursPrice: 'Jeu complet · 24,90 € une fois (prix visé)', content: 'Contenu annoncé', mechanics: 'Mécaniques annoncées', guided: 'Soirée guidée avec final', comfort: 'Niveau choisi en secret', spicy: 'Mode épicé visuel et contenu', phones: 'Jeu direct à deux téléphones', private: 'Sans compte ni publicité',
+    duelUs: 'DÉJÀ VOUS', duelSource: 'Source éditeur ↗', price: 'Prix / offre', oursPrice: 'Unleashed · 34,90 € une fois (prix prévu)', content: 'Contenu annoncé', mechanics: 'Mécaniques annoncées', guided: 'Soirée guidée avec final', comfort: 'Niveau choisi en secret', spicy: 'Mode épicé visuel et contenu', phones: 'Jeu direct à deux téléphones', private: 'Sans compte ni publicité',
     oursContent: '11 279 questions, thèmes et paires', oursMechanics: '6 jeux distincts + « Ce soir »', oursGuided: '✓ 5 étapes et un final', oursComfort: '✓ Le choix le plus doux décide', oursSpicy: '✓ Palette et cartes adaptées', oursPhones: '✓ Bluetooth local', oursPrivate: '✓ Aucun compte, aucune pub', unknown: '? Non confirmé par la source', physicalNA: '—',
     pairedGuided: 'Parcours guidés ; format différent', togellaSpicy: 'Contenu épicé ; thème visuel non précisé', lovifyPhones: '✓ Deux téléphones, à distance', physicalFormat: 'Cartes / activités physiques',
     prices: { freePremium: 'Gratuit + Premium 74,99 €/an', agape: 'Gratuit + dès 9,99 €/mois', lovewick: 'Gratuit + 29,99 €/an', gottman: 'Gratuit', togella: 'Gratuit + 22,99 €/an', lovify: 'Gratuit + achats dès 3,99 €', connected: 'Gratuit + 12,99 $/mois' },
@@ -40,7 +40,7 @@ const copy = {
     rapidKicker: 'Rapid Fire', rapidTitle: 'What does your gut say?', rapidHelp: 'Pick without overthinking.', rapidEnd: 'Your three picks are in.', rapidEndHelp: 'In the full game, compare your reflexes with your partner’s.', restart: 'Start again',
     fusionKicker: 'Fusion · theme: weekend', fusionTitle: 'One word each. One shared idea.', fusionFirst: 'Write one word, then pass the phone.', fusionSecond: 'Your partner wrote a secret word. Write yours.',
     word: 'Player', idea: 'Your idea', hideWord: 'Keep my word secret', revealWords: 'Reveal both words', wordHidden: 'Word saved in secret', passPhone: 'Pass the phone.', fusionWin: 'You fused!', fusionBridge: 'Find the bridge word.', fusionBridgeHelp: 'Each write a word between these ideas. Reveal, get closer, and try again!', fusionAgain: 'Try two new words',
-    duelUs: 'DÉJÀ VOUS', duelSource: 'Publisher source ↗', price: 'Price / offer', oursPrice: 'Full game · €24.90 once (planned)', content: 'Published content', mechanics: 'Published game formats', guided: 'Guided night with a finale', comfort: 'Secret comfort choice', spicy: 'Spicy visuals and content', phones: 'Direct two-phone play', private: 'No account or ads',
+    duelUs: 'DÉJÀ VOUS', duelSource: 'Publisher source ↗', price: 'Price / offer', oursPrice: 'Unleashed · €34.90 once (planned)', content: 'Published content', mechanics: 'Published game formats', guided: 'Guided night with a finale', comfort: 'Secret comfort choice', spicy: 'Spicy visuals and content', phones: 'Direct two-phone play', private: 'No account or ads',
     oursContent: '11,279 questions, themes and pairs', oursMechanics: '6 distinct games + Tonight', oursGuided: '✓ 5 stages and a finale', oursComfort: '✓ The softer choice wins', oursSpicy: '✓ Visuals and cards adapt', oursPhones: '✓ Local Bluetooth', oursPrivate: '✓ No account, no ads', unknown: '? Not confirmed by the source', physicalNA: '—',
     pairedGuided: 'Guided journeys; a different format', togellaSpicy: 'Spicy content; visual theme not specified', lovifyPhones: '✓ Two phones, remotely', physicalFormat: 'Physical cards / activities',
     prices: { freePremium: 'Free + Premium €74.99/year', agape: 'Free + from €9.99/month', lovewick: 'Free + €29.99/year', gottman: 'Free', togella: 'Free + €22.99/year', lovify: 'Free + in-app purchases from €3.99', connected: 'Free + $12.99/month' },
@@ -51,68 +51,6 @@ const copy = {
 
 function node(tag, className = '', content) { const el = document.createElement(tag); if (className) el.className = className; if (content !== undefined) el.textContent = content; return el; }
 function button(parent, label, action, className = '') { const el = node('button', className, label); el.type = 'button'; el.addEventListener('click', action); parent.append(el); return el; }
-function resetPanel(kicker, title, description) { panel.replaceChildren(node('div', 'demo-kicker', kicker), node('h3', '', title)); if (description) panel.append(node('p', '', description)); }
-
-function burst() {
-  if (reducedMotion) return;
-  for (let i = 0; i < 12; i++) {
-    const spark = node('span', 'demo-confetti', ['✦', '✧', '●'][i % 3]);
-    spark.style.setProperty('--dx', `${Math.round(Math.random() * 260 - 130)}px`);
-    spark.style.setProperty('--dy', `${Math.round(Math.random() * -180 - 30)}px`);
-    demoPhone.append(spark); setTimeout(() => spark.remove(), 1100);
-  }
-}
-function showBrain() {
-  let first;
-  function ask(player) {
-    resetPanel(`${copy.brainKicker} ${player}/2`, copy.brainQuestion, player === 1 ? copy.brainFirst : copy.brainSecond);
-    const choices = node('div', 'demo-options');
-    [1, 2].forEach(choice => button(choices, `${copy.person} ${choice}`, () => {
-      if (player === 1) { first = choice; resetPanel(copy.hidden, copy.otherTurn, copy.hiddenHelp); button(panel, copy.ready, () => ask(2), 'demo-button'); }
-      else { const match = first === choice; resetPanel(copy.reveal, match ? copy.brainWin : copy.brainLose); panel.append(node('div', 'demo-result', `${copy.person} 1: ${first} · ${copy.person} 2: ${choice}`)); panel.append(node('p', 'demo-muted', copy.brainNote)); button(panel, copy.again, showBrain, 'demo-button'); if (match) burst(); }
-    }));
-    panel.append(choices);
-  }
-  ask(1);
-}
-function showRapid() {
-  const pairs = en ? [['Sea', 'Mountains'], ['Coffee', 'Tea'], ['Sunrise', 'Sunset']] : [['Mer', 'Montagne'], ['Café', 'Thé'], ['Lever de soleil', 'Coucher de soleil']];
-  const picks = [];
-  function ask(index) {
-    if (index === pairs.length) { resetPanel(`${copy.rapidKicker} · 3/3`, copy.rapidEnd, copy.rapidEndHelp); panel.append(node('div', 'demo-result', picks.join(' · '))); button(panel, copy.restart, showRapid, 'demo-button'); return; }
-    resetPanel(`${copy.rapidKicker} · ${index + 1}/3`, copy.rapidTitle, copy.rapidHelp);
-    const progress = node('div', 'demo-progress'); pairs.forEach((_, i) => progress.append(node('i', i < index ? 'done' : ''))); panel.append(progress);
-    const choices = node('div', 'demo-options'); pairs[index].forEach(choice => button(choices, choice, () => { picks.push(choice); ask(index + 1); })); panel.append(choices);
-  }
-  ask(0);
-}
-function showFusion() {
-  let first;
-  function ask(player) {
-    resetPanel(`${copy.fusionKicker} · ${player}/2`, copy.fusionTitle, player === 1 ? copy.fusionFirst : copy.fusionSecond);
-    const form = node('form', 'demo-inputs'); const label = node('label', '', `${copy.word} ${player}`); const input = node('input');
-    input.type = 'text'; input.required = true; input.maxLength = 30; input.autocomplete = 'off'; input.placeholder = copy.idea;
-    label.append(input); form.append(label); const submit = node('button', 'demo-button', player === 1 ? copy.hideWord : copy.revealWords); submit.type = 'submit'; form.append(submit);
-    form.addEventListener('submit', event => { event.preventDefault(); const word = input.value.trim(); if (!word) return;
-      if (player === 1) { first = word; resetPanel(copy.wordHidden, copy.otherTurn, copy.passPhone); button(panel, copy.ready, () => ask(2), 'demo-button'); }
-      else { const match = first.localeCompare(word, lang, { sensitivity: 'base' }) === 0; resetPanel(copy.reveal, match ? copy.fusionWin : copy.fusionBridge); panel.append(node('div', 'demo-result', `${first} + ${word}`)); if (!match) panel.append(node('p', '', copy.fusionBridgeHelp)); button(panel, copy.fusionAgain, showFusion, 'demo-button'); if (match) burst(); }
-    }); panel.append(form);
-  }
-  ask(1);
-}
-const demos = { brain: showBrain, rapid: showRapid, fusion: showFusion };
-demoTabs.forEach(tab => tab.addEventListener('click', () => { demoTabs.forEach(other => other.setAttribute('aria-selected', String(other === tab))); demos[tab.dataset.demo](); }));
-showBrain();
-
-const mystery = document.querySelector('#mystery-trigger');
-mystery.setAttribute('aria-expanded', 'false'); mystery.setAttribute('aria-controls', 'mystery-reveal');
-let surpriseIndex = -1;
-mystery.addEventListener('click', () => {
-  const reveal = document.querySelector('#mystery-reveal'); surpriseIndex = (surpriseIndex + 1) % copy.surprises.length;
-  reveal.querySelector('strong').textContent = copy.surprises[surpriseIndex]; reveal.hidden = false; mystery.setAttribute('aria-expanded', 'true');
-  mystery.querySelector('span:nth-child(2)').textContent = copy.surpriseAgain;
-  if (!reducedMotion) { reveal.style.animation = 'none'; requestAnimationFrame(() => { reveal.style.animation = ''; }); }
-});
 const promoStored = (() => { try { return { theme: localStorage.getItem('dv-promo-theme'), spicy: localStorage.getItem('dv-promo-spicy') }; } catch { return {}; } })();
 const promoTheme = {
   theme: ['dark', 'light'].includes(promoStored.theme) ? promoStored.theme : 'dark',
