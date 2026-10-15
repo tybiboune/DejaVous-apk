@@ -7,12 +7,12 @@ const en = document.documentElement.lang === 'en';
 const T = en ? {
   title: 'Three taps and you’re in', steps: ['The download starts. Open <b>deja-vous.apk</b> (notification or Downloads folder).', 'Android asks to allow your browser: tap <b>Settings</b>, turn on <b>Allow from this source</b>, come back.', 'Tap <b>Install</b>, then <b>Open</b>.'],
   code: c => `Type your evening code <b class="code">${c}</b>: the sealed round 4 opens first.`, copy: 'Copy the code', copied: 'Copied',
-  trust: 'Signed APK · SHA-256 fingerprint published · no account · refunded within 14 days if you buy and change your mind',
+  already: 'Already installed? Open it directly', trust: 'Signed APK · SHA-256 fingerprint published · no account · refunded within 14 days if you buy and change your mind',
   desk: 'You’re on a computer', deskHelp: 'Scan with your Android phone: the page opens there, ready to install.', anyway: 'Download the file anyway', send: 'Copy the link for my phone', close: 'Close'
 } : {
   title: 'Trois gestes et c’est parti', steps: ['Le téléchargement démarre. Ouvrez <b>deja-vous.apk</b> (notification ou dossier Téléchargements).', 'Android demande d’autoriser votre navigateur : touchez <b>Paramètres</b>, activez <b>Autoriser cette source</b>, revenez.', 'Touchez <b>Installer</b>, puis <b>Ouvrir</b>.'],
   code: c => `Saisissez votre code soirée <b class="code">${c}</b> : la manche 4 scellée s’ouvre en premier.`, copy: 'Copier le code', copied: 'Copié',
-  trust: 'APK signé · empreinte SHA-256 publiée · aucun compte · remboursé sous 14 jours si vous achetez et changez d’avis',
+  already: 'Déjà installée ? L’ouvrir directement', trust: 'APK signé · empreinte SHA-256 publiée · aucun compte · remboursé sous 14 jours si vous achetez et changez d’avis',
   desk: 'Vous êtes sur ordinateur', deskHelp: 'Scannez avec votre téléphone Android : la page s’y ouvre, prête à installer.', anyway: 'Télécharger le fichier quand même', send: 'Copier le lien pour mon téléphone', close: 'Fermer'
 };
 const evening = () => { try { return JSON.parse(localStorage.getItem('dv-demo') || 'null')?.code || new URLSearchParams(location.search).get('code') || ''; } catch { return ''; } };
@@ -34,7 +34,7 @@ function sheet(desktop) {
     ? `<h2 id="install-title">${T.desk}</h2><p>${T.deskHelp}</p><div class="install-qr" aria-hidden="true"></div>${code ? `<p class="install-code">${T.code(code)}</p>` : ''}
        <div class="install-actions"><button type="button" class="button button-primary" data-copy-link>${T.send}</button><a class="text-action" href="${STORE.apk}" data-anyway>${T.anyway}</a></div><p class="install-trust">${T.trust}</p><button type="button" class="install-close" aria-label="${T.close}">×</button>`
     : `<h2 id="install-title">${T.title}</h2><ol class="install-steps">${T.steps.map(s => `<li>${s}</li>`).join('')}${code ? `<li>${T.code(code)} <button type="button" class="text-action" data-copy-code>${T.copy}</button></li>` : ''}</ol>
-       <p class="install-trust">${T.trust}</p><button type="button" class="button button-primary install-ok">OK</button><button type="button" class="install-close" aria-label="${T.close}">×</button>`;
+       ${code ? `<p><a class="text-action" href="dejavous://code/${code}">${T.already}</a></p>` : ''}<p class="install-trust">${T.trust}</p><button type="button" class="button button-primary install-ok">OK</button><button type="button" class="install-close" aria-label="${T.close}">×</button>`;
   document.body.append(dialog);
   dialog.querySelectorAll('.install-close, .install-ok').forEach(b => b.onclick = () => dialog.close());
   dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
