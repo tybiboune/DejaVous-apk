@@ -2,7 +2,7 @@ import { STORE } from './store-config.js';
 
 // Anonymous event counter: an event name and the page variant, nothing else (no cookie, no identifier, no address kept by the server).
 // Off when the visitor asks browsers not to be tracked (Global Privacy Control, Do Not Track) and while no server address is configured.
-const EVENTS = new Set(['view', 'demo_start', 'demo_done', 'sealed_seen', 'install_click', 'install_sheet', 'qr_show', 'invite_create', 'invite_open', 'invite_answer', 'buy_click', 'code_return']);
+const EVENTS = new Set(['view', 'demo_start', 'demo_done', 'sealed_seen', 'install_click', 'install_sheet', 'qr_show', 'invite_create', 'invite_open', 'invite_answer', 'buy_click', 'code_return', 'edition_view', 'play_click', 'apk_click', 'intent_play', 'intent_gift', 'intent_surprise', 'guarantee_view']);
 const quiet = () => navigator.globalPrivacyControl === true || navigator.doNotTrack === '1' || window.doNotTrack === '1';
 // A/B test of the headline: a random letter kept in this browser (it never leaves it except as "a" or "b" in a counted event).
 export const variant = (() => { try { let v = localStorage.getItem('dv-ab'); if (v !== 'a' && v !== 'b') { v = Math.random() < .5 ? 'a' : 'b'; localStorage.setItem('dv-ab', v); } return v; } catch { return 'a'; } })();

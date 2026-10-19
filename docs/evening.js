@@ -21,7 +21,7 @@ const C = en ? {
   promises: ['One song. One terrible dance.', 'Ten minutes with the phones put away.', 'Plan your next date together.'],
   done: 'Three rounds. One evening already different.', doneHelp: 'No relationship score. Just three moments you made together.',
   commitment: 'Your promise for tonight:', offer: 'Want a whole night of this?', offerHelp: 'Install Discovery for free on Android. One purchase then unlocks the whole game on 2 phones: yours and your partner’s.',
-  offerButton: 'Install Discovery · Android', offerBuy: 'Unlock everything for two · €34.90', replay: 'Play again', share: 'Prepare a surprise',
+  offerButton: 'Install Discovery · Android', offerBuy: 'Unlock everything for two · €34.90', guarantee: 'Refunded within 14 days, no questions asked · no account, no ads.', replay: 'Play again', share: 'Prepare a surprise',
   surpriseTitle: 'A bet to send. A night to look forward to.', surpriseHelp: 'Pick a card. Your partner opens the link and can start the three-round demo. No install needed.',
   send: 'Share the invitation', copy: 'Copy the invitation', copied: 'Invitation copied.', fallback: 'Copy this invitation and send it yourself:',
   message: q => `I bet I know your answer: “${q}” Shall we find out together?`,
@@ -48,7 +48,7 @@ const C = en ? {
   promises: ['Une chanson. Une danse catastrophique.', 'Dix minutes avec les téléphones rangés.', 'Imaginer votre prochain rendez-vous.'],
   done: 'Trois manches. Une soirée déjà différente.', doneHelp: 'Pas de note sur votre couple. Juste trois moments que vous avez créés à deux.',
   commitment: 'Votre promesse pour ce soir :', offer: 'On continue toute la soirée ?', offerHelp: 'Installez Découverte gratuitement sur Android. Un achat unique débloque ensuite tout le jeu sur 2 téléphones : le vôtre et celui de l’autre.',
-  offerButton: 'Installer Découverte · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', replay: 'Rejouer', share: 'Préparer une surprise',
+  offerButton: 'Installer Découverte · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', guarantee: 'Remboursé sous 14 jours, sans question · sans compte, sans pub.', replay: 'Rejouer', share: 'Préparer une surprise',
   surpriseTitle: 'Un pari à envoyer. Une soirée à attendre.', surpriseHelp: 'Choisissez une carte. Votre partenaire ouvre le lien et peut commencer la démo en trois manches. Rien à installer.',
   send: 'Partager l’invitation', copy: 'Copier l’invitation', copied: 'Invitation copiée.', fallback: 'Copiez cette invitation pour l’envoyer vous-même :',
   message: q => `Je parie que je connais ta réponse : « ${q} » On vérifie ensemble ?`,
@@ -128,7 +128,7 @@ function askNames() {
   });
   stage.append(form); stage.classList.remove('dealt'); requestAnimationFrame(() => stage.classList.add('dealt')); a.focus({ preventScroll: true });
 }
-const begin = () => { if (names || skippedNames) ask(0, true); else askNames(); };
+const begin = () => ask(0, true);
 let skippedNames = false;
 function ask(player = 0, moved = false) {
   draw(round === 0 ? C.questions[card] : C.rapid, player === 0 ? (round === 0 ? C.first(nm(0)) : C.rapidHelp(nm(0), nm(1))) : C.second(nm(1), nm(0)));
@@ -181,6 +181,7 @@ function finish(promise, promiseIndex = 0) {
   const codeLine = el('p', 'evening-code'); codeLine.append(document.createTextNode(C.sealedCode + ' '), el('b', 'code', code)); stage.append(codeLine);
   link(stage, C.openSealed, APK);
   link(stage, C.offerBuy, `${shop}#acheter`, 'evening-buy').addEventListener('click', () => hit('buy_click'));
+  stage.append(el('p', 'evening-note', C.guarantee));
   const tools = el('div', 'evening-tools'); action(tools, C.replay, () => { round = 0; matches = 0; started = false; answers = []; ask(0, true); }, 'text-action'); action(tools, C.namesChange, () => { round = 0; matches = 0; started = false; answers = []; askNames(); }, 'text-action'); action(tools, C.share, showSurprise, 'text-action'); stage.append(tools); focusStage();
 }
 function inviteUrl() { const u = new URL(en ? 'en.html' : 'index.html', location.href); u.search = `invite=${card}${myAnswer === null ? '' : `&a=${myAnswer}`}${myName.trim() ? `&n=${encodeURIComponent(myName.trim().slice(0, 20))}` : ''}${names?.[1] && myAnswer !== null ? `&p=${encodeURIComponent(names[1])}` : ''}`; u.hash = 'essayer'; return u.href; }
@@ -239,7 +240,7 @@ addEventListener('hashchange', () => document.querySelectorAll('.language-switch
 if (stage) {
   hit('view');
   if (variant === 'b') { const h = document.querySelector('#hero-title'); if (h) h.innerHTML = en ? 'Bet on your couple.<br><em>Play to find out.</em>' : 'Pariez sur votre couple.<br><em>Jouez pour voir.</em>'; }
-  if (hiddenAnswer !== null) { hit('invite_open'); showBet(); } else if (names) ask(); else askNames();
+  if (hiddenAnswer !== null) { hit('invite_open'); showBet(); } else ask();
   document.querySelector('#evening-privacy').textContent = C.status;
   if (/^[2-9A-HJ-NP-Z]{4}$/.test(params.get('code') || '') && !saved()?.code) save({ code: params.get('code') }); // arriving from the QR code
   const banner = document.querySelector('#invitation-banner'), back = saved();
