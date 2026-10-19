@@ -29,3 +29,11 @@
 @media(max-width:900px){.nope-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.nope-grid{grid-template-columns:1fr}.nope{padding:48px 0}}
 @media(max-width:720px){.conversion-paths a[data-hit=intent_gift]{grid-column:1/-1}}
 .souvenir-card{display:block;width:min(100%,360px);height:auto;margin:16px auto;border-radius:16px;box-shadow:0 18px 40px #0008}
+.ed-quiz{margin:0 0 22px;padding:22px 24px;border:1px dashed var(--line);border-radius:20px;background:#ffffff08}
+.ed-quiz h3{font:400 24px/1.2 var(--serif);margin:0 0 14px}.ed-quiz .eyebrow{margin-bottom:8px}
+.ed-quiz fieldset{border:0;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}.ed-quiz legend{float:left;margin-right:6px;padding:0;font-size:14px;color:var(--muted);width:100%}
+.ed-quiz button{border:1px solid var(--line);background:#ffffff0b;color:var(--ink);border-radius:99px;padding:10px 15px;font-size:13px;font-weight:800}
+.ed-quiz button[aria-pressed=true]{background:var(--peach);color:#341f2e;border-color:var(--peach)}
+.ed-quiz-out{margin:6px 0 0;font-size:14px;color:var(--peach);min-height:1.4em}
+.ed-card{position:relative}.ed-card.ed-reco{border-color:var(--peach);box-shadow:0 0 0 2px var(--peach),0 20px 50px #0c061555}
+.ed-badge{align-self:flex-start;margin-bottom:10px;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;padding:6px 10px;border-radius:99px;background:var(--peach);color:#341f2e}

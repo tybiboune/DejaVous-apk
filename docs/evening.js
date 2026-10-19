@@ -21,8 +21,8 @@ const C = en ? {
   promises: ['One song. One terrible dance.', 'Ten minutes with the phones put away.', 'Plan your next date together.'],
   done: 'Three rounds. One evening already different.', doneHelp: 'No relationship score. Just three moments you made together.',
   commitment: 'Your promise for tonight:', offer: 'Want a whole night of this?', offerHelp: 'Install Discovery for free on Android. One purchase then unlocks the whole game on 2 phones: yours and your partner’s.',
-  offerButton: 'Install Discovery · Android', offerBuy: 'Unlock everything for two · €34.90', guarantee: 'Refunded within 14 days, no questions asked · no account, no ads.', replay: 'Play again', keepCard: 'Keep our souvenir card', cardTitle: 'Your souvenir card', cardHelp: 'A keepsake of tonight. Share it and invite someone to beat your score.', cardShare: 'Share and invite', cardSave: 'Save the image', cardBack: 'Back', cardCopied: 'Link copied ✓', cardTitles: ['Two mysteries', 'Accomplices in the making', 'One mind'], cardScore: n => `${n}/2 shared answers`, cardPromise: 'Tonight’s promise', cardCode: 'Evening code', cardMsg: 'Our score on Déjà Vous. Think you can beat us?', share: 'Prepare a surprise',
-  surpriseTitle: 'A bet to send. A night to look forward to.', surpriseHelp: 'Pick a card. Your partner opens the link and can start the three-round demo. No install needed.',
+  offerButton: 'Install Discovery · Android', offerBuy: 'Unlock everything for two · €34.90', guarantee: 'Refunded within 14 days, no questions asked · no account, no ads.', replay: 'Play again', messageMulti: 'I secretly answered 3 questions. Can you guess my answers?', guessScore: (n, t) => `${n}/${t} correct`, guessPerfect: w => `Perfect: you read ${w} like a book.`, guessMore: w => `${w} still has a few secrets. Now it’s your turn.`, guessChallenge: 'Challenge them back', keepCard: 'Keep our souvenir card', cardTitle: 'Your souvenir card', cardHelp: 'A keepsake of tonight. Share it and invite someone to beat your score.', cardShare: 'Share and invite', cardSave: 'Save the image', cardBack: 'Back', cardCopied: 'Link copied ✓', cardTitles: ['Two mysteries', 'Accomplices in the making', 'One mind'], cardScore: n => `${n}/2 shared answers`, cardPromise: 'Tonight’s promise', cardCode: 'Evening code', cardMsg: 'Our score on Déjà Vous. Think you can beat us?', share: 'Prepare a surprise',
+  surpriseTitle: 'A bet to send. A night to look forward to.', surpriseHelp: 'Answer in secret (at least one question). Your partner opens the link and guesses. No install needed.',
   send: 'Share the invitation', copy: 'Copy the invitation', copied: 'Invitation copied.', fallback: 'Copy this invitation and send it yourself:',
   message: q => `I bet I know your answer: “${q}” Shall we find out together?`,
   status: 'Your answers never leave this page. Only your evening code and your promise stay in this browser.',
@@ -48,8 +48,8 @@ const C = en ? {
   promises: ['Une chanson. Une danse catastrophique.', 'Dix minutes avec les téléphones rangés.', 'Imaginer votre prochain rendez-vous.'],
   done: 'Trois manches. Une soirée déjà différente.', doneHelp: 'Pas de note sur votre couple. Juste trois moments que vous avez créés à deux.',
   commitment: 'Votre promesse pour ce soir :', offer: 'On continue toute la soirée ?', offerHelp: 'Installez Découverte gratuitement sur Android. Un achat unique débloque ensuite tout le jeu sur 2 téléphones : le vôtre et celui de l’autre.',
-  offerButton: 'Installer Découverte · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', guarantee: 'Remboursé sous 14 jours, sans question · sans compte, sans pub.', replay: 'Rejouer', keepCard: 'Garder notre carte-souvenir', cardTitle: 'Votre carte-souvenir', cardHelp: 'Un souvenir de ce soir. Partagez-la et invitez quelqu’un à battre votre score.', cardShare: 'Partager et inviter', cardSave: 'Enregistrer l’image', cardBack: 'Retour', cardCopied: 'Lien copié ✓', cardTitles: ['Deux mystères', 'Complices en devenir', 'Même cerveau'], cardScore: n => `${n}/2 réponses communes`, cardPromise: 'La promesse de ce soir', cardCode: 'Code soirée', cardMsg: 'Notre score sur Déjà Vous. Vous pensez faire mieux ?', share: 'Préparer une surprise',
-  surpriseTitle: 'Un pari à envoyer. Une soirée à attendre.', surpriseHelp: 'Choisissez une carte. Votre partenaire ouvre le lien et peut commencer la démo en trois manches. Rien à installer.',
+  offerButton: 'Installer Découverte · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', guarantee: 'Remboursé sous 14 jours, sans question · sans compte, sans pub.', replay: 'Rejouer', messageMulti: 'J’ai répondu en secret à 3 questions. Sauras-tu deviner mes réponses ?', guessScore: (n, t) => `${n}/${t} bonnes réponses`, guessPerfect: w => `Parfait : vous lisez ${w} comme un livre ouvert.`, guessMore: w => `${w} garde encore quelques secrets. À vous de défier à votre tour.`, guessChallenge: 'Le/la défier à mon tour', keepCard: 'Garder notre carte-souvenir', cardTitle: 'Votre carte-souvenir', cardHelp: 'Un souvenir de ce soir. Partagez-la et invitez quelqu’un à battre votre score.', cardShare: 'Partager et inviter', cardSave: 'Enregistrer l’image', cardBack: 'Retour', cardCopied: 'Lien copié ✓', cardTitles: ['Deux mystères', 'Complices en devenir', 'Même cerveau'], cardScore: n => `${n}/2 réponses communes`, cardPromise: 'La promesse de ce soir', cardCode: 'Code soirée', cardMsg: 'Notre score sur Déjà Vous. Vous pensez faire mieux ?', share: 'Préparer une surprise',
+  surpriseTitle: 'Un pari à envoyer. Une soirée à attendre.', surpriseHelp: 'Répondez en secret (au moins une question). Votre partenaire ouvre le lien et devine. Rien à installer.',
   send: 'Partager l’invitation', copy: 'Copier l’invitation', copied: 'Invitation copiée.', fallback: 'Copiez cette invitation pour l’envoyer vous-même :',
   message: q => `Je parie que je connais ta réponse : « ${q} » On vérifie ensemble ?`,
   status: 'Vos réponses ne quittent pas cette page. Seuls votre code soirée et votre promesse restent dans ce navigateur.',
@@ -68,14 +68,15 @@ const invitation = new URLSearchParams(location.search).get('invite');
 let card = /^[0-2]$/.test(invitation || '') ? Number(invitation) : 0;
 let round = 0, answers = [];
 let started = false, surprise = false, personalNote = '';
-let myAnswer = null, myName = '', matches = 0;
+let myAnswers = [null, null, null], myName = '', matches = 0;
 // First names: asked once, kept only for this visit (sessionStorage: gone when the tab closes), used in every round of the demo.
 const readNames = () => { try { const v = JSON.parse(sessionStorage.getItem('dv-names') || 'null'); return Array.isArray(v) && v.length === 2 ? v : null; } catch { return null; } };
 let names = readNames();
 const nm = i => names?.[i] || C.players[i];
 const clean = v => String(v ?? '').replace(/[<>]/g, '').trim().slice(0, 20);
 const params = new URLSearchParams(location.search);
-const hiddenAnswer = /^[01]$/.test(params.get('a') || '') && /^[0-2]$/.test(invitation || '') ? Number(params.get('a')) : null;
+const qaParam = /^[01-]{3}$/.test(params.get('qa') || '') && params.get('qa') !== '---' ? params.get('qa') : null;
+const hiddenAnswer = qaParam ? null : /^[01]$/.test(params.get('a') || '') && /^[0-2]$/.test(invitation || '') ? Number(params.get('a')) : null;
 const senderName = (params.get('n') || '').replace(/[<>]/g, '').trim().slice(0, 20);
 const receiverName = (params.get('p') || '').replace(/[<>]/g, '').trim().slice(0, 20);
 const saved = () => { try { return JSON.parse(localStorage.getItem('dv-demo') || 'null'); } catch { return null; } };
@@ -220,17 +221,17 @@ function showCard(promise, code) {
   action(tools, C.cardSave, async () => { const a = el('a'); a.href = URL.createObjectURL(await blob()); a.download = 'deja-vous.png'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }, 'text-action');
   action(tools, C.cardBack, () => finish(promise, C.promises.indexOf(promise)), 'text-action'); stage.append(tools); focusStage();
 }
-function inviteUrl() { const u = new URL(en ? 'en.html' : 'index.html', location.href); u.search = `invite=${card}${myAnswer === null ? '' : `&a=${myAnswer}`}${myName.trim() ? `&n=${encodeURIComponent(myName.trim().slice(0, 20))}` : ''}${names?.[1] && myAnswer !== null ? `&p=${encodeURIComponent(names[1])}` : ''}`; u.hash = 'essayer'; return u.href; }
-function inviteMessage() { return [personalNote.trim(), (myAnswer === null ? C.message : C.messageHidden)(C.questions[card])].filter(Boolean).join('\n\n'); }
+function inviteUrl() { const u = new URL(en ? 'en.html' : 'index.html', location.href), any = myAnswers.some(v => v !== null), q = [`invite=${any ? myAnswers.findIndex(v => v !== null) : card}`]; if (any) q.push(`qa=${myAnswers.map(v => v ?? '-').join('')}`); if (myName.trim()) q.push(`n=${encodeURIComponent(myName.trim().slice(0, 20))}`); if (names?.[1] && any) q.push(`p=${encodeURIComponent(names[1])}`); u.search = q.join('&'); u.hash = 'essayer'; return u.href; }
+function inviteMessage() { const any = myAnswers.some(v => v !== null); return [personalNote.trim(), any ? C.messageMulti : C.message(C.questions[card])].filter(Boolean).join('\n\n'); }
 function shareText() { return `${inviteMessage()}\n${inviteUrl()}`; }
 function showSurprise() {
   surprise = true;
   draw(C.surpriseTitle, C.surpriseHelp, en ? 'PREPARE A SURPRISE' : 'PRÉPAREZ UNE SURPRISE');
   progress.hidden = true;
-  const cards = el('div', 'evening-choices promises');
-  C.questions.forEach((q, i) => { const b = action(cards, q, () => { card = i; showSurprise(); focusStage(); }); b.setAttribute('aria-pressed', String(i === card)); }); stage.append(cards);
-  const mine = el('div', 'evening-choices invite-answer'); mine.append(el('p', 'invite-note-label', C.myAnswer));
-  [names?.[0] || C.me, names?.[1] || C.you].forEach((label, v) => { const b = action(mine, label, () => { myAnswer = myAnswer === v ? null : v; showSurprise(); focusStage(); }); b.setAttribute('aria-pressed', String(myAnswer === v)); }); stage.append(mine);
+  C.questions.forEach((q, i) => {
+    const mine = el('div', 'evening-choices invite-answer'); mine.append(el('p', 'invite-note-label', `${i + 1}. ${q}`));
+    [names?.[0] || C.me, names?.[1] || C.you].forEach((label, v) => { const b = action(mine, label, () => { myAnswers[i] = myAnswers[i] === v ? null : v; showSurprise(); focusStage(); }); b.setAttribute('aria-pressed', String(myAnswers[i] === v)); }); stage.append(mine);
+  });
   const nameLabel = el('label', 'invite-note-label', C.myName), name = el('input', 'invite-note'); name.maxLength = 20; name.value = myName || names?.[0] || ''; name.autocomplete = 'given-name';
   nameLabel.append(name); stage.append(nameLabel); name.addEventListener('input', () => { myName = name.value; });
   const noteLabel = el('label', 'invite-note-label', C.noteLabel);
@@ -250,6 +251,22 @@ function showSurprise() {
   action(tools, C.copy, copyInvite);
   action(tools, C.together, () => { surprise = false; round = 0; started = false; answers = []; begin(); }, 'text-action');
   stage.append(tools, status, fallback); focusStage();
+}
+function showGuess() {
+  const who = senderName || C.someone, todo = [...qaParam].map((v, i) => v === '-' ? null : { i, v: Number(v) }).filter(Boolean); let at = 0, score = 0;
+  const step = () => {
+    if (at >= todo.length) return done();
+    const { i, v } = todo[at]; round = 0; draw(C.questions[i], `${at + 1}/${todo.length} · ${C.betHelp(who)}`, C.betKicker); progress.hidden = true;
+    const choices = el('div', 'evening-choices');
+    [senderName || C.you, receiverName || C.me].forEach((label, pick) => action(choices, label, () => { hit('invite_answer'); if (pick === v) score++; at++; step(); focusStage(); })); stage.append(choices);
+  };
+  const done = () => {
+    draw(C.guessScore(score, todo.length), score === todo.length ? C.guessPerfect(who) : C.guessMore(who), C.betKicker); progress.hidden = true;
+    action(stage, C.guessChallenge, () => { myAnswers = [null, null, null]; showSurprise(); focusStage(); });
+    action(stage, C.betNext, () => { round = 0; matches = 0; started = false; answers = []; begin(); }, 'evening-button');
+    link(stage, C.betApp, APK, 'evening-buy');
+  };
+  step();
 }
 function showBet() {
   const who = senderName || C.someone;
@@ -276,7 +293,7 @@ addEventListener('hashchange', () => document.querySelectorAll('.language-switch
 if (stage) {
   hit('view');
   if (variant === 'b') { const h = document.querySelector('#hero-title'); if (h) h.innerHTML = en ? 'Bet on your couple.<br><em>Play to find out.</em>' : 'Pariez sur votre couple.<br><em>Jouez pour voir.</em>'; }
-  if (hiddenAnswer !== null) { hit('invite_open'); showBet(); } else ask();
+  if (qaParam) { hit('invite_open'); showGuess(); } else if (hiddenAnswer !== null) { hit('invite_open'); showBet(); } else ask();
   document.querySelector('#evening-privacy').textContent = C.status;
   if (/^[2-9A-HJ-NP-Z]{4}$/.test(params.get('code') || '') && !saved()?.code) save({ code: params.get('code') }); // arriving from the QR code
   const banner = document.querySelector('#invitation-banner'), back = saved();
