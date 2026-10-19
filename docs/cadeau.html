@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#191020"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
+<title>Un cadeau pour vous — Déjà Vous</title>
+<link rel="alternate" hreflang="fr" href="https://tybiboune.github.io/DejaVous-apk/cadeau.html"><link rel="alternate" hreflang="en" href="https://tybiboune.github.io/DejaVous-apk/cadeau-en.html">
+<link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="campaign.css"><link rel="stylesheet" href="impact.css"><link rel="stylesheet" href="unleashed.css"><link rel="stylesheet" href="gift.css?v=20261022"><script src="back.js" defer></script></head>
+<body>
+  <header class="topbar"><div class="topbar-inner wrap"><a class="brand" href="index.html" aria-label="Déjà Vous"><img src="assets/icon.png" alt="" width="36" height="36"><span>Déjà <em>Vous</em></span></a><nav class="sub-nav" aria-label="Navigation"><a href="index.html">← Retour</a></nav><div class="header-actions"><div class="language-switch" aria-label="Langue"><a href="cadeau.html" lang="fr" aria-current="page" data-lang>FR</a><a href="cadeau-en.html" lang="en" data-lang>EN</a></div></div></div></header>
+  <main class="wrap"><section class="ul-hero"><span class="ul-badge">UN CADEAU POUR VOUS</span><h1>Quelqu’un<br><em>pense à vous.</em></h1><p id="intro">Touchez l’enveloppe.</p></section>
+    <section class="gift-open" id="stage" hidden><button class="envelope" id="env" type="button" aria-label="Ouvrir l’enveloppe"><span class="env-back"></span><span class="env-letter"><b id="from"></b><i id="msg"></i></span><span class="env-flap"></span><span class="env-front"></span><span class="env-seal">✦</span></button></section>
+    <section class="ul-why" id="reveal" hidden><h2>Votre code</h2><code class="ul-code" id="code"></code><p><button class="ul-btn" id="copy" type="button">Copier le code</button> <a class="ul-btn ghost" href="unleashed.html#telecharger" style="text-decoration:none">Installer l’application</a></p><ol class="ul-steps"><li>Installez Déjà Vous (le bouton ci-dessous).</li><li>Ouvrez l’appli → Réglages → « Jeu complet ».</li><li>Collez le code. C’est débloqué, pour vous deux.</li></ol></section>
+    <section class="ul-why" id="bad" hidden><p>Ce lien de cadeau est incomplet. Demandez à la personne qui vous l’a envoyé de le renvoyer.</p></section></main>
+  <footer class="footer wrap"><a class="brand" href="index.html"><img src="assets/icon.png" alt="" width="31" height="31"><span>Déjà <em>Vous</em></span></a><p>Un souci ? Répondez à l’e-mail de confirmation de l’achat.</p><a href="privacy.html">Confidentialité</a></footer>
+<script type="module">
+import { openGift } from './gift.js';
+openGift({ from: 'De la part de', copied: 'Copié ✓' });
+</script>
+</body></html>

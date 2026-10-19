@@ -1,0 +1,12 @@
+.gift-open{display:grid;place-items:center;padding:30px 0 10px}
+.envelope{position:relative;width:min(88vw,340px);height:230px;border:0;background:none;padding:0;cursor:pointer;perspective:900px}
+.envelope span{position:absolute;display:block}
+.env-back{inset:0;background:#7a2c4d;border-radius:10px}
+.env-front{inset:0;border-radius:10px;background:linear-gradient(135deg,#b8506f,#8a3355);clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);z-index:3}
+.env-flap{left:0;right:0;top:0;height:60%;background:#a2415f;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;z-index:4;transition:transform .7s ease}
+.env-seal{left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#ffd3bd;color:#7a2c4d;display:grid!important;place-items:center;font-size:22px;z-index:5;transition:opacity .3s}
+.env-letter{left:6%;right:6%;top:8%;height:80%;background:#fff6ee;color:#3b2230;border-radius:8px;padding:16px 18px;z-index:2;text-align:center;overflow:hidden;transition:transform .8s ease .3s;display:flex!important;flex-direction:column;gap:8px;justify-content:center}
+.env-letter b{font:700 12px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#8a3355}.env-letter i{font:italic 400 21px/1.3 var(--serif)}
+.envelope.open .env-flap{transform:rotateX(180deg);z-index:1}.envelope.open .env-seal{opacity:0}.envelope.open .env-letter{transform:translateY(-62%);z-index:4}
+.envelope:not(.open):hover{transform:translateY(-3px)}.envelope{transition:transform .25s}
+@media(prefers-reduced-motion:reduce){.env-flap,.env-letter,.env-seal,.envelope{transition:none}}
