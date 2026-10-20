@@ -258,20 +258,36 @@ if (!reducedMotion && matchMedia('(pointer:fine)').matches) {
 
 const floatingCta = document.querySelector('#floating-cta');
 const closingSection = document.querySelector('.closing');
-const updateFloatingCta = () => {
-  if (!floatingCta) return;
-  const closingNear = closingSection ? closingSection.getBoundingClientRect().top < innerHeight * .9 : false;
-  floatingCta.classList.toggle('is-visible', scrollY > 650 && !closingNear);
-};
-addEventListener('scroll', updateFloatingCta, { passive: true }); updateFloatingCta();
+const topbar = document.querySelector('.topbar');
+// Scroll-driven bits (floating button, progress line under the header): measured once per frame, all reads before all writes.
+function updateOnScroll() {
+  const closingNear = floatingCta && closingSection ? closingSection.getBoundingClientRect().top < innerHeight * .9 : false;
+  const progress = `${Math.round(scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) * 100)}%`;
+  if (floatingCta) floatingCta.classList.toggle('is-visible', scrollY > 650 && !closingNear);
+  // On the header only: changing a variable on <html> would restyle the whole page at every scroll step.
+  topbar?.style.setProperty('--scroll-progress', progress);
+}
+let scrollFrame = 0;
+addEventListener('scroll', () => { if (!scrollFrame) scrollFrame = requestAnimationFrame(() => { scrollFrame = 0; updateOnScroll(); }); }, { passive: true });
 
+const marqueeTrack = document.querySelector('#marquee-track');
+let marqueeWidth = -1;
 function buildMarquee() {
-  const track = document.querySelector('#marquee-track'); if (!track) return;
+  const track = marqueeTrack; if (!track) return;
+  marqueeWidth = innerWidth;
   const set = node('div', 'marquee-set'); track.replaceChildren(set);
-  do { copy.marquee.forEach(word => { set.append(node('span', '', word), node('i', '', '✳')); }); } while (set.getBoundingClientRect().width < innerWidth + 120 && set.childElementCount < 100);
+  const addRun = () => copy.marquee.forEach(word => { set.append(node('span', '', word), node('i', '', '✳')); });
+  addRun();
+  // Same result as adding one run of words and measuring again until the set is wide enough, with far fewer measures:
+  // the set grows by one run's width each time, so all the runs that surely fall short are added before measuring again.
+  const runs = Math.ceil((innerWidth + 120) / set.getBoundingClientRect().width) - 1;
+  for (let k = 1; k < runs && set.childElementCount < 100; k++) addRun();
+  while (set.getBoundingClientRect().width < innerWidth + 120 && set.childElementCount < 100) addRun();
   track.replaceChildren(set, set.cloneNode(true)); track.lastElementChild.setAttribute('aria-hidden', 'true');
 }
-buildMarquee(); let resizeTimer; addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(buildMarquee, 180); });
+let resizeTimer; addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { if (innerWidth !== marqueeWidth) buildMarquee(); }, 180); });
+// The marquee only runs while it is on screen (it starts again 200 px before it comes into view).
+if (marqueeTrack && 'IntersectionObserver' in window) new IntersectionObserver(([entry]) => { marqueeTrack.style.animationPlayState = entry.isIntersecting ? '' : 'paused'; }, { rootMargin: '200px 0px' }).observe(marqueeTrack.parentElement);
 
 const sources = {
   paired: 'https://apps.apple.com/fr/app/paired-appli-de-relation/id1469609343', agape: 'https://apps.apple.com/fr/app/agap%C3%A9-feel-close-when-apart/id1507907556',
@@ -373,5 +389,5 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: 0.1 });
   document.querySelectorAll('.story-card,.benefit-grid article,.advantage-board,.heat-layout,.draw-layout,.door-layout,.price-band-inner,.duel-panel').forEach(el => { el.classList.add('reveal-ready'); observer.observe(el); });
 }
-const updateScroll = () => document.documentElement.style.setProperty('--scroll-progress', `${Math.round(scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) * 100)}%`);
-addEventListener('scroll', updateScroll, { passive: true }); updateScroll();
+// First layout work in one frame: build the marquee (it measures itself), then the scroll-driven bits.
+requestAnimationFrame(() => { buildMarquee(); updateOnScroll(); });
