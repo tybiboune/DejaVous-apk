@@ -1,5 +1,5 @@
 import { encodeEvening, SEALED } from './evening-code.js';
-import { hit, variant } from './hit.js';
+import { hit } from './hit.js';
 
 const APK = 'https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk';
 
@@ -292,7 +292,6 @@ document.querySelectorAll('.language-switch a').forEach(a => {
 addEventListener('hashchange', () => document.querySelectorAll('.language-switch a').forEach(a => { if (/^[0-2]$/.test(invitation || '')) { const u = new URL(a.href); u.searchParams.set('invite', invitation); a.href = u.href; } }));
 if (stage) {
   hit('view');
-  if (variant === 'b') { const h = document.querySelector('#hero-title'); if (h) h.innerHTML = en ? 'Bet on your couple.<br><em>Play to find out.</em>' : 'Pariez sur votre couple.<br><em>Jouez pour voir.</em>'; }
   if (qaParam) { hit('invite_open'); showGuess(); } else if (hiddenAnswer !== null) { hit('invite_open'); showBet(); } else ask();
   document.querySelector('#evening-privacy').textContent = C.status;
   if (/^[2-9A-HJ-NP-Z]{4}$/.test(params.get('code') || '') && !saved()?.code) save({ code: params.get('code') }); // arriving from the QR code

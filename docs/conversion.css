@@ -119,3 +119,7 @@ html[data-theme=light] .peek article{background:linear-gradient(160deg,#f3d9e4,#
 @media(prefers-reduced-motion:reduce){.sealed-card::before{animation:none}}
 html[data-theme=light] .sealed-card{background:linear-gradient(150deg,#f3d9e4,#e9cfe6)}
 .names-form{display:grid;gap:12px;margin-top:6px}.names-form .button{justify-self:start;margin-top:6px}
+.story-image picture{display:contents}
+/* A/B headline: both variants are in the page; the inline script in <head> picks one (html[data-ab]) before the first paint. */
+html:not([data-ab=b]) #hero-title .ab-b,html[data-ab=b] #hero-title .ab-a{display:none}
+#hero-title .ab-a,#hero-title .ab-b{color:inherit}
