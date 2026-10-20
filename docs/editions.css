@@ -38,3 +38,4 @@
 .ed-card{position:relative}.ed-card.ed-reco{border-color:var(--peach);box-shadow:0 0 0 2px var(--peach),0 20px 50px #0c061555}
 .ed-badge{align-self:flex-start;margin-bottom:10px;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;padding:6px 10px;border-radius:99px;background:var(--peach);color:#341f2e}
 .gift-full{margin:14px 0 0;font-size:13px}.gift-full a{color:var(--peach);text-underline-offset:4px}
+.ul-encart-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
