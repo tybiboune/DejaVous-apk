@@ -67,10 +67,13 @@ const themeMessages = en ? {
   'on-dark': 'Épicé + sombre. Aubergine, vin et un peu plus de tension.',
   'on-light': 'Épicé + clair. Plus lumineux, toujours franchement épicé.'
 };
+// The inline script in <head> already applied the stored mood before the first paint: only what differs is written here,
+// so loading this file never starts the theme transition again.
 function applyPromoTheme({ persist = true } = {}) {
-  document.documentElement.dataset.theme = promoTheme.theme;
-  document.documentElement.dataset.spicy = promoTheme.spicy;
-  document.body.classList.toggle('heat-on', promoTheme.spicy === 'on');
+  const root = document.documentElement;
+  if (root.dataset.theme !== promoTheme.theme) root.dataset.theme = promoTheme.theme;
+  if (root.dataset.spicy !== promoTheme.spicy) root.dataset.spicy = promoTheme.spicy;
+  if (document.body.classList.contains('heat-on') !== (promoTheme.spicy === 'on')) document.body.classList.toggle('heat-on', promoTheme.spicy === 'on');
   document.querySelectorAll('[data-theme-mode]').forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.themeMode === promoTheme.theme)));
   document.querySelectorAll('[data-spicy-mode]').forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.spicyMode === promoTheme.spicy)));
   const key = `${promoTheme.spicy}-${promoTheme.theme}`;
@@ -81,9 +84,10 @@ function applyPromoTheme({ persist = true } = {}) {
     ? `${promoTheme.spicy === 'on' ? 'SPICY' : 'SOFT'} · ${promoTheme.theme.toUpperCase()}`
     : `${promoTheme.spicy === 'on' ? 'ÉPICÉ' : 'DOUX'} · ${promoTheme.theme === 'dark' ? 'SOMBRE' : 'CLAIR'}`;
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  if (themeMeta) themeMeta.content = promoTheme.theme === 'light'
+  const themeColor = promoTheme.theme === 'light'
     ? (promoTheme.spicy === 'on' ? '#f8eff4' : '#f8efe9')
     : (promoTheme.spicy === 'on' ? '#150f1d' : '#191020');
+  if (themeMeta && themeMeta.content !== themeColor) themeMeta.content = themeColor;
   if (persist) {
     try { localStorage.setItem('dv-promo-theme', promoTheme.theme); localStorage.setItem('dv-promo-spicy', promoTheme.spicy); } catch {}
   }
