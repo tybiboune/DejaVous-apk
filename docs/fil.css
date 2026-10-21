@@ -1,0 +1,17 @@
+/* "Le Fil": the page a thread link opens (fil.html). The emblem, the card of the question, the big button that opens the app. */
+.fil-main{max-width:640px}
+.fil-hero{padding-bottom:8px}
+.fil-emblem{display:block;width:min(56vw,230px);height:auto;margin:0 auto 6px;filter:drop-shadow(0 22px 34px #07040c99)}
+.fil-hero h1{font-size:clamp(36px,8.5vw,58px);overflow-wrap:anywhere}
+.fil-card{position:relative;margin:26px auto 0;padding:28px 26px 24px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(155deg,#f6e3d6,#e9cfc4);color:#3b1630;box-shadow:0 22px 50px #0b051388;transform:rotate(-1.2deg)}
+.fil-card::after{content:"DÉJÀ VOUS ♥";position:absolute;right:20px;bottom:14px;font:800 10px/1 var(--sans);letter-spacing:.18em;opacity:.45}
+.fil-kicker{margin:0 0 12px;font:800 11px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#8a3355}
+.fil-q{margin:0 0 18px;font:400 clamp(24px,6vw,32px)/1.18 var(--serif);overflow-wrap:anywhere}
+.fil-hidden{margin:0 0 14px;font-size:14px;line-height:1.5;color:#6b4258}
+.fil-go{display:flex;flex-direction:column;align-items:center;gap:10px;margin:34px 0 10px;text-align:center}
+.fil-open{display:block;width:min(100%,420px);padding:20px 24px;font-size:18px;text-align:center;text-decoration:none;box-shadow:0 14px 34px #ff4f7b44}
+.fil-install,.fil-small,.fil-privacy{max-width:520px;margin:0 auto;color:var(--muted);font-size:14px;line-height:1.55;text-align:center}
+.fil-install a,.fil-small a{color:var(--peach)}
+.fil-copy{padding:11px 18px;font-size:14px}
+.fil-privacy{margin:30px auto 10px;font-size:12px}
+.fil-bad{text-align:center}.fil-bad p{margin-inline:auto}
