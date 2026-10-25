@@ -14,7 +14,7 @@
     <section class="ul-why" id="bad" hidden><p>Ce lien de cadeau est incomplet. Demandez à la personne qui vous l’a envoyé de le renvoyer.</p></section></main>
   <footer class="footer wrap"><a class="brand" href="index.html"><img src="assets/icon-36.png" srcset="assets/icon-72.png 2x, assets/icon-108.png 3x" alt="" width="31" height="31"><span>Déjà <em>Vous</em></span></a><p>Un souci ? Répondez à l’e-mail de confirmation de l’achat.</p><a href="privacy.html">Confidentialité</a></footer>
 <script type="module">
-import { openGift } from './gift.js';
+import { openGift } from './gift.js?v=20261025';
 openGift({ from: 'De la part de', copied: 'Copié ✓', onDay: d => `À ouvrir le ${d}`, sealedLine: d => `Cette enveloppe s’ouvre le ${d}. Installez l’appli et ouvrez-y ce lien : elle vous attendra, scellée, jusqu’à ce jour.`,
   evening: (mood, min) => `Une soirée Déjà Vous rien que pour vous deux : ${mood}, environ ${min} minutes. Elle se prépare toute seule, vous n’avez qu’à jouer.`, moods: { laugh: 'pour rire', challenge: 'pour vous défier', together: 'pour vous retrouver' } });
 </script>

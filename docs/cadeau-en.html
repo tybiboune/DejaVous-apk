@@ -14,7 +14,7 @@
     <section class="ul-why" id="bad" hidden><p>This gift link is incomplete. Ask the person who sent it to send it again.</p></section></main>
   <footer class="footer wrap"><a class="brand" href="en.html"><img src="assets/icon-36.png" srcset="assets/icon-72.png 2x, assets/icon-108.png 3x" alt="" width="31" height="31"><span>Déjà <em>Vous</em></span></a><p>Trouble? Reply to the purchase confirmation e-mail.</p><a href="privacy-en.html">Privacy</a></footer>
 <script type="module">
-import { openGift } from './gift.js';
+import { openGift } from './gift.js?v=20261025';
 openGift({ from: 'From', copied: 'Copied ✓', onDay: d => `To open on ${d}`, sealedLine: d => `This envelope opens on ${d}. Install the app and open this link in it: it will wait, sealed, until that day.`,
   evening: (mood, min) => `A Déjà Vous evening just for the two of you: ${mood}, about ${min} minutes. It sets itself up, you only have to play.`, moods: { laugh: 'to laugh', challenge: 'to challenge each other', together: 'to find each other again' } });
 </script>
