@@ -899,7 +899,7 @@ html[data-theme=light] .duel-table .price-row td.unknown{
   font-weight:800;
 }
 
-/* Mobile-generated column labels (DÉJÀ VOUS / PAIRED etc.). */
+/* Mobile-generated column labels (DÉJÀ NOUS / PAIRED etc.). */
 html[data-theme=light] .duel-table tbody td::before{
   color:#6a2d49;
   font-weight:950;

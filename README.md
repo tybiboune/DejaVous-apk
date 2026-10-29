@@ -1,6 +1,6 @@
-# Déjà Vous — Android downloads
+# Déjà Nous — Android downloads
 
-Public releases and the promotional website for Déjà Vous, a game for couples: [français](https://tybiboune.github.io/DejaVous-apk/) · [English](https://tybiboune.github.io/DejaVous-apk/en.html). The website lives in `docs/`; the Android app source stays private. Each [release](https://github.com/tybiboune/DejaVous-apk/releases) provides
+Public releases and the promotional website for Déjà Nous, a game for couples: [français](https://tybiboune.github.io/DejaVous-apk/) · [English](https://tybiboune.github.io/DejaVous-apk/en.html). The website lives in `docs/`; the Android app source stays private. Each [release](https://github.com/tybiboune/DejaVous-apk/releases) provides
 
 - `deja-vous.apk` — the signed Android app ([download the latest](https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk))
 - `update.json` — used by the in-app updater

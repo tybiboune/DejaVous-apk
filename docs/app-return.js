@@ -7,7 +7,7 @@ if (q.get('app') === '1') {
   const box = document.createElement('section'); box.className = 'ul-why app-return';
   box.innerHTML = `<h2>${paid ? (en ? 'Back to the app' : 'Retour dans l’appli') : (en ? 'Payment cancelled' : 'Paiement annulé')}</h2>
     <p>${paid ? (en ? 'The game unlocks by itself as soon as you are back: no code to copy.' : 'Le jeu se débloque tout seul dès votre retour : aucun code à copier.') : (en ? 'Nothing was charged.' : 'Rien n’a été débité.')}</p>
-    <a class="ul-btn" href="${href}" style="text-decoration:none">${en ? 'Open Déjà Vous' : 'Ouvrir Déjà Vous'}</a>`;
+    <a class="ul-btn" href="${href}" style="text-decoration:none">${en ? 'Open Déjà Nous' : 'Ouvrir Déjà Nous'}</a>`;
   document.querySelector('main')?.prepend(box);
   if (paid) setTimeout(() => { location.href = href; }, 1200);
 }

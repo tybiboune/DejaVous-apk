@@ -14,10 +14,10 @@ const T = {
     replyLead: 'Ouvre-le dans l’appli pour découvrir les réponses et qui a deviné juste.',
     kicker: 'La question du jour', hidden: n => `${n} a déjà répondu en secret. Sa réponse se dévoile dans l’appli, une fois la tienne verrouillée.`, someone: 'L’autre',
     playQ: 'La question t’attend dans l’appli.',
-    open: 'Ouvrir dans Déjà Vous', copy: 'Copier le lien', copied: 'Lien copié ✓',
-    install: 'Pas encore l’appli ? <a href="index.html#telecharger">Installe Déjà Vous</a> (Android, découverte gratuite), puis touche à nouveau ce bouton.',
+    open: 'Ouvrir dans Déjà Nous', copy: 'Copier le lien', copied: 'Lien copié ✓',
+    install: 'Pas encore l’appli ? <a href="index.html#telecharger">Installe Déjà Nous</a> (Android, découverte gratuite), puis touche à nouveau ce bouton.',
     paste: 'Si le bouton n’ouvre rien : copie le lien, puis dans l’appli, Le Fil → « Tu as reçu un lien ? ».',
-    badT: 'Fil emmêlé', badP: 'Ce lien est incomplet ou abîmé (les messageries le coupent parfois). Demande à la personne qui te l’a envoyé de le renvoyer.', badHome: 'Découvrir Déjà Vous',
+    badT: 'Fil emmêlé', badP: 'Ce lien est incomplet ou abîmé (les messageries le coupent parfois). Demande à la personne qui te l’a envoyé de le renvoyer.', badHome: 'Découvrir Déjà Nous',
     privacy: 'Rien ne passe par un serveur : ce lien porte le numéro de la question et les réponses (brouillées), et cette page ne les envoie nulle part.',
     foot: 'Le jeu de cartes des couples.', privacyLink: 'Confidentialité', privacyHref: 'privacy.html', home: 'index.html', badge: 'LE FIL',
     duelBadge: 'DÉFI CHRONO', duelTitle: n => `${n} te lance un défi chrono`, duelAnon: 'On te lance un défi chrono',
@@ -31,10 +31,10 @@ const T = {
     replyLead: 'Open it in the app to see the answers and who guessed right.',
     kicker: 'Today’s question', hidden: n => `${n} already answered in secret. Their answer shows in the app once you lock yours.`, someone: 'They',
     playQ: 'The question is waiting for you in the app.',
-    open: 'Open in Déjà Vous', copy: 'Copy the link', copied: 'Link copied ✓',
-    install: 'Don’t have the app yet? <a href="en.html#telecharger">Install Déjà Vous</a> (Android, free Discovery), then tap this button again.',
+    open: 'Open in Déjà Nous', copy: 'Copy the link', copied: 'Link copied ✓',
+    install: 'Don’t have the app yet? <a href="en.html#telecharger">Install Déjà Nous</a> (Android, free Discovery), then tap this button again.',
     paste: 'If the button opens nothing: copy the link, then in the app, The Thread → “Got a link?”.',
-    badT: 'Tangled thread', badP: 'This link is incomplete or damaged (messaging apps sometimes cut it). Ask the person who sent it to send it again.', badHome: 'Discover Déjà Vous',
+    badT: 'Tangled thread', badP: 'This link is incomplete or damaged (messaging apps sometimes cut it). Ask the person who sent it to send it again.', badHome: 'Discover Déjà Nous',
     privacy: 'Nothing goes through a server: this link carries the question number and the (scrambled) answers, and this page sends them nowhere.',
     foot: 'The card game for couples.', privacyLink: 'Privacy', privacyHref: 'privacy-en.html', home: 'en.html', badge: 'THE THREAD',
     duelBadge: 'TIMED CHALLENGE', duelTitle: n => `${n} sent you a timed challenge`, duelAnon: 'Someone sent you a timed challenge',
@@ -94,7 +94,7 @@ function paint() {
     $('fil-title').textContent = L.badT; $('fil-lead').textContent = '';
     $('fil-bad').hidden = false; $('fil-bad-t').hidden = true; $('fil-bad-p').textContent = L.badP;
     $('fil-bad-home').textContent = L.badHome; $('fil-bad-home').href = L.home;
-    document.title = `${L.badT} — Déjà Vous`;
+    document.title = `${L.badT} — Déjà Nous`;
     return;
   }
   const who = link.name || L.someone;
@@ -103,7 +103,7 @@ function paint() {
     $('fil-lead').textContent = link.reply ? L.duelReplyLead : L.duelLead;
   } else $('fil-title').textContent = link.reply ? (link.name ? L.replyTitle(link.name) : L.replyAnon) : (link.name ? L.title(link.name) : L.titleAnon);
   if (!link.duel) $('fil-lead').textContent = link.reply ? L.replyLead : L.lead;
-  document.title = `${$('fil-title').textContent} — Déjà Vous`;
+  document.title = `${$('fil-title').textContent} — Déjà Nous`;
   // the question stays in the app (the cards are not published on the site): the page only says one is waiting
   const card = null;
   if (!link.reply && !link.duel) {
