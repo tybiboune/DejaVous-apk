@@ -1,10 +1,9 @@
 
-html[data-theme],html[data-theme] body,html[data-theme] .topbar,html[data-theme] .heat-section,html[data-theme] .compare-section,html[data-theme] .closing,html[data-theme] .price-band{transition:background .65s ease,color .45s ease,border-color .45s ease}
+html[data-theme],html[data-theme] body,html[data-theme] .topbar,html[data-theme] .heat-section,html[data-theme] .closing,html[data-theme] .price-band{transition:background .65s ease,color .45s ease,border-color .45s ease}
 html[data-theme=light]{color-scheme:light;--ink:#362438;--muted:#776172;--rose:#90445a;--peach:#9a4a60;--wine:#90445a;--plum:#eadde6;--bg:#f8efe9;--glass:#fffaf5e8;--line:#83526e45}
 html[data-theme=light] body{background:#f8efe9;color:#362438}html[data-theme=light] .topbar{background:#fff8f2e8;border-color:#8d526c38}html[data-theme=light] .topbar-inner nav a,html[data-theme=light] .hero-lede,html[data-theme=light] .section-heading>p,html[data-theme=light] .story-card p,html[data-theme=light] .benefit-grid p{color:#695365}
 html[data-theme=light] .hero h1 em{color:#90445a;text-shadow:0 0 35px #dca0b84a}html[data-theme=light] .mystery-trigger{background:#fff8f4;border-color:#a86e8468;color:#4d3043}html[data-theme=light] .story-image{box-shadow:0 20px 0 -8px #d7b4c1,0 29px 46px #68415426}
-html[data-theme=light] .demo-section{background:linear-gradient(145deg,#f3e7e6,#f8eff0)}html[data-theme=light] .compare-section{background:radial-gradient(ellipse at 90% 5%,#d7a8bc59,transparent 35%),#f5e9eb}html[data-theme=light] .duel-panel{background:#fffaf7;border-color:#9c657d52}html[data-theme=light] .duel-heading{background:linear-gradient(100deg,#d8b5c2,#e9cfd5)}html[data-theme=light] .duel-versus{color:#412b3e}
-html[data-theme=light] .duel-table td{color:#5d4757}html[data-theme=light] .duel-table tbody th{color:#7c425d}html[data-theme=light] .duel-table thead th{background:#ead7de;color:#6c3d56}html[data-theme=light] .duel-table tbody td:nth-child(2){background:#efd9e2;color:#41283b}html[data-theme=light] .closing{background:radial-gradient(ellipse 55% 60% at 50% 50%,#d99cbf52,transparent),#f6ecec}
+html[data-theme=light] .demo-section{background:linear-gradient(145deg,#f3e7e6,#f8eff0)}html[data-theme=light] .closing{background:radial-gradient(ellipse 55% 60% at 50% 50%,#d99cbf52,transparent),#f6ecec}
 html[data-spicy=on][data-theme=dark]{--ink:#fff5f8;--muted:#d0b9ca;--rose:#f7c8d8;--peach:#f3b0c8;--wine:#86293b;--plum:#49306b;--bg:#150f1d;--glass:#2e1d35dc;--line:#d9afd05c}
 html[data-spicy=on][data-theme=dark] body{background:#150f1d}html[data-spicy=on][data-theme=dark] .topbar{background:#190f1edc;border-color:#e8a3be58}html[data-spicy=on][data-theme=dark] .marquee{background:linear-gradient(90deg,#55203f,#86293b 55%,#49306b)}
 html[data-spicy=on][data-theme=light]{color-scheme:light;--ink:#2c1c2e;--muted:#654e62;--rose:#72253f;--peach:#86293b;--wine:#86293b;--plum:#e8dcef;--bg:#f8eff4;--glass:#fffafce6;--line:#83526e57}
@@ -138,7 +137,6 @@ html[data-theme=light] .demo-copy>p:not(.eyebrow),
 html[data-theme=light] .demo-honesty,
 html[data-theme=light] .demo-panel p,
 html[data-theme=light] .demo-inputs label,
-html[data-theme=light] .table-note,
 html[data-theme=light] .closing-inner>p:not(.eyebrow),
 html[data-theme=light] .closing-inner small,
 html[data-theme=light] .footer p{
@@ -176,7 +174,6 @@ html[data-theme=light] .button-ghost,
 html[data-theme=light] .mystery-trigger,
 html[data-theme=light] .demo-options button,
 html[data-theme=light] .demo-tabs button,
-html[data-theme=light] .table-controls button,
 html[data-theme=light] .heat-controls button{
   background:#fffdfb;
   color:#352334;
@@ -186,14 +183,12 @@ html[data-theme=light] .button-ghost:hover,
 html[data-theme=light] .mystery-trigger:hover,
 html[data-theme=light] .demo-options button:hover,
 html[data-theme=light] .demo-tabs button:hover,
-html[data-theme=light] .table-controls button:hover,
 html[data-theme=light] .heat-controls button:hover{
   background:#fff5f3;
   border-color:#75485e82;
 }
 html[data-theme=light] .heat-controls button[aria-pressed=true],
-html[data-theme=light] .demo-tabs button[aria-selected=true],
-html[data-theme=light] .table-controls button[aria-selected=true]{
+html[data-theme=light] .demo-tabs button[aria-selected=true]{
   background:#764058;
   border-color:#764058;
   color:#fff9fb;
@@ -239,66 +234,6 @@ html[data-theme=light] .demo-result{
 html[data-theme=light] .demo-progress i{background:#6d43572c}
 html[data-theme=light] .demo-progress i.done{background:#7c4058}
 
-html[data-theme=light] .advantage-board{
-  background:linear-gradient(105deg,#ead0db,#efcfd5 55%,#e4d3e9);
-  border-color:#8553695c;
-  box-shadow:0 23px 50px #72506324;
-}
-html[data-theme=light] .advantage-stamp{
-  color:#4b2b3c;
-  border-color:#704158;
-}
-html[data-theme=light] .advantage-stamp span{color:#7a3b54}
-html[data-theme=light] .advantage-list span{
-  background:#fff9f7c9;
-  border-color:#8d607340;
-  color:#46293a;
-}
-html[data-theme=light] .compare-toolbar p{color:#6a344d}
-html[data-theme=light] .rival-card{
-  background:#fffaf7;
-  border-color:#8b60724f;
-  color:#442b3b;
-}
-html[data-theme=light] .rival-card:hover{border-color:#74465e}
-html[data-theme=light] .rival-card[aria-pressed=true]{
-  background:#704058;
-  color:#fff9fb;
-  border-color:#704058;
-  box-shadow:0 7px 0 #4f2d4030;
-}
-html[data-theme=light] .duel-panel{
-  background:#fffaf7;
-  border-color:#8e60745a;
-}
-html[data-theme=light] .duel-heading{
-  background:linear-gradient(100deg,#e5ccd6,#edd8dd);
-}
-html[data-theme=light] .duel-versus{color:#3f2939}
-html[data-theme=light] .duel-heading a{color:#63324b}
-html[data-theme=light] .duel-table thead th{
-  background:#e5d0d8;
-  color:#5e3049;
-}
-html[data-theme=light] .duel-table tbody th{color:#65344e}
-html[data-theme=light] .duel-table td{color:#4f394a}
-html[data-theme=light] .duel-table tbody td:nth-child(2){
-  background:#ead1dc;
-  color:#352132;
-}
-html[data-theme=light] .duel-table .price-row th,
-html[data-theme=light] .duel-table .price-row td{
-  background:#eadde3;
-  color:#472b3b;
-}
-html[data-theme=light] .duel-table .price-row td:nth-child(2){
-  background:#dcb8c8;
-  color:#321e2d;
-}
-html[data-theme=light] .duel-table td.unknown{color:#6c5666}
-html[data-theme=light] .table-note{color:#594454}
-html[data-theme=light] .table-note a{color:#6c304b}
-
 html[data-theme=light] .price-band{
   background:linear-gradient(100deg,#e8ccd7,#f0d1d1 58%,#ddd0e7);
   border-color:#80516655;
@@ -340,13 +275,9 @@ html[data-spicy=on][data-theme=light]{
 }
 html[data-spicy=on][data-theme=light] .topbar .top-cta,
 html[data-spicy=on][data-theme=light] .heat-controls button[aria-pressed=true],
-html[data-spicy=on][data-theme=light] .demo-tabs button[aria-selected=true],
-html[data-spicy=on][data-theme=light] .table-controls button[aria-selected=true]{
+html[data-spicy=on][data-theme=light] .demo-tabs button[aria-selected=true]{
   background:#672a45;
   border-color:#672a45;
-}
-html[data-spicy=on][data-theme=light] .advantage-board{
-  background:linear-gradient(105deg,#e4c3d0,#e8bdc8 55%,#dacbe4);
 }
 
 /* ---------------------------------------------------------
@@ -847,77 +778,6 @@ html[data-spicy=on][data-theme=light] .price-proof b{
 @media(max-width:700px){
   .price-proof span{min-height:92px;padding:10px 6px;font-size:9.5px}
   .price-proof b{font-size:30px;margin-bottom:7px}
-}
-
-/* 5–8 — Comparison table: explicit light-mode contrast for labels,
-   prices, checks and competitor values, especially in the mobile layout. */
-html[data-theme=light] .duel-table tbody th{
-  background:#47263f;
-  color:#fff4ef;
-  font-weight:900;
-  border-top-color:#6c455c;
-}
-html[data-spicy=on][data-theme=light] .duel-table tbody th{
-  background:#40213a;
-  color:#fff4f7;
-}
-
-html[data-theme=light] .duel-table tbody td{
-  color:#3c2937;
-}
-html[data-theme=light] .duel-table tbody td:nth-child(2){
-  background:#e4c3d1;
-  color:#321f2e;
-}
-html[data-theme=light] .duel-table td.our-check{
-  color:#352131!important;
-  font-weight:900;
-}
-html[data-theme=light] .duel-table td.rival-check{
-  color:#352131!important;
-  font-weight:850;
-}
-html[data-theme=light] .duel-table td.unknown{
-  color:#493541;
-  font-weight:700;
-}
-
-html[data-theme=light] .duel-table .price-row td{
-  color:#2f1d2b!important;
-  font-weight:900;
-}
-html[data-theme=light] .duel-table .price-row td:nth-child(2){
-  background:#d7aabd;
-  color:#2b1928!important;
-}
-html[data-theme=light] .duel-table .price-row td:nth-child(3){
-  background:#f4e8e5;
-  color:#44303d!important;
-}
-html[data-theme=light] .duel-table .price-row td.unknown{
-  color:#44303d!important;
-  font-weight:800;
-}
-
-/* Mobile-generated column labels (DÉJÀ NOUS / PAIRED etc.). */
-html[data-theme=light] .duel-table tbody td::before{
-  color:#6a2d49;
-  font-weight:950;
-}
-html[data-theme=light] .duel-table tbody td:nth-child(2)::before{
-  color:#5d2441;
-}
-html[data-theme=light] .duel-table tbody td:nth-child(3)::before{
-  color:#70364f;
-}
-html[data-spicy=on][data-theme=light] .duel-table tbody td::before{
-  color:#5b1e39;
-}
-
-/* Keep section labels legible even when the desktop table is visible. */
-html[data-theme=light] .duel-table thead th{
-  background:#47263f;
-  color:#fff4ef;
 }
 
 

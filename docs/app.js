@@ -4,7 +4,6 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const panel = document.querySelector('#demo-panel');
 const demoPhone = document.querySelector('.demo-phone');
 const demoTabs = [...document.querySelectorAll('[data-demo]')];
-const marketTabs = [...document.querySelectorAll('[data-market]')];
 function syncLanguageLinks() { document.querySelectorAll('.language-switch a').forEach(link => { link.href = `${link.getAttribute('href').split('#')[0]}${location.hash}`; }); }
 addEventListener('hashchange', syncLanguageLinks); syncLanguageLinks();
 
@@ -20,13 +19,7 @@ const copy = {
     reveal: 'Révélation', brainWin: 'Même cerveau !', brainLose: 'Pas la même histoire…', brainNote: 'Dans le jeu complet, les réponses communes font gagner des points.', again: 'Rejouer',
     rapidKicker: 'Tir rapide', rapidTitle: 'Votre instinct dit quoi ?', rapidHelp: 'Choisissez sans trop réfléchir.', rapidEnd: 'Votre trio est prêt.', rapidEndHelp: 'Dans le jeu, vous comparez vos réflexes à ceux de votre partenaire.', restart: 'Recommencer',
     fusionKicker: 'Fusion · thème : week-end', fusionTitle: 'Un mot chacun. Une idée commune.', fusionFirst: 'Écrivez un mot, puis passez l’écran.', fusionSecond: 'Votre partenaire a écrit son mot en secret. Écrivez le vôtre.',
-    word: 'Mot de la personne', idea: 'Votre idée', hideWord: 'Garder mon mot secret', revealWords: 'Révéler les deux mots', wordHidden: 'Mot gardé secret', passPhone: 'Passez le téléphone.', fusionWin: 'Vous avez fusionné !', fusionBridge: 'Même idée ?', fusionBridgeHelp: 'Dites-vous pourquoi vous avez choisi ces mots. Même idée ? C’est une fusion !', fusionAgain: 'Essayer deux autres mots',
-    duelUs: 'DÉJÀ NOUS', duelSource: 'Source éditeur ↗', price: 'Prix / offre', oursPrice: 'Unleashed · 34,90 € une fois · 2 téléphones', content: 'Contenu annoncé', mechanics: 'Mécaniques annoncées', guided: 'Soirée guidée avec final', how: 'Comment ça se joue', age: 'Public', comfort: 'Niveau choisi en secret', spicy: 'Mode épicé visuel et contenu', phones: 'Jeu direct à deux téléphones', private: 'Sans compte ni publicité',
-    oursContent: '18 000+ questions, thèmes, paires et affirmations', oursMechanics: '15 jeux distincts + « Ce soir » + Le Fil', oursHow: 'Quinze jeux aux règles différentes, à 1 ou 2 téléphones, jusqu’à un final', oursAge: '18+ · adultes', oursGuided: '✓ 5 étapes et un final', oursComfort: '✓ Le choix le plus doux décide', oursSpicy: '✓ Palette et cartes adaptées', oursPhones: '✓ Bluetooth local · Le Fil à distance', oursPrivate: '✓ Aucun compte, aucune pub', unknown: '? Non confirmé par la source', physicalNA: '—',
-    pairedGuided: 'Parcours guidés ; format différent', togellaSpicy: 'Contenu épicé ; thème visuel non précisé', lovifyPhones: '✓ Deux téléphones, à distance', physicalFormat: 'Cartes / activités physiques',
-    prices: { freePremium: 'Gratuit + Premium 74,99 €/an', agape: 'Gratuit + dès 9,99 €/mois', lovewick: 'Gratuit + 29,99 €/an', gottman: 'Gratuit', togella: 'Gratuit + 22,99 €/an', lovify: 'Gratuit + achats dès 3,99 €', connected: 'Gratuit + 12,99 $/mois' },
-    volumes: { paired: '1 000+ activités', agape: 'Non publié', lovewick: '1 000+ questions', gottman: '1 000+ cartes', togella: '2 000+ questions', lovify: '1 000+ questions', connected: '700+ questions', wnr: '150 cartes', lingual: '150 questions', and: '199 questions', perel: '200 cartes-histoires', bestself: '170 cartes', tabletopics: '135 cartes', adventure: '50 aventures à gratter' },
-    formats: { paired: 'Questions, quiz et parcours ; nombre de jeux non publié', agape: 'Question quotidienne à deux', lovewick: 'Cartes en 6 catégories + idées de rendez-vous', gottman: '22 decks de cartes ; un flux de pioche', togella: '11 modes annoncés', lovify: 'Répondre / deviner à deux', connected: 'Check-ins, bilans et coach ; nombre de jeux non publié', wnr: 'Un parcours de conversation en 3 niveaux', lingual: 'Piocher et discuter', and: 'Piocher et répondre', perel: 'Histoires, dé, jetons et guides', bestself: 'Questions en 7 catégories', tabletopics: 'Piocher et discuter', adventure: 'Expériences surprises à réaliser' }
+    word: 'Mot de la personne', idea: 'Votre idée', hideWord: 'Garder mon mot secret', revealWords: 'Révéler les deux mots', wordHidden: 'Mot gardé secret', passPhone: 'Passez le téléphone.', fusionWin: 'Vous avez fusionné !', fusionBridge: 'Même idée ?', fusionBridgeHelp: 'Dites-vous pourquoi vous avez choisi ces mots. Même idée ? C’est une fusion !', fusionAgain: 'Essayer deux autres mots'
   },
   en: {
     marquee: ['LAUGH LOUDER', 'GUESS WRONG', 'BLUFF BRAVELY', 'DARE TOGETHER', 'CHANGE THE RULES', 'PLAY AGAIN TOMORROW'],
@@ -39,18 +32,11 @@ const copy = {
     reveal: 'The reveal', brainWin: 'Same brain!', brainLose: 'Different stories…', brainNote: 'In the full game, matching answers earn points.', again: 'Play again',
     rapidKicker: 'Rapid Fire', rapidTitle: 'What does your gut say?', rapidHelp: 'Pick without overthinking.', rapidEnd: 'Your three picks are in.', rapidEndHelp: 'In the full game, compare your reflexes with your partner’s.', restart: 'Start again',
     fusionKicker: 'Fusion · theme: weekend', fusionTitle: 'One word each. One shared idea.', fusionFirst: 'Write one word, then pass the phone.', fusionSecond: 'Your partner wrote a secret word. Write yours.',
-    word: 'Player', idea: 'Your idea', hideWord: 'Keep my word secret', revealWords: 'Reveal both words', wordHidden: 'Word saved in secret', passPhone: 'Pass the phone.', fusionWin: 'You fused!', fusionBridge: 'Same idea?', fusionBridgeHelp: 'Tell each other why you chose these words. Same idea? That is a fusion!', fusionAgain: 'Try two new words',
-    duelUs: 'DÉJÀ NOUS', duelSource: 'Publisher source ↗', price: 'Price / offer', oursPrice: 'Unleashed · €34.90 once · 2 phones', content: 'Published content', mechanics: 'Published game formats', guided: 'Guided night with a finale', how: 'How it plays', age: 'Audience', comfort: 'Secret comfort choice', spicy: 'Spicy visuals and content', phones: 'Direct two-phone play', private: 'No account or ads',
-    oursContent: '18,000+ questions, themes, pairs and statements', oursMechanics: '15 distinct games + Tonight + The Thread', oursHow: 'Fifteen games with different rules, on 1 or 2 phones, up to a finale', oursAge: '18+ · adults', oursGuided: '✓ 5 stages and a finale', oursComfort: '✓ The softer choice wins', oursSpicy: '✓ Visuals and cards adapt', oursPhones: '✓ Local Bluetooth · The Thread at a distance', oursPrivate: '✓ No account, no ads', unknown: '? Not confirmed by the source', physicalNA: '—',
-    pairedGuided: 'Guided journeys; a different format', togellaSpicy: 'Spicy content; visual theme not specified', lovifyPhones: '✓ Two phones, remotely', physicalFormat: 'Physical cards / activities',
-    prices: { freePremium: 'Free + Premium €74.99/year', agape: 'Free + from €9.99/month', lovewick: 'Free + €29.99/year', gottman: 'Free', togella: 'Free + €22.99/year', lovify: 'Free + in-app purchases from €3.99', connected: 'Free + $12.99/month' },
-    volumes: { paired: '1,000+ activities', agape: 'Not published', lovewick: '1,000+ questions', gottman: '1,000+ cards', togella: '2,000+ questions', lovify: '1,000+ questions', connected: '700+ questions', wnr: '150 cards', lingual: '150 questions', and: '199 questions', perel: '200 story cards', bestself: '170 cards', tabletopics: '135 cards', adventure: '50 scratch-off adventures' },
-    formats: { paired: 'Questions, quizzes and journeys; game count unpublished', agape: 'A daily question for two', lovewick: 'Cards in 6 categories + date ideas', gottman: '22 card decks; one draw-and-answer flow', togella: '11 advertised modes', lovify: 'Answer / guess together', connected: 'Check-ins, assessments and coach; game count unpublished', wnr: 'One progressive conversation game in 3 levels', lingual: 'Draw and discuss', and: 'Draw and answer', perel: 'Stories, die, tokens and guides', bestself: 'Questions in 7 categories', tabletopics: 'Draw and discuss', adventure: 'Surprise experiences to do together' }
+    word: 'Player', idea: 'Your idea', hideWord: 'Keep my word secret', revealWords: 'Reveal both words', wordHidden: 'Word saved in secret', passPhone: 'Pass the phone.', fusionWin: 'You fused!', fusionBridge: 'Same idea?', fusionBridgeHelp: 'Tell each other why you chose these words. Same idea? That is a fusion!', fusionAgain: 'Try two new words'
   }
 }[lang];
 
 function node(tag, className = '', content) { const el = document.createElement(tag); if (className) el.className = className; if (content !== undefined) el.textContent = content; return el; }
-function button(parent, label, action, className = '') { const el = node('button', className, label); el.type = 'button'; el.addEventListener('click', action); parent.append(el); return el; }
 const promoStored = (() => { try { return { theme: localStorage.getItem('dv-promo-theme'), spicy: localStorage.getItem('dv-promo-spicy') }; } catch { return {}; } })();
 const promoTheme = {
   theme: ['dark', 'light'].includes(promoStored.theme) ? promoStored.theme : 'dark',
@@ -289,105 +275,9 @@ let resizeTimer; addEventListener('resize', () => { clearTimeout(resizeTimer); r
 // The marquee only runs while it is on screen (it starts again 200 px before it comes into view).
 if (marqueeTrack && 'IntersectionObserver' in window) new IntersectionObserver(([entry]) => { marqueeTrack.style.animationPlayState = entry.isIntersecting ? '' : 'paused'; }, { rootMargin: '200px 0px' }).observe(marqueeTrack.parentElement);
 
-const sources = {
-  paired: 'https://apps.apple.com/fr/app/paired-appli-de-relation/id1469609343', agape: 'https://apps.apple.com/fr/app/agap%C3%A9-feel-close-when-apart/id1507907556',
-  lovewick: 'https://apps.apple.com/fr/app/lovewick-relationship-tracker/id1516199115', gottman: 'https://apps.apple.com/us/app/gottman-card-decks/id1292398843',
-  togella: 'https://apps.apple.com/fr/app/togella-couples-question-games/id6777234833', lovify: 'https://apps.apple.com/fr/app/lovify-jeu-en-couple-quiz/id1645893544', connected: 'https://www.connectedcouples.app/',
-  wnr: 'https://www.werenotreallystrangers.com/pages/couples-edition', lingual: 'https://lovelingual.com/products/love-lingual-couples-edition', and: 'https://shop.theskindeep.com/products/the-and-couples-edition',
-  perel: 'https://game.estherperel.com/products/where-should-we-begin-a-game-of-stories-2nd-edition', bestself: 'https://bestself.co/collections/relationships/products/intimacy-deck', tabletopics: 'https://tabletopics.com/products/couples?currency=USD&variant=42509261799573', adventure: 'https://www.theadventurechallenge.com/products/couples-edition-book/'
-};
-const markets = {
-  digital: [
-    { id: 'paired', name: 'Paired', price: copy.prices.freePremium, guided: copy.pairedGuided },
-    { id: 'agape', name: 'Agapé', price: copy.prices.agape },
-    { id: 'lovewick', name: 'Lovewick', price: copy.prices.lovewick },
-    { id: 'gottman', name: 'Gottman Card Decks', price: copy.prices.gottman },
-    { id: 'togella', name: 'Togella', price: copy.prices.togella, spicy: copy.togellaSpicy },
-    { id: 'lovify', name: 'Lovify', price: copy.prices.lovify, phones: copy.lovifyPhones },
-    { id: 'connected', name: 'Connected', price: copy.prices.connected }
-  ],
-  physical: [
-    { id: 'wnr', name: "We're Not Really Strangers", price: '$20' },
-    { id: 'lingual', name: 'Love Lingual', price: '$26.95' },
-    { id: 'and', name: '{THE AND}', price: '$29' },
-    { id: 'perel', name: 'Where Should We Begin?', price: '$34.99' },
-    { id: 'bestself', name: 'BestSelf Intimacy Deck', price: '$27' },
-    { id: 'tabletopics', name: 'TableTopics Couples', price: '$25' },
-    { id: 'adventure', name: 'The Adventure Challenge', price: '$49.99' }
-  ]
-};
-const facts = {
-  fr: {
-    paired: { guided: '✓ Parcours guidés (Premium), nombre non publié', spicy: 'Classé 18+ : thèmes intimes et suggestifs, sans mode dédié annoncé', phones: 'L’autre réponse se débloque après la vôtre ; appareils non précisés', private: 'Pas de pub citée · identifiants et données marketing déclarés', how: 'Questions, quiz et parcours ; 1 question gratuite par jour', age: '18+' },
-    agape: { guided: 'Une question par jour, pas de soirée guidée', spicy: 'Questions « épicées » une fois le partenaire relié', phones: 'Chacun répond de son côté ; réponse révélée quand les deux ont répondu', private: 'Nom, e-mail et identifiant déclarés · pas de pub citée', how: 'Question quotidienne, chat, photos, souvenirs, série de jours', age: '16+ · anglais seulement' },
-    lovewick: { guided: 'Pas de soirée guidée ; idées de rendez-vous en plus', spicy: 'Paquet « intimité » et idées intimes, détails non publiés', phones: '✓ Seul ou jumelé : questions et souvenirs synchronisés', private: 'Compte non précisé · pas de pub citée · suivi marketing déclaré', how: '6 paquets de questions, 750+ idées de rendez-vous, rappels, frise souvenirs', age: '16+' },
-    gottman: { guided: 'Un flux de pioche, pas de parcours', spicy: 'Decks « Salsa » et questions sur la sexualité et les rendez-vous', phones: 'Non précisé', private: 'Gratuit, sans achat · e-mail déclaré · pas de pub citée', how: '22 decks à piocher, dont « Love Maps » et parentalité', age: '18+ · anglais (espagnol en v2.2)' },
-    togella: { guided: 'Pas de soirée guidée ; compatibilité et idées de rendez-vous en plus', phones: 'Non précisé', private: 'Pub non précisée · données marketing déclarées · de 6,99 €/semaine à 44,99 € à vie', how: '11 modes : Qui est le plus susceptible, Tu préfères, Jamais je n’ai, 20 questions…', age: '13+ · anglais seulement' },
-    lovify: { guided: 'Une roue des thèmes ; pas de final annoncé', spicy: 'Thème « intimité » et questions « audacieuses »', private: '✗ Contient de la publicité (classement App Store)', how: 'Un quiz : on répond sur soi, puis on devine l’autre ; 50+ thèmes', age: '18+' },
-    connected: { guided: 'Check-ins, bilans et coach IA ; pas de soirée guidée', spicy: '« Intimacy check-ins » en Premium, contenu non détaillé', phones: '✓ Code partenaire : tout se synchronise entre vous', private: 'Compte requis (e-mail, Apple ou Google) · pub non citée', how: 'Question du jour, check-ins, quiz, planificateur de rendez-vous, journal', age: 'Non précisé' },
-    wnr: { guided: '✓ Parcours en 3 niveaux : perception, connexion, réflexion', spicy: 'Non annoncé', how: '150 cartes, cartes joker, crayon et bloc-notes inclus', age: '2 joueurs (2–6 annoncés selon revendeur)' },
-    lingual: { guided: 'Pas de parcours ; 5 catégories', spicy: 'Une catégorie « intimité » ; détails non publiés', how: 'Aucune règle fixée : on tire et on discute', age: 'Couples, à tout stade' },
-    and: { guided: 'Pas de parcours : 12 cartes tirées, lues à tour de rôle', spicy: 'Non annoncé : émotionnel, désirs, peurs, langages de l’amour', how: 'Seule règle : l’honnêteté ; on peut passer', age: 'Non précisé' },
-    perel: { guided: '✓ Version simple (cartes histoires) ou avancée (cartes-thèmes et jetons)', spicy: 'Non annoncé', how: 'Chacun pose une histoire face cachée ; le conteur choisit. Pas de gagnant', age: '18+ · 2 à 6 joueurs' },
-    bestself: { guided: '✓ Enveloppe de cartes spéciales « Réfléchir et se relier » à la fin', spicy: 'Pas décrit comme explicite', how: 'Questions en 7 catégories, à tour de rôle', age: '2 joueurs' },
-    tabletopics: { guided: 'Pas de parcours : on tire et on discute', spicy: 'Non explicite : romantique, souvent humoristique', how: 'Rendez-vous, dîner, soirée à la maison, thérapie', age: '21+ · actuellement en rupture de stock' },
-    adventure: { guided: '✓ 50 aventures à gratter, de 0 à 50 $ ; chacune se réalise une fois grattée', spicy: 'Édition classique classée PG ; la version épicée « In Bed » est un autre livre', how: 'Grattez, faites l’aventure, notez-la et collez une photo', age: 'Couples, à tout stade' }
-  },
-  en: {
-    paired: { guided: '✓ Guided journeys (Premium), count unpublished', spicy: 'Rated 18+: intimate and suggestive themes, no dedicated mode advertised', phones: 'The other’s answer unlocks after yours; devices not specified', private: 'No ads cited · identifiers and marketing data declared', how: 'Questions, quizzes and journeys; 1 free question a day', age: '18+' },
-    agape: { guided: 'One question a day, no guided night', spicy: '“Spicy” questions once your partner is connected', phones: 'Each answers separately; answer revealed once both have replied', private: 'Name, e-mail and ID declared · no ads cited', how: 'Daily question, chat, photos, memories, streaks', age: '16+ · English only' },
-    lovewick: { guided: 'No guided night; date ideas on top', spicy: 'An “intimacy” deck and intimate ideas, details unpublished', phones: '✓ Solo or paired: questions and memories sync', private: 'Account not specified · no ads cited · marketing tracking declared', how: '6 question decks, 750+ date ideas, reminders, memory timeline', age: '16+' },
-    gottman: { guided: 'One draw-and-answer flow, no journey', spicy: '“Salsa” decks and sex and date questions', phones: 'Not specified', private: 'Free, no purchases · e-mail declared · no ads cited', how: '22 decks to draw from, incl. Love Maps and parenting', age: '18+ · English (Spanish in v2.2)' },
-    togella: { guided: 'No guided night; compatibility quiz and date ideas on top', phones: 'Not specified', private: 'Ads not specified · marketing data declared · €6.99/week to €44.99 lifetime', how: '11 modes: Who’s More Likely, Would You Rather, Never Have I Ever, 20 Questions…', age: '13+ · English only' },
-    lovify: { guided: 'A theme wheel; no finale advertised', spicy: '“Intimacy” theme and “bolder” questions', private: '✗ Contains advertising (App Store rating)', how: 'One quiz: answer about yourself, then guess your partner; 50+ themes', age: '18+' },
-    connected: { guided: 'Check-ins, assessments and AI coach; no guided night', spicy: '“Intimacy check-ins” in Premium, content not detailed', phones: '✓ Partner code: everything syncs between you', private: 'Account required (e-mail, Apple or Google) · no ads cited', how: 'Daily question, check-ins, quizzes, date planner, journal', age: 'Not specified' },
-    wnr: { guided: '✓ 3-level path: perception, connection, reflection', spicy: 'Not advertised', how: '150 cards, wildcards, pencil and notepad included', age: '2 players (2–6 per one retailer)' },
-    lingual: { guided: 'No journey; 5 categories', spicy: 'An “intimacy” category; details unpublished', how: 'No fixed rules: draw and talk', age: 'Couples, any stage' },
-    and: { guided: 'No journey: draw 12 cards, read them in turns', spicy: 'Not advertised: emotional, desires, fears, love languages', how: 'Only rule: honesty; you may pass', age: 'Not specified' },
-    perel: { guided: '✓ Simple (story cards) or advanced (prompt cards and tokens) version', spicy: 'Not advertised', how: 'Each puts a story face down; the storyteller picks one. No winners', age: '18+ · 2 to 6 players' },
-    bestself: { guided: '✓ Envelope of special “Reflect and Connect” cards at the end', spicy: 'Not described as explicit', how: 'Questions in 7 categories, in turns', age: '2 players' },
-    tabletopics: { guided: 'No journey: draw and talk', spicy: 'Not explicit: romantic, often humorous', how: 'Date night, dinner, evening at home, therapy', age: '21+ · currently out of stock' },
-    adventure: { guided: '✓ 50 scratch-off adventures, $0–$50; each is a must once scratched', spicy: 'The standard edition is rated PG; the spicy “In Bed” edition is a separate book', how: 'Scratch, do the adventure, log it and add a photo', age: 'Couples, any stage' }
-  }
-}[lang];
-let market = 'digital'; let selected = 'paired';
-const picker = document.querySelector('#rival-picker'); const duel = document.querySelector('#duel-panel');
-function duelRow(label, ours, theirs, oursChecked = false) {
-  const row = node('tr'); row.append(node('th', '', label));
-  row.firstChild.scope = 'row'; row.append(node('td', oursChecked ? 'our-check' : '', ours)); row.append(node('td', theirs?.startsWith('✓') ? 'rival-check' : 'unknown', theirs || copy.unknown));
-  return row;
-}
-function renderDuel() {
-  const rival = markets[market].find(item => item.id === selected); const physical = market === 'physical';
-  picker.replaceChildren(); markets[market].forEach(item => { const card = button(picker, '', () => { selected = item.id; renderDuel(); }, 'rival-card'); card.setAttribute('aria-pressed', String(item.id === selected)); card.append(node('strong', '', item.name), node('span', '', item.price), node('small', '', copy.volumes[item.id])); });
-  duel.replaceChildren(); const heading = node('div', 'duel-heading'); heading.append(node('div', 'duel-versus', `${copy.duelUs}  ✳  ${rival.name}`));
-  const source = node('a', '', copy.duelSource); source.href = sources[rival.id]; source.target = '_blank'; source.rel = 'noopener noreferrer'; heading.append(source); duel.append(heading);
-  const table = node('table', 'duel-table'); const thead = node('thead'); const header = node('tr'); [en ? 'THE FACTS' : 'LES FAITS', copy.duelUs, rival.name].forEach(text => header.append(node('th', '', text))); thead.append(header); table.append(thead);
-  const body = node('tbody');
-  const priceRow = duelRow(copy.price, copy.oursPrice, rival.price);
-  priceRow.classList.add('price-row');
-  body.append(
-    priceRow,
-    duelRow(copy.content, copy.oursContent, copy.volumes[rival.id]),
-    duelRow(copy.mechanics, copy.oursMechanics, copy.formats[rival.id]),
-    duelRow(copy.how, copy.oursHow, facts[rival.id].how),
-    duelRow(copy.age, copy.oursAge, facts[rival.id].age),
-    duelRow(copy.guided, copy.oursGuided, facts[rival.id].guided || rival.guided || (physical ? copy.physicalNA : copy.unknown), true),
-    duelRow(copy.comfort, copy.oursComfort, physical ? copy.physicalNA : copy.unknown, true),
-    duelRow(copy.spicy, copy.oursSpicy, facts[rival.id].spicy || rival.spicy || (physical ? copy.physicalNA : copy.unknown), true),
-    duelRow(copy.phones, copy.oursPhones, facts[rival.id].phones || rival.phones || (physical ? copy.physicalNA : copy.unknown), true),
-    duelRow(copy.private, copy.oursPrivate, facts[rival.id].private || (physical ? copy.physicalNA : copy.unknown), true)
-  );
-  body.querySelectorAll('tr').forEach(row => { row.children[1].dataset.label = copy.duelUs; row.children[2].dataset.label = rival.name; });
-  table.append(body); duel.append(table);
-  marketTabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.market === market)));
-}
-marketTabs.forEach(tab => tab.addEventListener('click', () => { market = tab.dataset.market; selected = markets[market][0].id; renderDuel(); }));
-renderDuel();
-
 if (!reducedMotion && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: 0.1 });
-  document.querySelectorAll('.story-card,.benefit-grid article,.advantage-board,.heat-layout,.draw-layout,.door-layout,.price-band-inner,.duel-panel').forEach(el => { el.classList.add('reveal-ready'); observer.observe(el); });
+  document.querySelectorAll('.story-card,.benefit-grid article,.heat-layout,.draw-layout,.door-layout,.price-band-inner').forEach(el => { el.classList.add('reveal-ready'); observer.observe(el); });
 }
 // First layout work in one frame: build the marquee (it measures itself), then the scroll-driven bits.
 requestAnimationFrame(() => { buildMarquee(); updateOnScroll(); });
