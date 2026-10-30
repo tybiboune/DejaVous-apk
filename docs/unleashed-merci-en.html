@@ -26,11 +26,22 @@ const preview = () => { document.querySelector('#gp').textContent = gm.value.tri
 gm.addEventListener('input', preview); gf.addEventListener('input', preview);
 // sharing: a panel in the page (the message, then WhatsApp, SMS, Telegram, e-mail or copy), never the system share window
 const code = () => document.querySelector('#code').textContent.trim();
-sharePanel(document.querySelector('#invite'), () => ({ subject: 'Déjà Nous, tonight?', text: `I got us Déjà Nous Unleashed so we can play tonight 💞
+sharePanel(document.querySelector('#invite'), () => ({ subject: 'A little surprise for tonight 💞', text: `Hey you 💞
 
-1. Install the app: ${new URL('unleashed-en.html#telecharger', location.href).href}
-2. Open the settings (the gear, top right), then “Unlock the full game”
-3. Paste this code: ${code()}` }), 'en');
-sharePanel(document.querySelector('#gift'), () => ({ subject: 'An envelope for you', text: `Déjà Nous, a gift for you 💌 Open the envelope: ${giftLink(new URL('cadeau-en.html', location.href).href, { code: code(), msg: gm.value, from: gf.value })}` }), 'en');
+I have a little surprise: I got us Déjà Nous Unleashed, the card game for couples, full version. Over 18,000 questions to discover each other all over again, laugh together and dare a little more… I’d really love for the two of us to play it tonight.
+
+Getting it on your phone takes two minutes:
+1. Install the app here: ${location.origin}/play
+2. Open the settings (the little gear, top right), then tap “Unlock the full game”
+3. Paste this code: it’s ours, it works on both our phones
+
+${code()}
+
+See you tonight 😘` }), 'en');
+sharePanel(document.querySelector('#gift'), () => ({ subject: 'An envelope for you 💌', text: `I have something for you 💌
+
+A little envelope is waiting for you, with a note from me and a gift inside. Open it when you have a quiet moment:
+
+${giftLink(new URL('cadeau-en.html', location.href).href, { code: code(), msg: gm.value, from: gf.value })}` }), 'en');
 </script>
 </body></html>

@@ -26,11 +26,22 @@ const preview = () => { document.querySelector('#gp').textContent = gm.value.tri
 gm.addEventListener('input', preview); gf.addEventListener('input', preview);
 // sharing: a panel in the page (the message, then WhatsApp, SMS, Telegram, e-mail or copy), never the system share window
 const code = () => document.querySelector('#code').textContent.trim();
-sharePanel(document.querySelector('#invite'), () => ({ subject: 'Déjà Nous, ce soir ?', text: `Je nous ai pris Déjà Nous Unleashed pour qu’on y joue ce soir 💞
+sharePanel(document.querySelector('#invite'), () => ({ subject: 'Une petite surprise pour ce soir 💞', text: `Coucou toi 💞
 
-1. Installe l’appli : ${new URL('unleashed.html#telecharger', location.href).href}
-2. Ouvre les réglages (la roue en haut à droite), puis « Débloquer le jeu complet »
-3. Colle ce code : ${code()}` }), 'fr');
-sharePanel(document.querySelector('#gift'), () => ({ subject: 'Une enveloppe pour toi', text: `Je t’offre Déjà Nous 💌 Ouvre l’enveloppe : ${giftLink(new URL('cadeau.html', location.href).href, { code: code(), msg: gm.value, from: gf.value })}` }), 'fr');
+J’ai une petite surprise : je nous ai offert Déjà Nous Unleashed, le jeu de cartes pour les couples, en version complète. Plus de 18 000 questions pour se découvrir encore, rire ensemble et oser un peu plus… J’ai très envie qu’on y joue tous les deux ce soir.
+
+Pour l’avoir sur ton téléphone, c’est l’affaire de deux minutes :
+1. Installe l’appli ici : ${location.origin}/jouer
+2. Ouvre les réglages (la petite roue en haut à droite), puis touche « Débloquer le jeu complet »
+3. Colle ce code : c’est le nôtre, il marche sur nos deux téléphones
+
+${code()}
+
+À ce soir 😘` }), 'fr');
+sharePanel(document.querySelector('#gift'), () => ({ subject: 'Une enveloppe pour toi 💌', text: `J’ai quelque chose pour toi 💌
+
+Une petite enveloppe t’attend, avec un mot de moi et un cadeau à l’intérieur. Ouvre-la quand tu seras tranquille :
+
+${giftLink(new URL('cadeau.html', location.href).href, { code: code(), msg: gm.value, from: gf.value })}` }), 'fr');
 </script>
 </body></html>
