@@ -1,0 +1,34 @@
+/* Phones: loaded last on every page. Nothing smaller than what reads comfortably, nothing too small to tap (about 44 px). */
+@media(max-width:720px){
+  body .eyebrow,body .conversion-hero .hero-copy>.eyebrow{font-size:11px;letter-spacing:.13em}
+  body .conversion-paths .button{font-size:14px;min-height:48px;padding-block:12px}
+  body .store-btn small{font-size:11px}
+  body .hero-proof span,body .conversion-hero .hero-proof span{font-size:12.5px}
+  body .ed-tag,body .ed-badge{font-size:11px}
+  body .evening-note{font-size:12.5px;line-height:1.5}
+  body .evening-progress li,body .evening-kicker{font-size:11.5px}
+  body .gift-ticket small,body .marquee-set span{font-size:11px}
+  body .language-switch a{min-width:40px;min-height:40px;display:inline-grid;place-items:center;font-size:12px}
+  body .topbar .top-cta{font-size:12.5px;min-height:40px;display:inline-flex;align-items:center}
+  body details>summary{padding-block:12px;line-height:1.35}
+  body .ed-alt{display:inline-block;padding:12px 0}
+  body .closing-inner small a{display:inline-block;padding:8px 0}
+  body .ed-quiz fieldset button{min-height:44px}
+  body .ladder small,body .peek small{font-size:11px}
+  body .floating-cta b{font-size:12.5px}
+  body .sub-nav a{display:inline-flex;align-items:center;min-height:40px}
+  body input[type=checkbox]{width:20px;height:20px;flex:none}
+  body .benefit-grid article p,body .ed-grid article>p:not(.ed-count){font-size:13.5px;line-height:1.55}
+  body .footer p{font-size:13px}
+  /* the 01 / 02 / 03 stickers sit on the screenshots' text on a phone: the headings under the pictures say it already */
+  body .story-image .callout{display:none}
+}
+/* the narrowest phones (320 px): big titles shrink so a long word never runs out of the screen, and the top bar fits */
+@media(max-width:360px){
+  body .section-heading h2{font-size:10.5vw}
+  body .closing h2{font-size:12vw}
+  body h1,body h2{overflow-wrap:break-word}
+  body .language-switch a{min-width:34px}
+  body .topbar .top-cta{padding-inline:9px;font-size:12px}
+  body .topbar .brand span{font-size:17px}
+}

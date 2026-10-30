@@ -21,6 +21,7 @@ if (quiz) {
     const result = pick[1] === 'spicy' ? 'spicy' : pick[2];
     const target = result === 'play' ? 'play' : 'direct';
     document.querySelectorAll('.ed-card').forEach(c => { c.classList.toggle('ed-reco', c.dataset.ed === target); c.querySelector('.ed-badge')?.remove(); if (c.dataset.ed === target) { const s = document.createElement('span'); s.className = 'ed-badge'; s.textContent = quiz.dataset.reco; c.prepend(s); } });
+    document.querySelector('.ed-grid')?.setAttribute('data-first', target);
     quiz.querySelector('.ed-quiz-out').textContent = quiz.dataset[`r${result[0].toUpperCase()}${result.slice(1)}`];
     hit('quiz_done');
   });

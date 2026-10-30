@@ -39,3 +39,9 @@
 .ed-badge{align-self:flex-start;margin-bottom:10px;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;padding:6px 10px;border-radius:99px;background:var(--peach);color:#341f2e}
 .gift-full{margin:14px 0 0;font-size:13px}.gift-full a{color:var(--peach);text-underline-offset:4px}
 .ul-encart-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
+/* the number of questions of each edition, side by side when the cards are, one above the other on a phone */
+.ed-count{align-self:flex-start;display:inline-flex;align-items:baseline;gap:7px;margin:2px 0 16px;padding:8px 16px;border:1px solid var(--line);border-radius:99px;background:#ffffff0f;font-size:14px;font-weight:700;color:var(--ink,#f4ece6)}
+.ed-count b{font:400 21px/1 var(--serif);color:var(--peach)}
+.ed-hot .ed-count{border-color:var(--peach);background:#ffd3bd1c}
+/* on a phone, the edition the quiz recommends comes first */
+@media(max-width:800px){.ed-grid[data-first=play] .ed-play,.ed-grid[data-first=direct] .ed-hot{order:-1}}
