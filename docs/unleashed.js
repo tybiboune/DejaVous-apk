@@ -41,6 +41,7 @@ function cooldown(btn, lang) {
       const c = read(), n = Date.now() - (c.last || 0) > QUIET ? 0 : (c.n || 0);
       save({ n: n + 1, last: Date.now(), until: Date.now() + WAITS[Math.min(n, WAITS.length - 1)] * 1000 }); run();
     },
+    hold(seconds) { save({ ...read(), until: Date.now() + Math.min(seconds, 86400) * 1000 }); run(); }, // the server said "too many": wait as long as it says
   };
 }
 
@@ -77,13 +78,14 @@ export function initShop({ lang, errors, soon, redirect, lostOk }) {
     const human = guard(lost, lang), cool = cooldown(btn, lang);
     lost.addEventListener('submit', async e => {
       e.preventDefault(); if (btn.disabled) return; btn.disabled = true;
-      let sent = false;
+      let sent = false, wait = 0;
       try {
         const captcha = await human.token();
         if (captcha === null) msg.textContent = errors.captcha;
-        else { const { status } = await post('/api/resend', { email: lost.email.value.trim(), lang, captcha }); human.reset(); sent = status === 200; msg.textContent = status === 200 ? lostOk : status === 429 ? errors.rate : status === 403 ? errors.captcha : errors.email; }
+        else { const { status, data } = await post('/api/resend', { email: lost.email.value.trim(), lang, captcha }); human.reset(); sent = status === 200; wait = status === 429 ? +data.retry || 3600 : 0; msg.textContent = status === 200 ? lostOk : status === 429 ? errors.rate : status === 403 ? errors.captcha : errors.email; }
       } catch { msg.textContent = errors.other; }
-      if (sent) cool.start(); else btn.disabled = false;
+      if (wait) msg.textContent = lang === 'en' ? 'Too many attempts: try again when the countdown ends.' : 'Trop d’essais : réessayez à la fin du décompte.';
+      if (sent) cool.start(); else if (wait) cool.hold(wait); else btn.disabled = false;
     });
   }
 }
