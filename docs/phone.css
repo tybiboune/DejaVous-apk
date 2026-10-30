@@ -32,3 +32,28 @@
   body .topbar .top-cta{padding-inline:9px;font-size:12px}
   body .topbar .brand span{font-size:17px}
 }
+
+/* Phones: one vertical rhythm. Every section gets the same breathing room (the desktop paddings, 85 to 115 px, stacked up to 200 px
+   between two sections on a phone), and the small gaps inside cards and lists open up a little. The !important lines override the
+   many per-section paddings of the other sheets on purpose, on phones only. */
+@media(max-width:720px){
+  body main#top>section{padding-top:56px!important;padding-bottom:56px!important}
+  body main#top>section.conversion-hero{padding-top:24px!important;padding-bottom:44px!important}
+  body main#top>section.closing{padding-top:64px!important;padding-bottom:64px!important}
+  body .section-heading{margin-bottom:26px}
+  body .benefit-grid{gap:14px}
+  body .story-grid{gap:36px}
+  body .rung h3{margin-bottom:6px}
+  body .story-card h3{margin-bottom:10px}
+  body .peek-cap{margin-bottom:22px}
+  body .ed-card h3{margin-bottom:8px}
+  body .ed-quiz .eyebrow{margin-bottom:10px}
+  body .ed-quiz legend{margin-bottom:2px;float:left;width:100%;grid-column:1/-1;padding:0}
+  body .ed-quiz fieldset{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  body .ed-quiz fieldset button{margin:0;width:100%;line-height:1.25}
+  body .footer{padding-block:32px}
+  body main.report>section{margin-top:32px;padding-top:26px}
+  body main.report>section h2{font-size:26px;margin-bottom:14px}
+  body main.report{padding-top:40px;padding-bottom:56px}
+  body main#top>section>:last-child,body main#top>section>.wrap>:last-child{margin-bottom:0}
+}
