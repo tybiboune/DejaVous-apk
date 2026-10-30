@@ -1,5 +1,5 @@
 .ul-hero{padding:clamp(40px,8vw,90px) 0 24px;text-align:center}
-.ul-hero h1{font:400 clamp(38px,7vw,72px)/1.05 var(--serif);margin:.2em 0}
+.ul-hero h1{font:400 clamp(38px,7vw,72px)/1.05 var(--serif);margin:.2em auto;text-wrap:balance}
 .ul-hero h1 em{color:var(--rose)}
 .ul-hero p{max-width:640px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.55}
 .ul-badge{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:99px;color:var(--peach);font:700 12px/1 var(--sans);letter-spacing:.14em}
@@ -51,3 +51,4 @@ html[data-theme=light] .ul-col.hot h3{color:#7a1d45}
 html[data-theme=light] .ul-hero p,html[data-theme=light] .ul-why p,html[data-theme=light] .ul-path p,html[data-theme=light] .ul-faq p,html[data-theme=light] .ul-col small,html[data-theme=light] .ul-note{color:#5b4458}
 html[data-theme=light] .ul-path input[type=email],html[data-theme=light] .ul-path input[type=text]{background:#fff;color:#362438}
 html[data-theme=light] .ul-path .ul-amount,html[data-theme=light] .ul-price{color:#a02c55}
+.ul-captcha{min-height:0}.ul-captcha:empty{display:none}

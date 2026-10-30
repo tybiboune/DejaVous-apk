@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#191020"><meta name="description" content="Two versions of Déjà Nous: Google Play (toned down) and Unleashed (complete, 18+). Why, what changes, and how to upgrade.">
 <title>Thank you, and enjoy tonight — Déjà Nous Unleashed</title>
 <link rel="alternate" hreflang="fr" href="https://tybiboune.github.io/DejaVous-apk/unleashed-merci.html"><link rel="alternate" hreflang="en" href="https://tybiboune.github.io/DejaVous-apk/unleashed-merci-en.html">
-<link rel="icon" href="assets/icon-48.png" type="image/png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="campaign.css"><link rel="stylesheet" href="impact.css?v=20261023"><link rel="stylesheet" href="unleashed.css?v=20261030b"><link rel="stylesheet" href="merci.css?v=20261030e"><script src="back.js" defer></script><script type="module" src="app-return.js"></script><link rel="modulepreload" href="unleashed.js"><link rel="modulepreload" href="gift.js"><link rel="modulepreload" href="store-config.js"><link rel="stylesheet" href="phone.css?v=20261030l"></head>
+<link rel="icon" href="assets/icon-48.png" type="image/png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="campaign.css"><link rel="stylesheet" href="impact.css?v=20261023"><link rel="stylesheet" href="unleashed.css?v=20261030c"><link rel="stylesheet" href="merci.css?v=20261030g"><script src="back.js" defer></script><script type="module" src="app-return.js"></script><link rel="modulepreload" href="unleashed.js"><link rel="modulepreload" href="gift.js"><link rel="modulepreload" href="store-config.js"><link rel="stylesheet" href="phone.css?v=20261030l"></head>
 <body>
   <header class="topbar"><div class="topbar-inner wrap"><a class="brand" href="en.html" aria-label="Déjà Nous"><img src="assets/icon-36.png" srcset="assets/icon-72.png 2x, assets/icon-108.png 3x" alt="" width="36" height="36"><span>Déjà <em>Nous</em></span></a><nav class="sub-nav" aria-label="Navigation"><a href="en.html">← Back<span class="more"> to the site</span></a></nav><div class="header-actions"><div class="language-switch" aria-label="Language"><a href="unleashed-merci.html" lang="fr" id="lang-other">FR</a><a href="unleashed-merci-en.html" lang="en" aria-current="page">EN</a></div></div></div></header>
   <main class="wrap"><section class="ul-hero mc-hero"><span class="ul-badge">UNLEASHED</span><h1>Thank you, truly.<em>Tonight is all yours.</em></h1><p id="state">Confirming your payment…</p><p class="mc-lede" id="ready" hidden>Your full game is ready. <b>More than 18,000 cards</b> are waiting for you, on both your phones.</p></section>
@@ -14,8 +14,9 @@
     <section class="mc-card" id="late" hidden><p>Confirmation is taking a little while. Nothing is lost: the code is e-mailed as soon as the payment is confirmed, or find it with your address.</p><p class="mc-actions"><a class="ul-btn ghost" href="unleashed-en.html#acheter">Find my code</a></p></section></div></main>
   <footer class="footer wrap"><a class="brand" href="en.html"><img src="assets/icon-36.png" srcset="assets/icon-72.png 2x, assets/icon-108.png 3x" alt="" width="31" height="31"><span>Déjà <em>Nous</em></span></a><p>A problem? Reply to the confirmation e-mail.</p><nav class="footer-links" aria-label="Information"><a href="privacy-en.html">Privacy</a><a href="cgv-en.html">Terms of sale</a><a href="legal-en.html">Legal notice</a></nav><small class="footer-copy">© 2026 Déjà Nous Games</small></footer>
 <script type="module">
-import { showCode } from './unleashed.js';
+import { showCode } from './unleashed.js?v=20261030';
 import { giftLink } from './gift.js';
+import { sharePanel } from './share.js';
 showCode({ copy: "Copy the code", copied: "Copied ✓", bad: "Invalid link." });
 const done = document.querySelector('#done'), partner = document.querySelector('#partner');
 new MutationObserver(() => { partner.hidden = done.hidden; document.querySelector('#ready').hidden = done.hidden; }).observe(done, { attributes: true, attributeFilter: ['hidden'] });
@@ -23,14 +24,13 @@ new MutationObserver(() => { partner.hidden = done.hidden; document.querySelecto
 const gm = document.querySelector('#gm'), gf = document.querySelector('#gf');
 const preview = () => { document.querySelector('#gp').textContent = gm.value.trim() || 'Tonight, I’m betting on us.'; document.querySelector('#gpf').textContent = gf.value.trim() ? '— ' + gf.value.trim() : ''; document.querySelector('#gc').textContent = gm.value.length + ' / 200'; };
 gm.addEventListener('input', preview); gf.addEventListener('input', preview);
-document.querySelector('#gift').addEventListener('click', async e => {
-  const code = document.querySelector('#code').textContent.trim(); if (!code) return;
-  const url = giftLink(new URL('cadeau-en.html', location.href).href, { code, msg: document.querySelector('#gm').value, from: document.querySelector('#gf').value }), text = 'I’m giving you Déjà Nous. Open the envelope:';
-  try { if (navigator.share) await navigator.share({ text, url }); else { await navigator.clipboard.writeText(text + ' ' + url); e.target.textContent = 'Link copied ✓'; } } catch {}
-});
-document.querySelector('#invite').addEventListener('click', async e => {
-  const url = new URL('unleashed-en.html#telecharger', location.href).href, text = 'I got us Déjà Nous Unleashed to play tonight. Install the app here:';
-  try { if (navigator.share) await navigator.share({ text, url }); else { await navigator.clipboard.writeText(text + ' ' + url); e.target.textContent = 'Link copied ✓'; } } catch {}
-});
+// sharing: a panel in the page (the message, then WhatsApp, SMS, Telegram, e-mail or copy), never the system share window
+const code = () => document.querySelector('#code').textContent.trim();
+sharePanel(document.querySelector('#invite'), () => ({ subject: 'Déjà Nous, tonight?', text: `I got us Déjà Nous Unleashed so we can play tonight 💞
+
+1. Install the app: ${new URL('unleashed-en.html#telecharger', location.href).href}
+2. Open the settings (the gear, top right), then “Unlock the full game”
+3. Paste this code: ${code()}` }), 'en');
+sharePanel(document.querySelector('#gift'), () => ({ subject: 'An envelope for you', text: `Déjà Nous, a gift for you 💌 Open the envelope: ${giftLink(new URL('cadeau-en.html', location.href).href, { code: code(), msg: gm.value, from: gf.value })}` }), 'en');
 </script>
 </body></html>

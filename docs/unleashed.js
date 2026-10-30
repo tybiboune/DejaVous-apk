@@ -1,5 +1,26 @@
 // The buy forms of unleashed.html and the thank-you page. Prices are set in Stripe, never here: the page only asks the server for a payment link.
-import { STORE } from './store-config.js';
+import { STORE } from './store-config.js?v=20261030';
+
+// Cloudflare Turnstile (STORE.turnstile: the widget's public site key, empty = no captcha). One widget per form, invisible unless
+// Cloudflare wants a click; each submission takes a fresh token (single use), then the widget is reset for the next try.
+let turnstile;
+const loadTurnstile = () => turnstile ??= new Promise((ok, ko) => {
+  window.onTurnstileLoad = () => ok(window.turnstile);
+  const s = document.createElement('script'); s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit'; s.async = true; s.onerror = ko; document.head.append(s);
+});
+function guard(form, lang) {
+  if (!STORE.turnstile) return { token: async () => undefined, reset() {} };
+  const box = document.createElement('div'); box.className = 'ul-captcha'; form.querySelector('button[type=submit]').before(box);
+  const widget = loadTurnstile().then(t => ({ t, id: t.render(box, { sitekey: STORE.turnstile, appearance: 'interaction-only', theme: 'auto', size: 'flexible', language: lang }) })).catch(() => null);
+  return {
+    async token() { // the token is usually ready before the click; otherwise wait for it (up to 30 s, the time of a click on the widget)
+      const w = await widget; if (!w) return null;
+      for (let i = 0; i < 120; i++) { const v = w.t.getResponse(w.id); if (v) return v; await new Promise(r => setTimeout(r, 250)); }
+      return null;
+    },
+    async reset() { const w = await widget; try { w?.t.reset(w.id); } catch {} },
+  };
+}
 
 const post = async (path, body) => { const r = await fetch(STORE.api + path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }); let data = {}; try { data = await r.json(); } catch {} return { status: r.status, data }; };
 
@@ -13,11 +34,14 @@ export function initShop({ lang, errors, soon, redirect, lostOk }) {
   for (const form of document.querySelectorAll('form.ul-path')) {
     const btn = form.querySelector('button'), msg = form.querySelector('.ul-msg');
     if (!open) { btn.disabled = true; msg.textContent = soon; continue; }
+    const human = guard(form, lang);
     form.addEventListener('submit', async e => {
       e.preventDefault(); if (btn.disabled) return;
       const f = new FormData(form); btn.disabled = true; msg.textContent = '';
       try {
-        const { status, data } = await post('/api/checkout', { product: form.dataset.product, email: String(f.get('email') || '').trim(), playOrder: f.get('order') || undefined, adult: f.get('adult') === 'on', lang });
+        const captcha = await human.token(); if (captcha === null) { msg.textContent = errors.captcha; btn.disabled = false; return; }
+        const { status, data } = await post('/api/checkout', { product: form.dataset.product, email: String(f.get('email') || '').trim(), playOrder: f.get('order') || undefined, adult: f.get('adult') === 'on', lang, captcha });
+        human.reset();
         if (status === 200 && /^https:\/\/checkout\.stripe\.com\//.test(data.url || '')) { msg.textContent = redirect; location.href = data.url; return; }
         msg.textContent = errors[data.error] || errors.other;
       } catch { msg.textContent = errors.other; }
@@ -28,7 +52,16 @@ export function initShop({ lang, errors, soon, redirect, lostOk }) {
   if (lost) {
     const btn = lost.querySelector('button'), msg = lost.querySelector('.ul-msg');
     if (!open) { btn.disabled = true; return; }
-    lost.addEventListener('submit', async e => { e.preventDefault(); btn.disabled = true; try { const { status } = await post('/api/resend', { email: lost.email.value.trim(), lang }); msg.textContent = status === 200 ? lostOk : (status === 429 ? errors.rate : errors.email); } catch { msg.textContent = errors.other; } btn.disabled = false; });
+    const human = guard(lost, lang);
+    lost.addEventListener('submit', async e => {
+      e.preventDefault(); btn.disabled = true;
+      try {
+        const captcha = await human.token();
+        if (captcha === null) msg.textContent = errors.captcha;
+        else { const { status } = await post('/api/resend', { email: lost.email.value.trim(), lang, captcha }); human.reset(); msg.textContent = status === 200 ? lostOk : status === 429 ? errors.rate : status === 403 ? errors.captcha : errors.email; }
+      } catch { msg.textContent = errors.other; }
+      btn.disabled = false;
+    });
   }
 }
 
