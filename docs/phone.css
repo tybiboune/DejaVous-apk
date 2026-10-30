@@ -74,3 +74,6 @@ html[data-theme=light] .footer .footer-links a:hover,html[data-theme=light] .foo
   body .footer .footer-links{margin-left:0;gap:0 22px}
   body .footer .footer-links a{display:inline-flex;align-items:center;min-height:44px;font-size:13px!important}
 }
+/* the Google Play edition before its release: hidden blocks stay hidden whatever their display, "soon" buttons look inert */
+[data-play-only][hidden]{display:none!important}
+.is-soon{cursor:default;opacity:.62;pointer-events:none}

@@ -1,8 +1,21 @@
-import { STORE } from './store-config.js';
+import { STORE } from './store-config.js?v=20261030b';
 import { hit } from './hit.js';
 
 // One place for the store address and for the anonymous counters of the buying path (same rules as hit.js: no cookie, no identifier).
-document.querySelectorAll('[data-store=play]').forEach(a => { a.href = STORE.play; });
+// The Google Play edition is not on the store yet (STORE.play empty): its buttons say "soon" and lead nowhere, and what only makes
+// sense with it (the edition quiz, the +9,90 € upgrade, its FAQ entries) is hidden. Setting STORE.play brings it all back.
+if (STORE.play) document.querySelectorAll('[data-store=play]').forEach(a => { a.href = STORE.play; });
+else {
+  const en = document.documentElement.lang === 'en';
+  document.querySelectorAll('[data-store=play]').forEach(a => {
+    const soon = document.createElement('span');
+    soon.className = a.className + ' is-soon'; soon.setAttribute('aria-disabled', 'true');
+    if (a.classList.contains('store-btn')) soon.innerHTML = `<small>${en ? 'Coming soon to' : 'Bientôt sur'}</small><b>Google Play</b><span>${en ? 'A gentler edition' : 'Une édition plus douce'}</span>`;
+    else soon.textContent = en ? 'Coming soon to Google Play' : 'Bientôt sur Google Play';
+    a.replaceWith(soon);
+  });
+  document.querySelectorAll('[data-play-only]').forEach(n => { n.hidden = true; });
+}
 document.querySelectorAll('[data-store=apk]').forEach(a => { a.href = STORE.apk; });
 document.addEventListener('click', e => { const t = e.target.closest?.('[data-hit]'); if (t) hit(t.dataset.hit); });
 const watch = (selector, event) => { const n = document.querySelector(selector); if (n && 'IntersectionObserver' in window) { const o = new IntersectionObserver(([x]) => { if (x.isIntersecting) { hit(event); o.disconnect(); } }, { threshold: .35 }); o.observe(n); } };
