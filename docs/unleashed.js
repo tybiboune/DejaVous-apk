@@ -22,6 +22,28 @@ function guard(form, lang) {
   };
 }
 
+// A button that sends e-mails waits before it can be used again, longer after each sending: 30 s, 1 min, 2 min, 4 min… up to 30 min.
+// The count is kept in the browser (a reload does not reset it) and starts over after a quiet day. The server has its own limits too.
+const WAITS = [30, 60, 120, 240, 480, 900, 1800], COOL_KEY = 'dv:mailCooldown', QUIET = 86400000;
+function cooldown(btn, lang) {
+  const label = btn.textContent, read = () => { try { return JSON.parse(localStorage.getItem(COOL_KEY)) || {}; } catch { return {}; } };
+  const save = v => { try { localStorage.setItem(COOL_KEY, JSON.stringify(v)); } catch {} };
+  let timer;
+  const tick = () => {
+    const left = Math.ceil(((read().until || 0) - Date.now()) / 1000);
+    if (left <= 0) { clearInterval(timer); btn.disabled = false; btn.textContent = label; return; }
+    btn.disabled = true; btn.textContent = (lang === 'en' ? 'Wait ' : 'Patientez ') + Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0');
+  };
+  const run = () => { clearInterval(timer); tick(); timer = setInterval(tick, 1000); };
+  if ((read().until || 0) > Date.now()) run(); // a wait still running from before a reload
+  return {
+    start() {
+      const c = read(), n = Date.now() - (c.last || 0) > QUIET ? 0 : (c.n || 0);
+      save({ n: n + 1, last: Date.now(), until: Date.now() + WAITS[Math.min(n, WAITS.length - 1)] * 1000 }); run();
+    },
+  };
+}
+
 const post = async (path, body) => { const r = await fetch(STORE.api + path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }); let data = {}; try { data = await r.json(); } catch {} return { status: r.status, data }; };
 
 export function initShop({ lang, errors, soon, redirect, lostOk }) {
@@ -52,15 +74,16 @@ export function initShop({ lang, errors, soon, redirect, lostOk }) {
   if (lost) {
     const btn = lost.querySelector('button'), msg = lost.querySelector('.ul-msg');
     if (!open) { btn.disabled = true; return; }
-    const human = guard(lost, lang);
+    const human = guard(lost, lang), cool = cooldown(btn, lang);
     lost.addEventListener('submit', async e => {
-      e.preventDefault(); btn.disabled = true;
+      e.preventDefault(); if (btn.disabled) return; btn.disabled = true;
+      let sent = false;
       try {
         const captcha = await human.token();
         if (captcha === null) msg.textContent = errors.captcha;
-        else { const { status } = await post('/api/resend', { email: lost.email.value.trim(), lang, captcha }); human.reset(); msg.textContent = status === 200 ? lostOk : status === 429 ? errors.rate : status === 403 ? errors.captcha : errors.email; }
+        else { const { status } = await post('/api/resend', { email: lost.email.value.trim(), lang, captcha }); human.reset(); sent = status === 200; msg.textContent = status === 200 ? lostOk : status === 429 ? errors.rate : status === 403 ? errors.captcha : errors.email; }
       } catch { msg.textContent = errors.other; }
-      btn.disabled = false;
+      if (sent) cool.start(); else btn.disabled = false;
     });
   }
 }
