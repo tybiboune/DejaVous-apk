@@ -52,3 +52,7 @@ html[data-theme=light] .ul-hero p,html[data-theme=light] .ul-why p,html[data-the
 html[data-theme=light] .ul-path input[type=email],html[data-theme=light] .ul-path input[type=text]{background:#fff;color:#362438}
 html[data-theme=light] .ul-path .ul-amount,html[data-theme=light] .ul-price{color:#a02c55}
 .ul-captcha{min-height:0}.ul-captcha:empty{display:none}
+.ul-soon .ul-amount{opacity:.75}
+.ul-soon-note{margin-top:auto;padding:14px 16px;border-radius:16px;border:1px dashed var(--line);background:#00000026;font-size:15px;line-height:1.5}
+.ul-soon-note a{color:var(--peach)}
+html[data-theme=light] .ul-soon-note{background:#fffaf5}
