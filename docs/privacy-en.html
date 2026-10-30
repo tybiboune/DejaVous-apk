@@ -55,6 +55,7 @@
         <dt>Retention</dt><dd>Daily counters: 400 days, then deleted automatically. The address fingerprint: 24 hours.</dd>
       </dl>
       <p><strong>Hosting.</strong> The website is served by Cloudflare. Like any host, Cloudflare receives your IP address to send you the pages and protect the website against attacks.</p>
+      <p><strong>Anti-robot check.</strong> The purchase and code-resend forms use Cloudflare Turnstile to block automated submissions (spam). It looks at technical signals from your browser (IP address, browser characteristics, behaviour on the page); it is not used for advertising and sets no tracking cookie. We only receive a “verified person” token.</p>
     </section>
 
     <section id="achat"><h2>Buying the full game</h2>
@@ -138,7 +139,7 @@
     <section id="prestataires"><h2>Our service providers</h2>
       <p>We neither sell nor rent your data. Only these providers receive it, each for its own role:</p>
       <ul>
-        <li><strong>Cloudflare</strong>: hosting of the website and of the licence server, storage of the server’s data, routing of e-mails received at contact@dejanous.love.</li>
+        <li><strong>Cloudflare</strong>: hosting of the website and of the licence server, storage of the server’s data, routing of e-mails received at contact@dejanous.love, anti-robot check of the forms (Turnstile).</li>
         <li><strong>Stripe</strong>: payment for the full game.</li>
         <li><strong>Resend</strong>: sending the e-mails that contain the codes.</li>
         <li><strong>GitHub</strong>: download of the app, its updates and new cards.</li>
