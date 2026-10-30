@@ -19,7 +19,7 @@ const T = {
     paste: 'Si le bouton n’ouvre rien : copie le lien, puis dans l’appli, Le Fil → « Tu as reçu un lien ? ».',
     badT: 'Fil emmêlé', badP: 'Ce lien est incomplet ou abîmé (les messageries le coupent parfois). Demande à la personne qui te l’a envoyé de le renvoyer.', badHome: 'Découvrir Déjà Nous',
     privacy: 'Rien ne passe par un serveur : ce lien porte le numéro de la question et les réponses (brouillées), et cette page ne les envoie nulle part.',
-    foot: 'Le jeu de cartes des couples.', privacyLink: 'Confidentialité', privacyHref: 'privacy.html', home: 'index.html', badge: 'LE FIL',
+    foot: 'Le jeu de cartes des couples.', privacyLink: 'Confidentialité', privacyHref: 'privacy.html', cgvLink: 'CGV', cgvHref: 'cgv.html', legalLink: 'Mentions légales', legalHref: 'mentions-legales.html', home: 'index.html', badge: 'LE FIL',
     duelBadge: 'DÉFI CHRONO', duelTitle: n => `${n} te lance un défi chrono`, duelAnon: 'On te lance un défi chrono',
     duelReplyTitle: n => `${n} a relevé ton défi chrono`, duelReplyAnon: 'Ton défi chrono est revenu',
     duelLead: 'Des cartes vrai ou faux, à toute vitesse : d’abord tes réponses, puis tu devines les siennes. Le verdict s’affiche dans l’appli, pour vous deux.',
@@ -36,7 +36,7 @@ const T = {
     paste: 'If the button opens nothing: copy the link, then in the app, The Thread → “Got a link?”.',
     badT: 'Tangled thread', badP: 'This link is incomplete or damaged (messaging apps sometimes cut it). Ask the person who sent it to send it again.', badHome: 'Discover Déjà Nous',
     privacy: 'Nothing goes through a server: this link carries the question number and the (scrambled) answers, and this page sends them nowhere.',
-    foot: 'The card game for couples.', privacyLink: 'Privacy', privacyHref: 'privacy-en.html', home: 'en.html', badge: 'THE THREAD',
+    foot: 'The card game for couples.', privacyLink: 'Privacy', privacyHref: 'privacy-en.html', cgvLink: 'Terms of sale', cgvHref: 'cgv-en.html', legalLink: 'Legal notice', legalHref: 'legal-en.html', home: 'en.html', badge: 'THE THREAD',
     duelBadge: 'TIMED CHALLENGE', duelTitle: n => `${n} sent you a timed challenge`, duelAnon: 'Someone sent you a timed challenge',
     duelReplyTitle: n => `${n} took on your timed challenge`, duelReplyAnon: 'Your timed challenge came back',
     duelLead: 'True-or-false cards at full speed: first your own answers, then you guess theirs. The verdict shows in the app, for both of you.',
@@ -90,6 +90,7 @@ function paint() {
   $('fil-badge').textContent = link?.duel ? L.duelBadge : L.badge;
   $('fil-home').href = L.home; $('fil-privacy').textContent = L.privacy; $('fil-foot').textContent = L.foot;
   $('fil-privacy-link').textContent = L.privacyLink; $('fil-privacy-link').href = L.privacyHref;
+  for (const [id, text, href] of [['fil-cgv-link', L.cgvLink, L.cgvHref], ['fil-legal-link', L.legalLink, L.legalHref]]) { const a = $(id); if (a) { a.textContent = text; a.href = href; } }
   if (!link) {
     $('fil-title').textContent = L.badT; $('fil-lead').textContent = '';
     $('fil-bad').hidden = false; $('fil-bad-t').hidden = true; $('fil-bad-p').textContent = L.badP;

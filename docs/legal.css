@@ -1,0 +1,49 @@
+/* Legal pages (terms of sale, legal notice, privacy policy): long texts kept readable. Loaded before phone.css, which stays last. */
+.legal h1{font-size:clamp(46px,6.6vw,84px);overflow-wrap:break-word}
+.legal .legal-meta{margin:-20px 0 28px;font-size:14px;line-height:1.6;color:var(--muted)}
+.legal .legal-meta strong{color:var(--ink)}
+.legal section{margin-top:44px;padding-top:36px}
+.legal h2{font-size:clamp(28px,3.3vw,40px);margin-bottom:18px;overflow-wrap:break-word}
+.legal h2 .art-n{display:block;margin-bottom:8px;font:850 12px/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--rose)}
+.legal h3{margin:28px 0 8px;font:750 17px/1.45 var(--sans);color:var(--ink)}
+.legal p,.legal li,.legal dd{color:var(--muted);line-height:1.7}
+.legal p{margin:0 0 1em}
+.legal ol,.legal ul{margin:0 0 1em;padding-left:1.5em}
+.legal li{margin:.4em 0;padding-left:.2em}
+.legal li>ul,.legal li>ol{margin:.4em 0 .2em}
+.legal li::marker{color:var(--rose);font-weight:750}
+.legal strong{color:var(--ink)}
+.legal a{color:var(--peach);text-underline-offset:3px;overflow-wrap:anywhere}
+.legal a:hover{color:white}
+/* a field still to fill in: impossible to miss */
+.legal .ph{display:inline;padding:.05em .4em;border:1.5px dashed var(--peach);border-radius:6px;color:var(--peach);background:#ffd3bd14;font-weight:750;-webkit-box-decoration-break:clone;box-decoration-break:clone;white-space:nowrap}
+.legal p>.ph:only-child{white-space:normal;overflow-wrap:anywhere}
+.legal blockquote,.legal .legal-box{margin:18px 0 1em;padding:20px 24px;border:1px solid var(--line);border-radius:16px;background:#ffffff08}
+.legal blockquote p{font-size:15px;line-height:1.65;margin:0 0 .85em}
+.legal blockquote p:last-child,.legal .legal-box>:last-child{margin-bottom:0}
+.legal .legal-box ul{list-style:none;padding:0}
+.legal .legal-box li{padding:0;margin:.55em 0}
+.legal .prevails{margin:0 0 1em;padding:12px 16px;border-left:3px solid var(--rose);background:#ffffff08;border-radius:0 10px 10px 0;font-size:15px}
+/* table of contents of the numbered articles */
+.legal .legal-toc{margin:34px 0 0;padding:20px 24px;border:1px solid var(--line);border-radius:16px;background:#ffffff06}
+.legal .legal-toc>p{margin:0 0 10px;font-size:12px;font-weight:850;letter-spacing:.16em;text-transform:uppercase;color:var(--rose)}
+.legal .legal-toc ol{columns:2;column-gap:36px;margin:0;padding-left:0;list-style:none}
+.legal .legal-toc li{margin:0;padding:0;break-inside:avoid}
+.legal .legal-toc a{display:block;padding:5px 0;font-size:14.5px;line-height:1.4;color:var(--muted);text-decoration:none}
+.legal .legal-toc a:hover{color:white}
+.legal .legal-toc b{display:inline-block;min-width:2.2em;color:var(--rose);font-weight:750}
+/* one processing: purpose, legal basis, data, retention */
+.legal dl.facts{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 20px;margin:18px 0 1em;padding:18px 22px;border:1px solid var(--line);border-radius:14px;background:#ffffff06}
+.legal dl.facts dt{font-size:13px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;color:var(--rose);padding-top:3px}
+.legal dl.facts dd{margin:0;font-size:15px}
+.legal section[id]{scroll-margin-top:90px}
+@media(max-width:700px){
+  .legal .legal-meta{margin-top:-12px}
+  .legal .legal-toc{padding:16px 18px}
+  .legal .legal-toc ol{columns:1}
+  .legal .legal-toc a{padding:9px 0}
+  .legal blockquote,.legal .legal-box{padding:16px 16px}
+  .legal dl.facts{grid-template-columns:minmax(0,1fr);gap:2px;padding:16px 16px}
+  .legal dl.facts dd{margin-bottom:10px}
+  .legal dl.facts dd:last-child{margin-bottom:0}
+}
