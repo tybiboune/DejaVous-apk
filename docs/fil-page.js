@@ -5,6 +5,10 @@
 // Payload format: see www/js/fil.js in the app. The page never shows the card itself: the game's cards are not published on this site.
 // The same address also carries a "Défi chrono" (a timed challenge of Du tac au tac, www/js/tac-duel.js): its payload starts with 'T-'.
 // The page then says only who sent it and that ten cards wait in the app: no card, no answer, no score.
+// A link from the Google Play edition (the marker ?e=play, or the edition written in the link itself) shows nothing of the shop and never
+// offers the APK: Google Play only, once it is published (play-safe.js).
+import { isPlay, playSafe } from './play-safe.js?v=20261031';
+import { STORE } from './store-config.js';
 
 const $ = id => document.getElementById(id);
 const T = {
@@ -16,6 +20,7 @@ const T = {
     playQ: 'La question t’attend dans l’appli.',
     open: 'Ouvrir dans Déjà Nous', copy: 'Copier le lien', copied: 'Lien copié ✓',
     install: 'Pas encore l’appli ? <a href="index.html#telecharger">Installe Déjà Nous</a> (Android, découverte gratuite), puis touche à nouveau ce bouton.',
+    installPlay: 'Pas encore l’appli ? <a href="{store}">Installe Déjà Nous depuis Google Play</a>, puis touche à nouveau ce bouton.',
     paste: 'Si le bouton n’ouvre rien : copie le lien, puis dans l’appli, Le Fil → « Tu as reçu un lien ? ».',
     badT: 'Fil emmêlé', badP: 'Ce lien est incomplet ou abîmé (les messageries le coupent parfois). Demande à la personne qui te l’a envoyé de le renvoyer.', badHome: 'Découvrir Déjà Nous',
     privacy: 'Rien ne passe par un serveur : ce lien porte le numéro de la question et les réponses (brouillées), et cette page ne les envoie nulle part.',
@@ -33,6 +38,7 @@ const T = {
     playQ: 'The question is waiting for you in the app.',
     open: 'Open in Déjà Nous', copy: 'Copy the link', copied: 'Link copied ✓',
     install: 'Don’t have the app yet? <a href="en.html#telecharger">Install Déjà Nous</a> (Android, free Discovery), then tap this button again.',
+    installPlay: 'Don’t have the app yet? <a href="{store}">Install Déjà Nous from Google Play</a>, then tap this button again.',
     paste: 'If the button opens nothing: copy the link, then in the app, The Thread → “Got a link?”.',
     badT: 'Tangled thread', badP: 'This link is incomplete or damaged (messaging apps sometimes cut it). Ask the person who sent it to send it again.', badHome: 'Discover Déjà Nous',
     privacy: 'Nothing goes through a server: this link carries the question number and the (scrambled) answers, and this page sends them nowhere.',
@@ -71,13 +77,14 @@ function readDuel(hash) {
     const flags = b[7], n = b[8], at = 9 + 2 * n, len = b[at];
     if (n < 5 || n > 20 || len > 96 || at + 1 + len > b.length - 1) return null;
     const name = new TextDecoder('utf-8', { fatal: true }).decode(b.subarray(at + 1, at + 1 + len));
-    return { text, duel: true, lang: flags & 1 ? 'en' : 'fr', name: name.trim(), reply: !!(flags & 4) };
+    return { text, duel: true, lang: flags & 1 ? 'en' : 'fr', name: name.trim(), reply: !!(flags & 4), edition: flags & 2 ? 'play' : 'direct' };
   } catch { return null; }
 }
 
 const link = readDuel(location.hash) ?? read(location.hash);
 let lang = link?.lang ?? (navigator.language?.startsWith('fr') ? 'fr' : 'en');
 const android = /Android/i.test(navigator.userAgent);
+const play = isPlay() || link?.edition === 'play';
 const APK_PAGE = l => `https://tybiboune.github.io/DejaVous-apk/${l === 'en' ? 'en.html' : 'index.html'}#telecharger`;
 const appLink = l => android
   ? `intent://fil/${link.text}#Intent;scheme=dejavous;package=fr.dejavous.app;S.browser_fallback_url=${encodeURIComponent(APK_PAGE(l))};end`
@@ -96,6 +103,7 @@ function paint() {
     $('fil-bad').hidden = false; $('fil-bad-t').hidden = true; $('fil-bad-p').textContent = L.badP;
     $('fil-bad-home').textContent = L.badHome; $('fil-bad-home').href = L.home;
     document.title = `${L.badT} — Déjà Nous`;
+    if (play) playSafe(document, { play: true });
     return;
   }
   const who = link.name || L.someone;
@@ -116,8 +124,11 @@ function paint() {
   $('fil-go').hidden = false;
   $('fil-open').textContent = L.open; $('fil-open').href = appLink(lang);
   $('fil-copy').textContent = L.copy;
-  $('fil-install').innerHTML = L.install;
+  // the Play edition: Google Play once the listing exists, nothing to install before (never the APK)
+  $('fil-install').innerHTML = !play ? L.install : STORE.play ? L.installPlay.replace('{store}', STORE.play.replace(/[&"<>]/g, c => `&#${c.charCodeAt(0)};`)) : '';
+  $('fil-install').hidden = play && !STORE.play;
   $('fil-paste').textContent = L.paste;
+  if (play) playSafe(document, { play: true });
 }
 
 for (const a of document.querySelectorAll('[data-fil-lang]')) a.addEventListener('click', e => { e.preventDefault(); lang = a.dataset.filLang; paint(); });

@@ -54,10 +54,10 @@
         <dt>Durée</dt><dd>Les compteurs du jour : 400 jours, puis effacement automatique. L’empreinte de l’adresse : 24 heures.</dd>
       </dl>
       <p><strong>Hébergement.</strong> Le site est servi par Cloudflare. Comme tout hébergeur, Cloudflare reçoit votre adresse IP pour vous envoyer les pages et protéger le site contre les attaques.</p>
-      <p><strong>Vérification anti-robot.</strong> Les formulaires d’achat et de renvoi de code utilisent Cloudflare Turnstile, pour bloquer les envois automatiques (spam). Il analyse des signaux techniques de votre navigateur (adresse IP, caractéristiques du navigateur, comportement sur la page) ; il ne sert pas à la publicité et ne dépose pas de cookie de suivi. Nous ne recevons qu’un jeton « personne vérifiée ».</p>
+      <p data-shop><strong>Vérification anti-robot.</strong> Les formulaires d’achat et de renvoi de code utilisent Cloudflare Turnstile, pour bloquer les envois automatiques (spam). Il analyse des signaux techniques de votre navigateur (adresse IP, caractéristiques du navigateur, comportement sur la page) ; il ne sert pas à la publicité et ne dépose pas de cookie de suivi. Nous ne recevons qu’un jeton « personne vérifiée ».</p>
     </section>
 
-    <section id="achat"><h2>Acheter le jeu complet</h2>
+    <section id="achat" data-shop><h2>Acheter le jeu complet</h2>
       <p>Vous achetez « Déjà Nous Unleashed » sur ce site ou depuis l’application. Vous donnez votre adresse e-mail et vous confirmez avoir 18 ans ou plus. Le paiement se fait ensuite sur la page de Stripe.</p>
       <p>Stripe nous transmet votre e-mail et l’état du paiement. Nous ne voyons jamais votre numéro de carte. Notre serveur de licences crée alors votre code et l’envoie par e-mail.</p>
       <dl class="facts">
@@ -124,7 +124,7 @@
 
     <section id="connexions"><h2>Les autres connexions de l’application</h2>
       <p>L’application interroge GitHub pour savoir si une nouvelle version existe (fichier public « update.json ») et pour recevoir de nouvelles cartes. Elle télécharge aussi la liste des codes désactivés sur api.dejanous.love (édition directe). Ces requêtes n’envoient ni réponses, ni noms, ni contenu du livre. Comme toute requête Internet, elles montrent votre adresse IP au service qui les reçoit.</p>
-      <p>Le fichier d’installation de l’application et ses mises à jour sont téléchargés depuis GitHub.</p>
+      <p data-shop>Le fichier d’installation de l’application et ses mises à jour sont téléchargés depuis GitHub.</p>
     </section>
 
     <section id="drive"><h2>Sauvegarde facultative dans votre Google Drive</h2>
@@ -139,9 +139,9 @@
       <p>Nous ne vendons ni ne louons vos données. Seuls ces prestataires les reçoivent, chacun pour son rôle :</p>
       <ul>
         <li><strong>Cloudflare</strong> : hébergement du site et du serveur de licences, stockage des données du serveur, acheminement des e-mails reçus à contact@dejanous.love, vérification anti-robot des formulaires (Turnstile).</li>
-        <li><strong>Stripe</strong> : paiement du jeu complet.</li>
+        <li data-shop><strong>Stripe</strong> : paiement du jeu complet.</li>
         <li><strong>Resend</strong> : envoi des e-mails qui contiennent les codes.</li>
-        <li><strong>GitHub</strong> : téléchargement de l’application, de ses mises à jour et des nouvelles cartes.</li>
+        <li data-shop><strong>GitHub</strong> : téléchargement de l’application, de ses mises à jour et des nouvelles cartes.</li>
         <li><strong>Google</strong> : vente et vérification des achats de l’édition Google Play ; sauvegarde facultative dans votre Google Drive.</li>
       </ul>
       <p><strong>Transferts hors de l’Union européenne.</strong> Ces prestataires sont établis aux États-Unis ou y traitent des données. Ces transferts sont encadrés par les garanties prévues par le RGPD : le cadre de protection des données UE–États-Unis quand le prestataire y adhère, ou les clauses contractuelles types de la Commission européenne <span class="ph">[À CONFIRMER]</span>. Vous pouvez nous demander lesquelles s’appliquent.</p>
@@ -165,5 +165,6 @@
     </section>
   </main>
   <footer class="footer wrap"><a class="brand" href="index.html"><img src="assets/icon-36.png" srcset="assets/icon-72.png 2x, assets/icon-108.png 3x" alt="" width="31" height="31"><span>Déjà <em>Nous</em></span></a><p>Une question ? <a href="mailto:contact@dejanous.love">contact@dejanous.love</a></p><nav class="footer-links" aria-label="Informations"><a href="privacy.html" aria-current="page">Confidentialité</a><a href="cgv.html">CGV</a><a href="mentions-legales.html">Mentions légales</a></nav><small class="footer-copy">© 2026 Déjà Nous Games</small></footer>
+<script type="module" src="play-safe.js?v=20261031"></script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 //   c  the code of the full game (a paid gift)        m  the giver's note        f  who gives it
 //   s  the evening offered, "together-15" (a gift without a code is a free evening)        d  the day it may be opened (YYYY-MM-DD)
 // The app reads the same link (dejavous://cadeau#…): "Ouvrir dans l'appli" hands it over, the code is then applied without copying it.
+// A gift sent from the Google Play edition carries ?e=play: the page then shows nothing of the shop (play-safe.js).
+import { playSafe } from './play-safe.js?v=20261031';
 const CODE = /^[A-Za-z0-9._~-]{8,400}$/, DAY = /^\d{4}-\d{2}-\d{2}$/;
 export function parseGift(hash) {
   const p = new URLSearchParams(String(hash).replace(/^#/, ''));
@@ -37,4 +39,5 @@ export function openGift(T) {
     setTimeout(() => { $(next).hidden = false; $(next).scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'center' }); }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 900);
   }, { once: true });
   const b = $('#copy'); b.onclick = async () => { try { await navigator.clipboard.writeText(g.code); b.textContent = T.copied; } catch {} };
+  playSafe();
 }
