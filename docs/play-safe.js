@@ -10,7 +10,7 @@
 // The site's worker (site/worker.js in the app repository) answers any other page asked with the marker with the neutral page.
 import { STORE } from './store-config.js';
 
-export const PLAY_PAGES = ['fil', 'cadeau', 'cadeau-en', 'privacy', 'privacy-en', 'appli', 'appli-en', 'mentions-legales', 'legal-en'];
+export const PLAY_PAGES = ['fil', 'cadeau', 'cadeau-en', 'privacy', 'privacy-en', 'appli', 'appli-en', 'mentions-legales', 'legal-en', 'invitation'];
 const HOME = { index: 'appli', en: 'appli-en' };
 const NO_SHOP_HOST = /(^|\.)(dejanous\.(love|com|fr)|github\.com|github\.io|githubusercontent\.com|stripe\.com)$/i;
 const INSTALL = /^#(telecharger|acheter)$/;
