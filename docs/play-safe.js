@@ -1,16 +1,16 @@
-// The pages that a link of the Google Play edition of the app opens: Le Fil, a gift, "About" (the privacy page). That edition adds the
+// The pages that a link of the Google Play edition of the app opens: Le Fil, a gift, "About" (the privacy page, the legal notice). That edition adds the
 // marker ?e=play to every link it shares or opens. Google Play forbids leading its users to another way to pay for the game, so with the
 // marker a page shows nothing of the shop:
 //   - every element marked data-shop goes (a price, a purchase, the APK, the terms of sale);
 //   - a link to another of these pages keeps the marker; a link to the home page leads to the neutral page of the app (appli.html);
 //   - a link to install the app leads to the Google Play listing (store-config.js `play`), or goes while that address is empty;
-//   - any other link of this site (the shop, the terms of sale, the legal notice) or to the download of the APK goes;
+//   - any other link of this site (the shop, the terms of sale) or to the download of the APK goes;
 //   - mailto: and the links that open the app stay (an Android intent loses its fallback to the APK, or gets the listing instead).
 // A page marked <html data-play-only> (appli.html) is always shown this way. Without the marker nothing changes.
 // The site's worker (site/worker.js in the app repository) answers any other page asked with the marker with the neutral page.
 import { STORE } from './store-config.js';
 
-export const PLAY_PAGES = ['fil', 'cadeau', 'cadeau-en', 'privacy', 'privacy-en', 'appli', 'appli-en'];
+export const PLAY_PAGES = ['fil', 'cadeau', 'cadeau-en', 'privacy', 'privacy-en', 'appli', 'appli-en', 'mentions-legales', 'legal-en'];
 const HOME = { index: 'appli', en: 'appli-en' };
 const NO_SHOP_HOST = /(^|\.)(dejanous\.(love|com|fr)|github\.com|github\.io|githubusercontent\.com|stripe\.com)$/i;
 const INSTALL = /^#(telecharger|acheter)$/;
