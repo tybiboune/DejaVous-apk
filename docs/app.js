@@ -15,10 +15,10 @@ const copy = {
     heatSoftAlt: 'Accueil du jeu dans son thème doux', heatSpicyAlt: 'Accueil du jeu avec la palette aubergine et vin du mode épicé',
     brainQuestion: 'Qui nous perdrait en chemin et appellerait ça une aventure ?', brainKicker: 'Même cerveau · personne',
     brainFirst: 'Choisissez en secret, puis passez l’écran.', brainSecond: 'À votre tour. La première réponse reste cachée.',
-    person: 'Personne', hidden: 'Réponse gardée secrète', otherTurn: 'À l’autre de jouer.', hiddenHelp: 'La première réponse est cachée. Passez le téléphone.', ready: 'Je suis prêt·e',
+    person: 'Personne', hidden: 'Réponse gardée secrète', otherTurn: 'À l’autre de jouer.', hiddenHelp: 'La première réponse est cachée. Passez le téléphone.', ready: 'À moi de jouer',
     reveal: 'Révélation', brainWin: 'Même cerveau !', brainLose: 'Pas la même histoire…', brainNote: 'Dans le jeu complet, les réponses communes font gagner des points.', again: 'Rejouer',
     rapidKicker: 'Tir rapide', rapidTitle: 'Votre instinct dit quoi ?', rapidHelp: 'Choisissez sans trop réfléchir.', rapidEnd: 'Votre trio est prêt.', rapidEndHelp: 'Dans le jeu, vous comparez vos réflexes à ceux de votre partenaire.', restart: 'Recommencer',
-    fusionKicker: 'Fusion · thème : week-end', fusionTitle: 'Un mot chacun. Une idée commune.', fusionFirst: 'Écrivez un mot, puis passez l’écran.', fusionSecond: 'Votre partenaire a écrit son mot en secret. Écrivez le vôtre.',
+    fusionKicker: 'Fusion · thème : week-end', fusionTitle: 'Un mot par personne. Une idée commune.', fusionFirst: 'Écrivez un mot, puis passez l’écran.', fusionSecond: 'Votre partenaire a écrit son mot en secret. Écrivez le vôtre.',
     word: 'Mot de la personne', idea: 'Votre idée', hideWord: 'Garder mon mot secret', revealWords: 'Révéler les deux mots', wordHidden: 'Mot gardé secret', passPhone: 'Passez le téléphone.', fusionWin: 'Vous avez fusionné !', fusionBridge: 'Même idée ?', fusionBridgeHelp: 'Dites-vous pourquoi vous avez choisi ces mots. Même idée ? C’est une fusion !', fusionAgain: 'Essayer deux autres mots'
   },
   en: {

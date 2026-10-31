@@ -10,7 +10,7 @@ const $ = id => document.getElementById(id);
 const T = {
   fr: {
     title: n => `${n} t’a tendu un fil`, titleAnon: 'On t’a tendu un fil', replyTitle: n => `${n} a répondu à ton fil`, replyAnon: 'Ton fil est revenu',
-    lead: 'Une question du jour, à deux, chacun sur son téléphone : tu réponds, tu devines sa réponse, puis vous découvrez qui a deviné juste.',
+    lead: 'Une question du jour, à deux, chaque personne sur son téléphone : tu réponds, tu devines sa réponse, puis vous découvrez qui a deviné juste.',
     replyLead: 'Ouvre-le dans l’appli pour découvrir les réponses et qui a deviné juste.',
     kicker: 'La question du jour', hidden: n => `${n} a déjà répondu en secret. Sa réponse se dévoile dans l’appli, une fois la tienne verrouillée.`, someone: 'L’autre',
     playQ: 'La question t’attend dans l’appli.',

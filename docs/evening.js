@@ -38,7 +38,7 @@ const C = en ? {
   questions: ['Qui nous perdrait en chemin et appellerait ça une aventure ?', 'Qui gagnerait un concours de mauvaise danse ?', 'Qui adopterait un animal errant sans réfléchir ?'],
   first: n => `${n} : choisissez en secret.`, second: (n, o) => `${n} : à vous. La réponse de ${o} est cachée.`,
   namesKicker: 'AVANT DE COMMENCER', namesTitle: 'Qui joue ?', namesHelp: 'Vos prénoms serviront à chaque manche de cette démo, et seulement le temps de votre visite sur ce site.', name1: 'Votre prénom', name2: 'Son prénom', namesGo: 'On joue', namesSkip: 'Passer', namesChange: 'Changer les prénoms',
-  players: ['Personne 1', 'Personne 2'], pass: n => `Passez le téléphone à ${n}.`, hidden: 'Votre choix reste caché jusqu’à ce que vous ayez répondu tous les deux.', ready: n => `Je suis ${n}`, reveal: 'Révéler nos réponses',
+  players: ['Personne 1', 'Personne 2'], pass: n => `Passez le téléphone à ${n}.`, hidden: 'Votre choix reste caché jusqu’à la seconde réponse.', ready: n => `Je suis ${n}`, reveal: 'Révéler nos réponses',
   match: 'Même cerveau. C’est presque suspect.', different: 'Deux versions de la même histoire.',
   brainNote: 'Même cerveau : répondez séparément, révélez ensemble.', next: 'La manche suivante →',
   rapid: 'Un week-end à deux : mer ou montagne ?', rapidHelp: (n, o) => `${n}, choisissez à l’instinct. Puis passez le téléphone à ${o}.`, choices: ['Mer', 'Montagne'],
