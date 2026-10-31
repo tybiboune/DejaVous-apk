@@ -56,3 +56,12 @@ html[data-theme=light] .ul-path .ul-amount,html[data-theme=light] .ul-price{colo
 .ul-soon-note{margin-top:auto;padding:14px 16px;border-radius:16px;border:1px dashed var(--line);background:#00000026;font-size:15px;line-height:1.5}
 .ul-soon-note a{color:var(--peach)}
 html[data-theme=light] .ul-soon-note{background:#fffaf5}
+/* reassurance under the buy button */
+.ul-reassure{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--line);display:grid;gap:8px;font-size:14px;line-height:1.45;color:var(--muted)}
+.ul-reassure li{position:relative;padding-left:22px}
+.ul-reassure li::before{content:"✓";position:absolute;left:0;top:0;color:var(--peach);font-weight:800}
+.ul-reassure b{color:var(--ink);font-weight:700}
+.ul-reassure a{color:var(--peach);text-underline-offset:3px}
+html[data-theme=light] .ul-reassure{color:#5b4458}
+html[data-theme=light] .ul-reassure b{color:#362438}
+html[data-theme=light] .ul-reassure li::before,html[data-theme=light] .ul-reassure a{color:#a02c55}

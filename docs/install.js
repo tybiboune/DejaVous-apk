@@ -5,12 +5,12 @@ import { STORE } from './store-config.js';
 // with the evening code to type at the end. On a computer it shows a QR code (made in the page, no outside service) to continue on the phone.
 const en = document.documentElement.lang === 'en';
 const T = en ? {
-  title: 'Three taps and you’re in', steps: ['The download starts. Open <b>deja-vous.apk</b> (notification or Downloads folder).', 'Android asks to allow your browser: tap <b>Settings</b>, turn on <b>Allow from this source</b>, come back.', 'Tap <b>Install</b>, then <b>Open</b>.'],
+  title: 'Three taps and you’re in', steps: ['The download starts. Open <b>deja-vous.apk</b> (notification or Downloads folder).', 'Android asks to allow your browser: tap <b>Settings</b>, turn on <b>Allow from this source</b>, come back.', 'Tap <b>Install</b>, then <b>Open</b>. A Play Protect warning? That’s normal outside the Play Store: tap <b>More details</b>, then <b>Install anyway</b>.'],
   code: c => `Type your evening code <b class="code">${c}</b>: the sealed round 4 opens first.`, copy: 'Copy the code', copied: 'Copied',
   already: 'Already installed? Open it directly', trust: 'Signed APK · SHA-256 fingerprint published · no account · refunded within 14 days if you buy and change your mind',
   desk: 'You’re on a computer', deskHelp: 'Scan with your Android phone: the page opens there, ready to install.', anyway: 'Download the file anyway', send: 'Copy the link for my phone', close: 'Close'
 } : {
-  title: 'Trois gestes et c’est parti', steps: ['Le téléchargement démarre. Ouvrez <b>deja-vous.apk</b> (notification ou dossier Téléchargements).', 'Android demande d’autoriser votre navigateur : touchez <b>Paramètres</b>, activez <b>Autoriser cette source</b>, revenez.', 'Touchez <b>Installer</b>, puis <b>Ouvrir</b>.'],
+  title: 'Trois gestes et c’est parti', steps: ['Le téléchargement démarre. Ouvrez <b>deja-vous.apk</b> (notification ou dossier Téléchargements).', 'Android demande d’autoriser votre navigateur : touchez <b>Paramètres</b>, activez <b>Autoriser cette source</b>, revenez.', 'Touchez <b>Installer</b>, puis <b>Ouvrir</b>. Une alerte Play Protect ? C’est normal hors du Play Store : touchez <b>Plus de détails</b>, puis <b>Installer quand même</b>.'],
   code: c => `Saisissez votre code soirée <b class="code">${c}</b> : la manche 4 scellée s’ouvre en premier.`, copy: 'Copier le code', copied: 'Copié',
   already: 'Déjà installée ? L’ouvrir directement', trust: 'APK signé · empreinte SHA-256 publiée · aucun compte · remboursé sous 14 jours si vous achetez et changez d’avis',
   desk: 'Vous êtes sur ordinateur', deskHelp: 'Scannez avec votre téléphone Android : la page s’y ouvre, prête à installer.', anyway: 'Télécharger le fichier quand même', send: 'Copier le lien pour mon téléphone', close: 'Fermer'
