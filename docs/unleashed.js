@@ -52,8 +52,8 @@ export function initShop({ lang, errors, soon, redirect, lostOk }) {
   const open = !!STORE.api;
   const availability = document.querySelector('#shop-availability');
   if (availability) availability.textContent = open
-    ? (lang === 'en' ? 'Checkout is open. Choose your offer below.' : 'Le paiement est ouvert. Choisissez votre offre ci-dessous.')
-    : (lang === 'en' ? 'Planned prices. Checkout is not open yet: no payment or gift-code delivery is currently available. Try Discovery first.' : 'Prix prévus. Le paiement n’est pas encore ouvert : aucun achat ni envoi de code cadeau n’est disponible actuellement. Essayez Découverte d’abord.');
+    ? (lang === 'en' ? 'The shop is open. Everything happens just below.' : 'La boutique est ouverte. Tout se passe juste en dessous.')
+    : (lang === 'en' ? 'These are the planned prices. Checkout isn’t open yet: for now, you can’t buy anything or send a gift code. Discovery is there to try in the meantime.' : 'Ces prix sont ceux prévus. Le paiement n’est pas encore ouvert : pour l’instant, impossible d’acheter ou d’envoyer un code cadeau. En attendant, Découverte est là pour essayer.');
   for (const form of document.querySelectorAll('form.ul-path')) {
     const btn = form.querySelector('button'), msg = form.querySelector('.ul-msg');
     if (!open) { btn.disabled = true; msg.textContent = soon; continue; }
@@ -84,7 +84,7 @@ export function initShop({ lang, errors, soon, redirect, lostOk }) {
         if (captcha === null) msg.textContent = errors.captcha;
         else { const { status, data } = await post('/api/resend', { email: lost.email.value.trim(), lang, captcha }); human.reset(); sent = status === 200; wait = status === 429 ? +data.retry || 3600 : 0; msg.textContent = status === 200 ? lostOk : status === 429 ? errors.rate : status === 403 ? errors.captcha : errors.email; }
       } catch { msg.textContent = errors.other; }
-      if (wait) msg.textContent = lang === 'en' ? 'Too many attempts: try again when the countdown ends.' : 'Trop d’essais : réessayez à la fin du décompte.';
+      if (wait) msg.textContent = lang === 'en' ? 'Lots of tries in a row: the button comes back when the countdown ends.' : 'Beaucoup d’essais d’affilée : le bouton revient à la fin du décompte.';
       if (sent) cool.start(); else if (wait) cool.hold(wait); else btn.disabled = false;
     });
   }

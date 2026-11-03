@@ -22,7 +22,7 @@ const copy = {
     word: 'Mot de la personne', idea: 'Votre idée', hideWord: 'Garder mon mot secret', revealWords: 'Révéler les deux mots', wordHidden: 'Mot gardé secret', passPhone: 'Passez le téléphone.', fusionWin: 'Vous avez fusionné !', fusionBridge: 'Même idée ?', fusionBridgeHelp: 'Dites-vous pourquoi vous avez choisi ces mots. Même idée ? C’est une fusion !', fusionAgain: 'Essayer deux autres mots'
   },
   en: {
-    marquee: ['LAUGH LOUDER', 'GUESS WRONG', 'BLUFF BRAVELY', 'DARE TOGETHER', 'CHANGE THE RULES', 'PLAY AGAIN TOMORROW'],
+    marquee: ['LAUGH LOUDER', 'GUESS WRONG WITH CONFIDENCE', 'BLUFF SHAMELESSLY', 'DARE TOGETHER', 'CHANGE THE RULES', 'PLAY AGAIN TOMORROW'],
     surprises: ['Who would get us lost and call it an adventure?', 'Who would adopt a stray animal without thinking twice?', 'Who would win a terrible-dancing contest?'], surpriseAgain: 'One more card',
     heatSoft: 'Start soft. See where the night takes you.', heatSpicy: 'Same game. Different tension. Still your rules.',
     heatSoftAlt: 'Game home screen in its soft theme', heatSpicyAlt: 'Game home screen in the aubergine-and-wine Spicy theme',
@@ -212,8 +212,8 @@ document.querySelectorAll('[data-door]').forEach(door => door.addEventListener('
   stage.querySelectorAll('[data-door]').forEach(other => other.setAttribute('aria-pressed', String(other === door)));
   const result = document.querySelector('#door-result');
   if (result) result.textContent = en
-    ? (hot ? 'Burning. The next beat turns up the tension — because you chose it.' : 'Soft. You keep control of the pace without killing the surprise.')
-    : (hot ? 'Brûlante. La suite monte d’un cran — parce que vous l’avez choisi.' : 'Douce. Vous gardez le contrôle du rythme sans tuer la surprise.');
+    ? (hot ? 'Burning. The next part turns up the heat, because you asked for it.' : 'Soft. You set the pace, and the surprise survives.')
+    : (hot ? 'Brûlante. La suite monte d’un cran, puisque vous l’avez demandé.' : 'Douce. Vous gardez la main sur le rythme, et la surprise reste entière.');
 
   burstDoorAtmosphere(door, hot);
 

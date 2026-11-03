@@ -11,28 +11,28 @@ const $ = id => document.getElementById(id);
 const T = {
   fr: {
     title: n => `${n} t’invite à jouer`, titleAnon: 'Une invitation à jouer',
-    lead: 'Déjà Nous, le jeu de cartes des couples : chaque personne sur son téléphone, des questions, des paris, et vous découvrez qui connaît le mieux l’autre.',
+    lead: 'Déjà Nous, le jeu de cartes des couples. Chaque personne sur son téléphone, des questions, des paris, et vous saurez enfin qui connaît le mieux l’autre.',
     open: 'Ouvrir l’invitation', openHow: 'L’appli est installée ? Ce bouton l’ouvre, et tout est prêt : rien à taper.',
     install: 'Installer l’appli (Android)', installPlay: 'Installer l’appli depuis Google Play',
-    steps: ['Ouvrez le fichier téléchargé (notification ou dossier Téléchargements), puis touchez <b>Installer</b>. Android demande d’autoriser votre navigateur ? Touchez <b>Paramètres</b>, activez <b>Autoriser cette source</b>, revenez.', 'Revenez sur cette page et touchez <b>Ouvrir l’invitation</b> : l’appli s’ouvre avec tout ce que contient le lien.'],
+    steps: ['Ouvrez le fichier téléchargé (notification ou dossier Téléchargements), puis touchez <b>Installer</b>. Si Android demande d’autoriser votre navigateur : touchez <b>Paramètres</b>, activez <b>Autoriser cette source</b>, puis revenez.', 'Revenez sur cette page et touchez <b>Ouvrir l’invitation</b> : l’appli s’ouvre avec tout ce que contient le lien.'],
     stepsPlay: ['Installez l’appli depuis Google Play.', 'Revenez sur cette page et touchez <b>Ouvrir l’invitation</b> : l’appli s’ouvre avec tout ce que contient le lien.'],
     soon: 'L’appli arrive bientôt sur Google Play.',
-    codeT: 'Le lien ne s’ouvre pas dans l’appli ?', codeHow: 'Dans l’appli : Configuration, « Débloquer le jeu complet », puis collez ce code. Il marche sur 2 téléphones au maximum.', copy: 'Copier le code', copied: 'Copié ✓',
-    badT: 'Invitation incomplète', badP: 'Ce lien est incomplet ou abîmé (les messageries le coupent parfois). Demandez à la personne qui vous l’a envoyé de le renvoyer.',
-    privacy: 'Rien ne passe par un serveur : l’invitation reste dans ce lien, et cette page ne l’envoie nulle part.',
+    codeT: 'Le lien ne s’ouvre pas dans l’appli ?', codeHow: 'Plan B : dans l’appli, Configuration, « Débloquer le jeu complet », puis collez ce code. Il vaut pour 2 téléphones, pas un de plus.', copy: 'Copier le code', copied: 'Copié ✓',
+    badT: 'Invitation incomplète', badP: 'Ce lien est arrivé abîmé (les messageries en coupent parfois un bout). Demandez à la personne qui vous l’a envoyé de vous le renvoyer.',
+    privacy: 'Aucun serveur dans l’histoire : l’invitation tient tout entière dans ce lien, et cette page ne l’envoie nulle part.',
     privacyLink: 'Confidentialité', privacyHref: 'privacy.html', legalLink: 'Mentions légales', legalHref: 'mentions-legales.html', home: 'index.html'
   },
   en: {
     title: n => `${n} is inviting you to play`, titleAnon: 'An invitation to play',
-    lead: 'Déjà Nous, the card game for couples: each of you on your own phone, questions, bets, and you find out who knows the other best.',
+    lead: 'Déjà Nous, the card game for couples. Each of you on your own phone, questions, bets, and at last you’ll know who knows the other best.',
     open: 'Open the invitation', openHow: 'Is the app installed? This button opens it, and everything is ready: nothing to type.',
     install: 'Install the app (Android)', installPlay: 'Install the app from Google Play',
-    steps: ['Open the downloaded file (notification or Downloads folder), then tap <b>Install</b>. Android asks to allow your browser? Tap <b>Settings</b>, turn on <b>Allow from this source</b>, come back.', 'Come back to this page and tap <b>Open the invitation</b>: the app opens with everything the link holds.'],
+    steps: ['Open the downloaded file (notification or Downloads folder), then tap <b>Install</b>. If Android asks you to allow your browser: tap <b>Settings</b>, turn on <b>Allow from this source</b>, then come back.', 'Come back to this page and tap <b>Open the invitation</b>: the app opens with everything the link holds.'],
     stepsPlay: ['Install the app from Google Play.', 'Come back to this page and tap <b>Open the invitation</b>: the app opens with everything the link holds.'],
     soon: 'The app is coming to Google Play soon.',
-    codeT: 'The link doesn’t open in the app?', codeHow: 'In the app: Settings, “Unlock the full game”, then paste this code. It works on 2 phones at most.', copy: 'Copy the code', copied: 'Copied ✓',
-    badT: 'Incomplete invitation', badP: 'This link is incomplete or damaged (messaging apps sometimes cut it). Ask the person who sent it to send it again.',
-    privacy: 'Nothing goes through a server: the invitation stays in this link, and this page sends it nowhere.',
+    codeT: 'The link doesn’t open in the app?', codeHow: 'Plan B: in the app, Settings, “Unlock the full game”, then paste this code. It covers 2 phones, not one more.', copy: 'Copy the code', copied: 'Copied ✓',
+    badT: 'Incomplete invitation', badP: 'This link arrived damaged (messaging apps sometimes cut off a piece). Ask the person who sent it to send it again.',
+    privacy: 'No server involved: the whole invitation fits inside this link, and this page sends it nowhere.',
     privacyLink: 'Privacy', privacyHref: 'privacy-en.html', legalLink: 'Legal notice', legalHref: 'legal-en.html', home: 'en.html'
   }
 };
