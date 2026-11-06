@@ -1,7 +1,5 @@
-// Shop settings. `api` is the address of the Unleashed server (the Cloudflare Worker described in UNLEASHED.md of the private repository).
-// While it is empty the buy buttons stay off and say the shop opens soon: nothing can be bought by mistake. Empty since 05/11/2026:
-// the site is open for the Stripe review, the shop opens with Stripe live (put back 'https://api.dejanous.love').
-// `turnstile` is the public site key of the Cloudflare Turnstile widget that guards the forms (its secret is on the server only).
-// `play` stays empty until the Play edition is published (the site then says "coming soon"); its address will be
+// Site settings. Déjà Nous is sold through Google Play only: the site sells nothing itself.
+// `play` stays empty until the Google Play listing is published (the buttons then say "coming soon"); its address will be
 // https://play.google.com/store/apps/details?id=fr.dejavous.app
-export const STORE = { api: '', turnstile: '0x4AAAAAAFs3gChXtG0Gndf9', play: '', apk: 'https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk', sums: 'https://github.com/tybiboune/DejaVous-apk/releases/latest/download/SHA256SUMS' };
+// `api` is the address of the server that counts the site's anonymous events (hit.js): empty, nothing is counted.
+export const STORE = { api: '', play: '' };

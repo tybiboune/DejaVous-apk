@@ -1,13 +1,14 @@
-// "Le Fil" (The Thread): a thread link sent from the app (https://tybiboune.github.io/DejaVous-apk/fil#<payload>) lands here. The page
-// shows who sent it and the question, then hands the link to the app (dejavous://fil/<payload>; an Android intent with a fallback to the
-// download page when the app is missing). The payload lives in the #fragment: the browser never sends it to this site's server, and this
+// "Le Fil" (The Thread): a thread link sent from the app (https://dejanous.love/fil#<payload>) lands here. The page
+// shows who sent it and the question, then hands the link to the app (dejavous://fil/<payload>; an Android intent that falls back to
+// the Google Play listing when the app is missing, once the listing is published). The payload lives in the #fragment: the browser never sends it to this site's server, and this
 // page sends it nowhere either (no counter, no tracker on this page). The answers in it stay scrambled: only the app reveals them.
 // Payload format: see www/js/fil.js in the app. The page never shows the card itself: the game's cards are not published on this site.
 // The same address also carries a "Défi chrono" (a timed challenge of Du tac au tac, www/js/tac-duel.js): its payload starts with 'T-'.
 // The page then says only who sent it and that ten cards wait in the app: no card, no answer, no score.
-// A link from the Google Play edition (the marker ?e=play, or the edition written in the link itself) shows nothing of the shop and never
-// offers the APK: Google Play only, once it is published (play-safe.js).
-import { isPlay, playSafe } from './play-safe.js?v=20261031';
+// The app is installed from Google Play only, once the listing is published (store-config.js `play`); before that the page offers
+// nothing to install. A link from the Google Play edition (the marker ?e=play, or the edition written in the link itself) also keeps
+// every other link of the page on the pages that edition may open (play-safe.js).
+import { isPlay, playSafe } from './play-safe.js?v=20261106';
 import { STORE } from './store-config.js';
 
 const $ = id => document.getElementById(id);
@@ -19,12 +20,11 @@ const T = {
     kicker: 'La question du jour', hidden: n => `${n} a déjà répondu, en secret. Tu verras sa réponse dans l’appli quand la tienne sera verrouillée. Pas avant.`, someone: 'L’autre',
     playQ: 'La question t’attend dans l’appli.',
     open: 'Ouvrir dans Déjà Nous', copy: 'Copier le lien', copied: 'Lien copié ✓',
-    install: 'Pas encore l’appli ? <a href="index.html#telecharger">Installe Déjà Nous</a> (Android, découverte gratuite), puis touche à nouveau ce bouton.',
-    installPlay: 'Pas encore l’appli ? <a href="{store}">Installe Déjà Nous depuis Google Play</a>, puis touche à nouveau ce bouton.',
+    install: 'Pas encore l’appli ? <a href="{store}">Installe Déjà Nous depuis Google Play</a> (la Découverte est gratuite), puis touche à nouveau ce bouton.',
     paste: 'Si le bouton n’ouvre rien : copie le lien, puis dans l’appli, Le Fil → « Tu as reçu un lien ? ».',
     badT: 'Fil emmêlé', badP: 'Ce lien est arrivé abîmé (les messageries en coupent parfois un bout). Demande à la personne qui te l’a envoyé de te le renvoyer.', badHome: 'Déjà Nous, c’est quoi ?',
     privacy: 'Aucun serveur dans l’histoire : le lien contient le numéro de la question et les réponses, brouillées, et cette page ne les envoie nulle part.',
-    foot: 'Le jeu de cartes des couples.', privacyLink: 'Confidentialité', privacyHref: 'privacy.html', cgvLink: 'CGV', cgvHref: 'cgv.html', legalLink: 'Mentions légales', legalHref: 'mentions-legales.html', home: 'index.html', badge: 'LE FIL',
+    foot: 'Le jeu de cartes des couples.', privacyLink: 'Confidentialité', privacyHref: 'privacy.html', cgvLink: 'Conditions d’utilisation', cgvHref: 'cgv.html', legalLink: 'Mentions légales', legalHref: 'mentions-legales.html', home: 'index.html', badge: 'LE FIL',
     duelBadge: 'DÉFI CHRONO', duelTitle: n => `${n} te lance un défi chrono`, duelAnon: 'On te lance un défi chrono',
     duelReplyTitle: n => `${n} a relevé ton défi chrono`, duelReplyAnon: 'Ton défi chrono est revenu',
     duelLead: 'Des cartes vrai ou faux, à toute vitesse. D’abord tes réponses, puis tu devines les siennes. Le verdict tombe dans l’appli, pour vous deux.',
@@ -37,12 +37,11 @@ const T = {
     kicker: 'Today’s question', hidden: n => `${n} already answered, in secret. You’ll see their answer in the app once yours is locked in. Not before.`, someone: 'They',
     playQ: 'The question is waiting for you in the app.',
     open: 'Open in Déjà Nous', copy: 'Copy the link', copied: 'Link copied ✓',
-    install: 'Don’t have the app yet? <a href="en.html#telecharger">Install Déjà Nous</a> (Android, free Discovery), then tap this button again.',
-    installPlay: 'Don’t have the app yet? <a href="{store}">Install Déjà Nous from Google Play</a>, then tap this button again.',
+    install: 'Don’t have the app yet? <a href="{store}">Install Déjà Nous from Google Play</a> (Discovery is free), then tap this button again.',
     paste: 'If the button opens nothing: copy the link, then in the app, The Thread → “Got a link?”.',
     badT: 'Tangled thread', badP: 'This link arrived damaged (messaging apps sometimes cut off a piece). Ask the person who sent it to send it again.', badHome: 'So what’s Déjà Nous?',
     privacy: 'No server involved: the link holds the question number and the answers, scrambled, and this page sends them nowhere.',
-    foot: 'The card game for couples.', privacyLink: 'Privacy', privacyHref: 'privacy-en.html', cgvLink: 'Terms of sale', cgvHref: 'cgv-en.html', legalLink: 'Legal notice', legalHref: 'legal-en.html', home: 'en.html', badge: 'THE THREAD',
+    foot: 'The card game for couples.', privacyLink: 'Privacy', privacyHref: 'privacy-en.html', cgvLink: 'Terms of use', cgvHref: 'cgv-en.html', legalLink: 'Legal notice', legalHref: 'legal-en.html', home: 'en.html', badge: 'THE THREAD',
     duelBadge: 'TIMED CHALLENGE', duelTitle: n => `${n} sent you a timed challenge`, duelAnon: 'Someone sent you a timed challenge',
     duelReplyTitle: n => `${n} took on your timed challenge`, duelReplyAnon: 'Your timed challenge came back',
     duelLead: 'True-or-false cards at full speed. First your own answers, then you guess theirs. The verdict lands in the app, for both of you.',
@@ -85,9 +84,9 @@ const link = readDuel(location.hash) ?? read(location.hash);
 let lang = link?.lang ?? (navigator.language?.startsWith('fr') ? 'fr' : 'en');
 const android = /Android/i.test(navigator.userAgent);
 const play = isPlay() || link?.edition === 'play';
-const APK_PAGE = l => `https://tybiboune.github.io/DejaVous-apk/${l === 'en' ? 'en.html' : 'index.html'}#telecharger`;
-const appLink = l => android
-  ? `intent://fil/${link.text}#Intent;scheme=dejavous;package=fr.dejavous.app;S.browser_fallback_url=${encodeURIComponent(APK_PAGE(l))};end`
+// on Android, an intent: the app when it is there, else the Google Play listing (Chrome goes to the store of the package when there is no fallback)
+const appLink = () => android
+  ? `intent://fil/${link.text}#Intent;scheme=dejavous;package=fr.dejavous.app;${STORE.play ? `S.browser_fallback_url=${encodeURIComponent(STORE.play)};` : ''}end`
   : `dejavous://fil/${link.text}`;
 
 function paint() {
@@ -122,11 +121,11 @@ function paint() {
     $('fil-hidden').textContent = L.hidden(who);
   }
   $('fil-go').hidden = false;
-  $('fil-open').textContent = L.open; $('fil-open').href = appLink(lang);
+  $('fil-open').textContent = L.open; $('fil-open').href = appLink();
   $('fil-copy').textContent = L.copy;
-  // the Play edition: Google Play once the listing exists, nothing to install before (never the APK)
-  $('fil-install').innerHTML = !play ? L.install : STORE.play ? L.installPlay.replace('{store}', STORE.play.replace(/[&"<>]/g, c => `&#${c.charCodeAt(0)};`)) : '';
-  $('fil-install').hidden = play && !STORE.play;
+  // Google Play once the listing exists, nothing to install before
+  $('fil-install').innerHTML = STORE.play ? L.install.replace('{store}', STORE.play.replace(/[&"<>]/g, c => `&#${c.charCodeAt(0)};`)) : '';
+  $('fil-install').hidden = !STORE.play;
   $('fil-paste').textContent = L.paste;
   if (play) playSafe(document, { play: true });
 }

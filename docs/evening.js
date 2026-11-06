@@ -1,7 +1,9 @@
 import { encodeEvening, SEALED } from './evening-code.js';
 import { hit } from './hit.js';
+import { STORE } from './store-config.js';
 
-const APK = 'https://github.com/tybiboune/DejaVous-apk/releases/latest/download/deja-vous.apk';
+// Where "install" leads: the Google Play listing once it is published, until then the Google Play section of the page (it says "soon").
+const INSTALL = STORE.play || '#telecharger';
 
 // Demo answers live only in memory. The evening code and the promise stay in this browser (localStorage) so the app and a later visit can
 // pick the evening up. An invitation carries a card id and, when the sender answered, one bit (their hidden answer) and an optional first name.
@@ -20,8 +22,7 @@ const C = en ? {
   final: 'Your finale. Make it real.', finalHelp: 'Choose a little promise to keep tonight, together.',
   promises: ['One song. One terrible dance.', 'Ten minutes with the phones put away.', 'Plan your next date together.'],
   done: 'Three rounds in. Tonight already looks different.', doneHelp: 'No score for your relationship. That’s not what we’re here for.',
-  commitment: 'Your promise for tonight:', offer: 'Want a whole night of this?', offerHelp: 'Install Discovery for free on Android: a selection of cards in every game, and one card from the full game every day. One purchase then unlocks the whole game on 2 phones: yours and your partner’s.',
-  offerButton: 'Install Discovery · Android', offerBuy: 'Unlock everything for two · €34.90', guarantee: 'Refunded within 14 days, no questions asked · no account, no ads.', replay: 'Play again', messageMulti: 'I answered 3 questions in secret. Let’s see how well you know me.', guessScore: (n, t) => `${n}/${t} correct`, guessPerfect: w => `Perfect score. ${w} will need some new secrets.`, guessMore: w => `${w} still has a few secrets. Now it’s your turn.`, guessChallenge: 'Challenge them back', keepCard: 'Keep our souvenir card', cardTitle: 'Your souvenir card', cardHelp: 'A keepsake of tonight. Share it and invite someone to beat your score.', cardShare: 'Share and invite', cardSave: 'Save the image', cardBack: 'Back', cardCopied: 'Link copied ✓', cardTitles: ['Two mysteries', 'Accomplices in the making', 'One mind'], cardScore: n => `${n}/2 shared answers`, cardPromise: 'Tonight’s promise', cardCode: 'Evening code', cardMsg: 'Our score on Déjà Nous. Think you can beat us?', share: 'Prepare a surprise',
+  commitment: 'Your promise for tonight:', playNote: 'Discovery is free on Google Play. The full game is a one-time purchase in the app · no account, no ads.', replay: 'Play again', messageMulti: 'I answered 3 questions in secret. Let’s see how well you know me.', guessScore: (n, t) => `${n}/${t} correct`, guessPerfect: w => `Perfect score. ${w} will need some new secrets.`, guessMore: w => `${w} still has a few secrets. Now it’s your turn.`, guessChallenge: 'Challenge them back', keepCard: 'Keep our souvenir card', cardTitle: 'Your souvenir card', cardHelp: 'A keepsake of tonight. Share it and invite someone to beat your score.', cardShare: 'Share and invite', cardSave: 'Save the image', cardBack: 'Back', cardCopied: 'Link copied ✓', cardTitles: ['Two mysteries', 'Accomplices in the making', 'One mind'], cardScore: n => `${n}/2 shared answers`, cardPromise: 'Tonight’s promise', cardCode: 'Evening code', cardMsg: 'Our score on Déjà Nous. Think you can beat us?', share: 'Prepare a surprise',
   surpriseTitle: 'A bet to send. A night to look forward to.', surpriseHelp: 'Answer in secret (at least one question). Your partner opens the link and guesses. No install needed.',
   send: 'Share the invitation', copy: 'Copy the invitation', copied: 'Invitation copied.', fallback: 'Copy this invitation and send it yourself:',
   message: q => `I bet I know your answer: “${q}” Shall we find out together?`,
@@ -47,8 +48,7 @@ const C = en ? {
   final: 'Votre final. Pour de vrai.', finalHelp: 'Choisissez ensemble une petite promesse à tenir ce soir.',
   promises: ['Une chanson. Une danse catastrophique.', 'Dix minutes avec les téléphones rangés.', 'Imaginer votre prochain rendez-vous.'],
   done: 'Trois manches, et la soirée a déjà pris un autre tour.', doneHelp: 'Pas de note sur votre couple. On n’est pas là pour ça.',
-  commitment: 'Votre promesse pour ce soir :', offer: 'On continue toute la soirée ?', offerHelp: 'Installez Découverte gratuitement sur Android : une sélection de cartes dans tous les jeux, et chaque jour une carte du jeu complet. Un achat unique débloque ensuite tout le jeu sur 2 téléphones : le vôtre et celui de l’autre.',
-  offerButton: 'Installer Découverte · Android', offerBuy: 'Tout débloquer pour deux · 34,90 €', guarantee: 'Remboursé sous 14 jours, sans question · sans compte, sans pub.', replay: 'Rejouer', messageMulti: 'J’ai répondu en secret à 3 questions. Voyons si tu me connais.', guessScore: (n, t) => `${n}/${t} bonnes réponses`, guessPerfect: w => `Sans faute. ${w} va devoir se trouver de nouveaux secrets.`, guessMore: w => `${w} garde encore quelques secrets. À votre tour de lancer un défi.`, guessChallenge: 'Lancer mon défi', keepCard: 'Garder notre carte-souvenir', cardTitle: 'Votre carte-souvenir', cardHelp: 'Un souvenir de ce soir. Partagez-la et invitez quelqu’un à battre votre score.', cardShare: 'Partager et inviter', cardSave: 'Enregistrer l’image', cardBack: 'Retour', cardCopied: 'Lien copié ✓', cardTitles: ['Deux mystères', 'Complices en devenir', 'Même cerveau'], cardScore: n => `${n}/2 réponses communes`, cardPromise: 'La promesse de ce soir', cardCode: 'Code soirée', cardMsg: 'Notre score sur Déjà Nous. Vous pensez faire mieux ?', share: 'Préparer une surprise',
+  commitment: 'Votre promesse pour ce soir :', playNote: 'La Découverte est gratuite sur Google Play. Le jeu complet s’achète une fois, dans l’appli · sans compte, sans pub.', replay: 'Rejouer', messageMulti: 'J’ai répondu en secret à 3 questions. Voyons si tu me connais.', guessScore: (n, t) => `${n}/${t} bonnes réponses`, guessPerfect: w => `Sans faute. ${w} va devoir se trouver de nouveaux secrets.`, guessMore: w => `${w} garde encore quelques secrets. À votre tour de lancer un défi.`, guessChallenge: 'Lancer mon défi', keepCard: 'Garder notre carte-souvenir', cardTitle: 'Votre carte-souvenir', cardHelp: 'Un souvenir de ce soir. Partagez-la et invitez quelqu’un à battre votre score.', cardShare: 'Partager et inviter', cardSave: 'Enregistrer l’image', cardBack: 'Retour', cardCopied: 'Lien copié ✓', cardTitles: ['Deux mystères', 'Complices en devenir', 'Même cerveau'], cardScore: n => `${n}/2 réponses communes`, cardPromise: 'La promesse de ce soir', cardCode: 'Code soirée', cardMsg: 'Notre score sur Déjà Nous. Vous pensez faire mieux ?', share: 'Préparer une surprise',
   surpriseTitle: 'Un pari à envoyer. Une soirée à attendre.', surpriseHelp: 'Répondez en secret (au moins une question). Votre partenaire ouvre le lien et devine. Rien à installer.',
   send: 'Partager l’invitation', copy: 'Copier l’invitation', copied: 'Invitation copiée.', fallback: 'Copiez cette invitation pour l’envoyer vous-même :',
   message: q => `Je parie que je connais ta réponse : « ${q} » On vérifie ensemble ?`,
@@ -63,7 +63,6 @@ const C = en ? {
 };
 const stage = document.querySelector('#evening-stage');
 const progress = document.querySelector('#evening-progress');
-const shop = en ? 'unleashed-en.html' : 'unleashed.html';
 const invitation = new URLSearchParams(location.search).get('invite');
 let card = /^[0-2]$/.test(invitation || '') ? Number(invitation) : 0;
 let round = 0, answers = [];
@@ -85,7 +84,7 @@ const save = v => { try { localStorage.setItem('dv-demo', JSON.stringify({ ...sa
 function syncJourneyLinks() {
   const finished = round === 3 && !surprise;
   document.querySelectorAll('[data-journey-cta]').forEach(a => {
-    a.href = finished ? APK : '#essayer';
+    a.href = finished ? INSTALL : '#essayer';
     const caption = a.querySelector('span');
     const label = a.querySelector('b');
     const text = finished ? (en ? 'Install Discovery ↗' : 'Installer Découverte ↗')
@@ -94,7 +93,7 @@ function syncJourneyLinks() {
       : (en ? 'Play here ↗' : 'Jouer ici ↗');
     if (label) label.textContent = text;
     else a.textContent = text;
-    if (caption) caption.textContent = finished ? (en ? 'Discovery · Android' : 'Découverte · Android')
+    if (caption) caption.textContent = finished ? (en ? 'Discovery · Google Play' : 'Découverte · Google Play')
       : surprise ? (en ? 'A surprise for two' : 'Une surprise pour deux')
       : started ? (en ? `Your evening · ${round + 1}/3` : `Votre soirée · ${round + 1}/3`)
       : (en ? 'Three rounds. Nothing to install.' : 'Trois manches. Rien à installer.');
@@ -180,9 +179,8 @@ function finish(promise, promiseIndex = 0) {
   draw(C.done, C.doneHelp, C.sealedKicker);
   stage.append(el('p', 'evening-help', C.commitment), el('strong', 'evening-promise', promise), sealedCard(sealed), el('p', 'evening-help', C.sealedHelp));
   const codeLine = el('p', 'evening-code'); codeLine.append(document.createTextNode(C.sealedCode + ' '), el('b', 'code', code)); stage.append(codeLine);
-  link(stage, C.openSealed, APK);
-  link(stage, C.offerBuy, `${shop}#acheter`, 'evening-buy').addEventListener('click', () => hit('buy_click'));
-  stage.append(el('p', 'evening-note', C.guarantee));
+  link(stage, C.openSealed, INSTALL).addEventListener('click', () => hit('play_click'));
+  stage.append(el('p', 'evening-note', C.playNote));
   action(stage, C.keepCard, () => showCard(promise, code), 'button button-ghost');
   const tools = el('div', 'evening-tools'); action(tools, C.replay, () => { round = 0; matches = 0; started = false; answers = []; ask(0, true); }, 'text-action'); action(tools, C.namesChange, () => { round = 0; matches = 0; started = false; answers = []; askNames(); }, 'text-action'); action(tools, C.share, showSurprise, 'text-action'); stage.append(tools); focusStage();
 }
@@ -200,7 +198,7 @@ function cardCanvas(promise, code) {
   g.fillStyle = '#d8c2d0'; g.font = `700 26px ${serif}`; g.fillText(C.cardPromise.toUpperCase(), W / 2, y + 200);
   g.fillStyle = '#f9f0f1'; g.font = `italic 400 54px ${serif}`; wrap(`« ${promise.replace(/\.$/, '')} »`, W / 2, y + 280, W - 260, 68);
   g.fillStyle = '#d8c2d0'; g.font = `700 26px ${serif}`; g.fillText(`${C.cardCode.toUpperCase()} · ${code}`, W / 2, H - 190);
-  g.fillStyle = '#ffd3bd'; g.font = `700 32px ${serif}`; g.fillText('tybiboune.github.io/DejaVous-apk', W / 2, H - 120);
+  g.fillStyle = '#ffd3bd'; g.font = `700 32px ${serif}`; g.fillText('dejanous.love', W / 2, H - 120);
   return c;
 }
 function showCard(promise, code) {
@@ -264,7 +262,7 @@ function showGuess() {
     draw(C.guessScore(score, todo.length), score === todo.length ? C.guessPerfect(who) : C.guessMore(who), C.betKicker); progress.hidden = true;
     action(stage, C.guessChallenge, () => { myAnswers = [null, null, null]; showSurprise(); focusStage(); });
     action(stage, C.betNext, () => { round = 0; matches = 0; started = false; answers = []; begin(); }, 'evening-button');
-    link(stage, C.betApp, APK, 'evening-buy');
+    link(stage, C.betApp, INSTALL, 'evening-buy');
   };
   step();
 }
@@ -278,7 +276,7 @@ function showBet() {
     const match = pick === hiddenAnswer, theirs = hiddenAnswer === 0 ? (senderName || C.someone) : (receiverName || C.me);
     draw(match ? C.betMatch(who) : C.betMiss(who, theirs), C.brainNote, C.betKicker); progress.hidden = true;
     action(stage, C.betNext, () => { round = 0; matches = 0; started = false; answers = []; begin(); });
-    link(stage, C.betApp, APK, 'evening-buy');
+    link(stage, C.betApp, INSTALL, 'evening-buy');
     focusStage();
   })); stage.append(choices);
 }
@@ -297,5 +295,5 @@ if (stage) {
   if (/^[2-9A-HJ-NP-Z]{4}$/.test(params.get('code') || '') && !saved()?.code) save({ code: params.get('code') }); // arriving from the QR code
   const banner = document.querySelector('#invitation-banner'), back = saved();
   if (/^[0-2]$/.test(invitation || '')) banner.textContent = C.shared;
-  else if (back?.code) { banner.append(document.createTextNode(C.back4(back.code, back.promise) + ' ')); const a = el('a', '', C.back4Go); a.href = APK; banner.append(a); }
+  else if (back?.code) { banner.append(document.createTextNode(C.back4(back.code, back.promise) + ' ')); const a = el('a', '', C.back4Go); a.href = INSTALL; banner.append(a); }
 }
