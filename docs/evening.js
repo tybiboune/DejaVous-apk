@@ -1,9 +1,9 @@
 import { encodeEvening, SEALED } from './evening-code.js';
-import { hit } from './hit.js';
+import { hit, playLink } from './hit.js';
 import { STORE } from './store-config.js';
 
 // Where "install" leads: the Google Play listing once it is published, until then the Google Play section of the page (it says "soon").
-const INSTALL = STORE.play || '#telecharger';
+const INSTALL = STORE.play ? playLink(STORE.play, 'demo') : '#telecharger';
 
 // Demo answers live only in memory. The evening code and the promise stay in this browser (localStorage) so the app and a later visit can
 // pick the evening up. An invitation carries a card id and, when the sender answered, one bit (their hidden answer) and an optional first name.
@@ -179,7 +179,7 @@ function finish(promise, promiseIndex = 0) {
   draw(C.done, C.doneHelp, C.sealedKicker);
   stage.append(el('p', 'evening-help', C.commitment), el('strong', 'evening-promise', promise), sealedCard(sealed), el('p', 'evening-help', C.sealedHelp));
   const codeLine = el('p', 'evening-code'); codeLine.append(document.createTextNode(C.sealedCode + ' '), el('b', 'code', code)); stage.append(codeLine);
-  link(stage, C.openSealed, INSTALL).addEventListener('click', () => hit('play_click'));
+  link(stage, C.openSealed, INSTALL).addEventListener('click', () => hit('play_click', { detail: 'demo' }));
   stage.append(el('p', 'evening-note', C.playNote));
   action(stage, C.keepCard, () => showCard(promise, code), 'button button-ghost');
   const tools = el('div', 'evening-tools'); action(tools, C.replay, () => { round = 0; matches = 0; started = false; answers = []; ask(0, true); }, 'text-action'); action(tools, C.namesChange, () => { round = 0; matches = 0; started = false; answers = []; askNames(); }, 'text-action'); action(tools, C.share, showSurprise, 'text-action'); stage.append(tools); focusStage();
