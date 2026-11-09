@@ -12,7 +12,7 @@ const $ = id => document.getElementById(id);
 const T = {
   fr: {
     title: n => `${n} t’invite à jouer`, titleAnon: 'Une invitation à jouer',
-    lead: 'Déjà Nous, le jeu de cartes des couples. Chaque personne sur son téléphone, des questions, des paris, et vous saurez enfin qui connaît le mieux l’autre.',
+    lead: 'Déjà Nous, le jeu de société des couples. Chaque personne sur son téléphone, des questions, des paris, et vous saurez enfin qui connaît le mieux l’autre.',
     open: 'Ouvrir l’invitation', openHow: 'L’appli est installée ? Ce bouton l’ouvre, et tout est prêt : rien à taper.',
     install: 'Installer l’appli depuis Google Play',
     steps: ['Installez l’appli depuis Google Play. La Découverte est gratuite.', 'Revenez sur cette page et touchez <b>Ouvrir l’invitation</b> : l’appli s’ouvre avec tout ce que contient le lien.'],
@@ -23,7 +23,7 @@ const T = {
   },
   en: {
     title: n => `${n} is inviting you to play`, titleAnon: 'An invitation to play',
-    lead: 'Déjà Nous, the card game for couples. Each of you on your own phone, questions, bets, and at last you’ll know who knows the other best.',
+    lead: 'Déjà Nous, game night for couples. Each of you on your own phone, questions, bets, and at last you’ll know who knows the other best.',
     open: 'Open the invitation', openHow: 'Is the app installed? This button opens it, and everything is ready: nothing to type.',
     install: 'Install the app from Google Play',
     steps: ['Install the app from Google Play. Discovery is free.', 'Come back to this page and tap <b>Open the invitation</b>: the app opens with everything the link holds.'],
