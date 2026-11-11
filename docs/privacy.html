@@ -9,7 +9,7 @@
   <main class="report wrap legal">
     <p class="eyebrow">POLITIQUE DE CONFIDENTIALITÉ</p>
     <h1>Vos réponses<br><em>restent à vous.</em></h1>
-    <p class="legal-meta"><strong>Dernière mise à jour : 6 novembre 2026</strong></p>
+    <p class="legal-meta"><strong>Dernière mise à jour : 11 novembre 2026</strong></p>
     <p class="report-lede">Déjà Nous est un jeu pour couples. Ce qui se joue entre vous ne nous regarde pas : vos réponses, vos prénoms et votre « Livre de nous » restent sur votre téléphone, et nous ne les recevons jamais. Nous traitons seulement ce qu’il faut pour ouvrir le jeu complet que vous avez acheté, et pour vous répondre quand vous nous écrivez. Cette page dit quoi, pourquoi, et combien de temps.</p>
 
     <section id="responsable"><h2>Qui est responsable</h2>
@@ -127,8 +127,17 @@
       </dl>
     </section>
 
+    <section id="traduction"><h2>Traduire ce que l’autre a écrit (facultatif)</h2>
+      <p>Si vous jouez à deux dans deux langues (français et anglais), l’application peut traduire ce que l’autre a tapé. C’est désactivé tant que vous ne le choisissez pas, dans les Réglages. Le texte d’origine n’est jamais remplacé : il reste à un toucher sous sa traduction, et c’est lui que le Livre garde.</p>
+      <ul>
+        <li><strong>Hors ligne</strong> : la traduction se fait sur votre téléphone, avec le moteur libre Bergamot (Mozilla). Rien n’est envoyé. L’application télécharge une seule fois les modèles de traduction (environ 26 Mo par langue) depuis notre serveur api.dejanous.love, puis les garde sur le téléphone.</li>
+        <li><strong>En ligne</strong> : la phrase à traduire est envoyée à notre serveur, qui la transmet à Google Traduction (Google Cloud Translation) et vous renvoie le résultat. Notre serveur ne l’enregistre pas : il ne compte que le nombre de caractères traduits dans le mois, pour rester dans le quota gratuit du service. Google traite la phrase selon les conditions de Cloud Translation. Quand ce quota est atteint, ou sans réseau, l’application traduit hors ligne.</li>
+      </ul>
+      <p>La traduction automatique est approximative, surtout pour les expressions : l’application l’indique sous chaque texte traduit.</p>
+    </section>
+
     <section id="connexions"><h2>Les autres connexions de l’application</h2>
-      <p>L’application est installée et mise à jour par Google Play. En dehors de Google Play, elle ne contacte que notre serveur api.dejanous.love, pour la clé du jeu complet, et Google Drive, si vous activez la sauvegarde. Elle ne télécharge ni mise à jour, ni cartes ailleurs.</p>
+      <p>L’application est installée et mise à jour par Google Play. En dehors de Google Play, elle ne contacte que notre serveur api.dejanous.love (pour la clé du jeu complet et, si vous les choisissez, les modèles et le service de traduction) et Google Drive, si vous activez la sauvegarde. Elle ne télécharge ni mise à jour, ni cartes ailleurs.</p>
       <p>Comme toute requête Internet, ces connexions montrent votre adresse IP au service qui les reçoit.</p>
     </section>
 
@@ -144,7 +153,7 @@
       <p>Nous ne vendons ni ne louons vos données. Seuls ces prestataires les reçoivent, chacun pour son rôle :</p>
       <ul>
         <li><strong>Cloudflare</strong> : hébergement du site et du serveur de licences, stockage des données du serveur, limitation des demandes en masse, acheminement des e-mails reçus à contact@dejanous.love.</li>
-        <li><strong>Google</strong> : distribution de l’application et vente du jeu complet par Google Play, confirmation des achats, sauvegarde facultative dans votre Google Drive.</li>
+        <li><strong>Google</strong> : distribution de l’application et vente du jeu complet par Google Play, confirmation des achats, sauvegarde facultative dans votre Google Drive, traduction en ligne si vous la choisissez (Google Traduction).</li>
         <li><strong>GitHub</strong> (Microsoft) : archive privée de la mesure d’audience du site.</li>
       </ul>
       <p><strong>Transferts hors de l’Union européenne.</strong> Ces prestataires sont établis aux États-Unis ou y traitent des données. Ces transferts sont encadrés par les garanties prévues par le RGPD : le cadre de protection des données UE–États-Unis quand le prestataire y adhère, ou les clauses contractuelles types de la Commission européenne. Vous pouvez nous demander lesquelles s’appliquent.</p>

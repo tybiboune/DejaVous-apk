@@ -9,7 +9,7 @@
   <main class="report wrap legal">
     <p class="eyebrow">PRIVACY POLICY</p>
     <h1>Your answers<br><em>stay yours.</em></h1>
-    <p class="legal-meta"><strong>Last updated: November 6, 2026</strong></p>
+    <p class="legal-meta"><strong>Last updated: November 11, 2026</strong></p>
     <p class="prevails">This is a translation for your convenience. The <a href="privacy.html" lang="fr">French version</a> prevails.</p>
     <p class="report-lede">Déjà Nous is a game for couples. What happens between you two is none of our business: your answers, your first names and your “Book of us” stay on your phone, and we never receive them. We only process what we need to open the full game you bought, and to reply when you write to us. This page says what, why, and for how long.</p>
 
@@ -128,8 +128,17 @@
       </dl>
     </section>
 
+    <section id="traduction"><h2>Translating what the other wrote (optional)</h2>
+      <p>If the two of you play in two languages (French and English), the app can translate what the other typed. It is off until you choose it in the Settings. The original text is never replaced: it stays one tap away under its translation, and it is what the Book keeps.</p>
+      <ul>
+        <li><strong>Offline</strong>: the translation is made on your phone, with the free Bergamot engine (Mozilla). Nothing is sent. The app downloads the translation models once (about 26 MB per language) from our server api.dejanous.love, then keeps them on the phone.</li>
+        <li><strong>Online</strong>: the sentence to translate is sent to our server, which passes it to Google Translate (Google Cloud Translation) and sends you the result. Our server does not store it: it only counts the characters translated in the month, to stay within the service’s free quota. Google processes the sentence under the Cloud Translation terms. When that quota is reached, or without a network, the app translates offline.</li>
+      </ul>
+      <p>Machine translation is approximate, mostly for idioms: the app says so under every translated text.</p>
+    </section>
+
     <section id="connexions"><h2>The app’s other connections</h2>
-      <p>The app is installed and updated by Google Play. Apart from Google Play, it only contacts our server api.dejanous.love, for the key of the full game, and Google Drive, if you turn the backup on. It downloads no updates and no cards from anywhere else.</p>
+      <p>The app is installed and updated by Google Play. Apart from Google Play, it only contacts our server api.dejanous.love (for the key of the full game and, if you choose them, the translation models and service) and Google Drive, if you turn the backup on. It downloads no updates and no cards from anywhere else.</p>
       <p>Like any Internet request, these connections show your IP address to the service receiving them.</p>
     </section>
 
@@ -145,7 +154,7 @@
       <p>We neither sell nor rent your data. Only these providers receive it, each for its own role:</p>
       <ul>
         <li><strong>Cloudflare</strong>: hosting of the website and of the license server, storage of the server’s data, limiting mass requests, routing of e-mails received at contact@dejanous.love.</li>
-        <li><strong>Google</strong>: distribution of the app and sale of the full game through Google Play, confirmation of purchases, optional backup in your Google Drive.</li>
+        <li><strong>Google</strong>: distribution of the app and sale of the full game through Google Play, confirmation of purchases, optional backup in your Google Drive, online translation if you choose it (Google Translate).</li>
         <li><strong>GitHub</strong> (Microsoft): private archive of the website’s audience measurement.</li>
       </ul>
       <p><strong>Transfers outside the European Union.</strong> These providers are established in the United States or process data there. These transfers are covered by the safeguards provided for by the GDPR: the EU–US Data Privacy Framework when the provider has joined it, or the European Commission’s standard contractual clauses. You can ask us which ones apply.</p>
